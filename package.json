@@ -26,7 +26,6 @@
     "babel-plugin-wrap-in-js": "^1.1.1",
     "bulma": "^0.6.1",
     "glob": "^7.1.2",
-    "husky": "^0.14.3",
     "next": "^4.1.4",
     "node-sass": "^4.6.1",
     "normalize.css": "^7.0.0",
@@ -35,8 +34,11 @@
     "raw-loader": "^0.5.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "sass-loader": "^6.0.6",
-    "semistandard": "^11.0.0"
+    "sass-loader": "^6.0.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "semistandard": "^11.0.0"
+  }
 }
