@@ -4,11 +4,16 @@
   "description": "The world's most comprehensive triassic protection plan",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard",
+    "test": "semistandard && jest",
     "prepush": "npm run test",
     "dev": "next",
     "build": "next build",
     "start": "next start"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/shim.js"
+    ]
   },
   "repository": {
     "type": "git",
@@ -37,8 +42,12 @@
     "sass-loader": "^6.0.6"
   },
   "devDependencies": {
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.1.1",
     "semistandard": "^11.0.0"
   }
 }

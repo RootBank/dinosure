@@ -12,9 +12,9 @@ export default class extends Document {
     return (
       <html>
         <Head>
-          <link rel='stylesheet' type='text/css' href='/static/semantic.min.css' />
+          {/* <link rel='stylesheet' type='text/css' href='/static/semantic.min.css' /> */}
         </Head>
-        <body className='custom_class'>
+        <body>
           <Main />
           <NextScript />
         </body>
