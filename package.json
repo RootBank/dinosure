@@ -1,0 +1,38 @@
+{
+  "name": "dinosure",
+  "version": "1.0.0",
+  "description": "The world's most comprehensive triassic protection plan",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RootBank/dinosure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RootBank/dinosure/issues"
+  },
+  "homepage": "https://github.com/RootBank/dinosure#readme",
+  "dependencies": {
+    "autoprefixer": "^7.1.6",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "bulma": "^0.6.1",
+    "glob": "^7.1.2",
+    "next": "^4.1.4",
+    "node-sass": "^4.6.1",
+    "normalize.css": "^7.0.0",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-loader": "^2.0.8",
+    "raw-loader": "^0.5.1",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "sass-loader": "^6.0.6"
+  },
+  "devDependencies": {}
+}
