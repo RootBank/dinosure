@@ -1,5 +1,6 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
+import stylesheet from 'styles/index.scss';
 
 export default class extends Document {
   static getInitialProps ({ renderPage }) {
@@ -12,7 +13,8 @@ export default class extends Document {
     return (
       <html>
         <Head>
-          {/* <link rel='stylesheet' type='text/css' href='/static/semantic.min.css' /> */}
+          <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
+          <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         </Head>
         <body>
           <Main />

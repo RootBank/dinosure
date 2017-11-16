@@ -1,8 +1,6 @@
 @import 'normalize.css';
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
 
-$primary-color: black;
-
-p {
-  font-size: xx-large;
-  color: $primary-color;
-}
+// 6. Import the rest of Bulma
+@import "bulma/bulma";
