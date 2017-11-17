@@ -2,5 +2,40 @@
 @import "bulma/sass/utilities/initial-variables";
 @import "bulma/sass/utilities/functions";
 
-// 6. Import the rest of Bulma
+// Customise Bulma's theming here
+// See https://bulma.io/documentation/overview/customize/ for more details
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+$family-sans-serif: 'Josefin Sans', sans-serif;
+
+$family-primary: $family-sans-serif;
+$blue: #1D3CD6;
+$footer-background-color: $blue;
+
+// Give the footer some space to breath
+.footer {
+    padding-top: 1em;
+}
+
+// has-text-white removes decorations from text
+a.has-text-white {
+    text-decoration: underline;
+}
+
 @import "bulma/bulma";
+
+// Override Auth0's styling
+
+.auth0-lock-submit {
+    background-color: $green !important;
+    border-radius: 5px !important;        
+}
+
+.auth0-lock-header-bg-blur {
+    background-image: none !important;
+}
+
+.auth0-lock-header-bg {
+    background: none !important;
+}
