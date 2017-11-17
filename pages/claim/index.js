@@ -2,11 +2,25 @@ import Navbar from '../../components/navbar';
 
 export default () => (
   <span><Navbar />
-    <div className='container is-fluid'>
-      <div className='columns'>
-        <div className='column' />
 
-        <div className='column'>
+    <div className='columns'>
+      <div className='column' />
+      <div className='column'>
+        <div style={{ padding: '12px' }} >
+          <article class='message is-primary'>
+            <div class='message-header'>
+              <p>Primary</p>
+              <button class='delete' aria-label='delete' />
+            </div>
+            <div class='message-body'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div className='column'>
+        <div style={{ padding: '12px' }} >
           <div className='field'>
             <label className='label'>Name</label>
             <div className='control'>
@@ -93,8 +107,8 @@ export default () => (
           </div>
 
         </div>
-        <div className='column' />
       </div>
+      <div className='column' />
     </div>
 
   </span>
