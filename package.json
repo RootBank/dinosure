@@ -8,7 +8,8 @@
     "prepush": "npm run test",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "update-snapshot":"jest --updateSnapshot"
   },
   "jest": {
     "setupFiles": [
