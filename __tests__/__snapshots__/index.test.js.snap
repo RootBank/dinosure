@@ -1,13 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`With Snapshot Testing App shows "Hello world!" 1`] = `
-<div
-  className="jsx-319553417"
->
-  <p
-    className="jsx-319553417"
+<div>
+  <section
+    className="hero "
   >
-    Hello World!
-  </p>
+    <nav
+      className="jsx-3255290247 navbar"
+    >
+      <div
+        className="jsx-3255290247 container"
+      >
+        <div
+          className="jsx-3255290247 navbar-brand"
+        >
+          <a
+            className="jsx-3255290247 navbar-item"
+            href="/"
+            onClick={[Function]}
+          >
+            <img
+              alt="Logo"
+              className="jsx-3255290247"
+              src="/static/logo.svg"
+              style={
+                Object {
+                  "height": "64px",
+                  "maxHeight": "unset",
+                }
+              }
+            />
+          </a>
+          <label
+            className="jsx-3255290247 navbar-burger navbar-toggle burger"
+            data-target="navbarMenuHero"
+            htmlFor="nav-toggle-state"
+          >
+            <span
+              className="jsx-3255290247"
+            />
+            <span
+              className="jsx-3255290247"
+            />
+            <span
+              className="jsx-3255290247"
+            />
+          </label>
+          <input
+            className="jsx-3255290247"
+            id="nav-toggle-state"
+            type="checkbox"
+          />
+        </div>
+        <div
+          className="jsx-3255290247 navbar-menu nav-right nav-menu"
+          id="navbarMenuHero"
+        >
+          <div
+            className="jsx-3255290247 navbar-end"
+          >
+            <a
+              className="jsx-3255290247 navbar-item "
+              href="/"
+              onClick={[Function]}
+            >
+              Home
+            </a>
+            <a
+              className="jsx-3255290247 navbar-item "
+              href="/about"
+              onClick={[Function]}
+            >
+              About
+            </a>
+            <a
+              className="jsx-3255290247 navbar-item "
+              href="/contact"
+              onClick={[Function]}
+            >
+              Contact
+            </a>
+            <a
+              className="jsx-3255290247 navbar-item false"
+              href="/claim"
+              onClick={[Function]}
+            >
+              Claim
+            </a>
+            <span
+              className="jsx-3255290247 navbar-item"
+              onClick={[Function]}
+            >
+              <a
+                className="jsx-3255290247 button is-info is-inverted"
+              >
+                <span
+                  className="jsx-3255290247 icon"
+                >
+                  <i
+                    className="jsx-3255290247 fa fa-sign-in"
+                  />
+                </span>
+                <span
+                  className="jsx-3255290247"
+                >
+                  Sign In
+                </span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div
+      className="hero-head"
+    />
+    <div
+      className="hero-body"
+      style={
+        Object {
+          "paddingLeft": 0,
+          "paddingRight": 0,
+        }
+      }
+    >
+      <img
+        src="static/hero-splash.svg"
+        style={
+          Object {
+            "maxWidth": "unset",
+            "width": "100vw",
+          }
+        }
+      />
+    </div>
+  </section>
 </div>
 `;
