@@ -11,7 +11,7 @@ class SignUp extends React.Component {
   render () {
     return (
       <div>
-        <Navbar />
+        <Navbar isAuthenticated={this.props.isAuthenticated} user={this.props.user} />
         <div id={CONTAINER_ID} />
       </div>
     );

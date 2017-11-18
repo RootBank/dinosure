@@ -1,8 +1,9 @@
 import Navbar from '../components/navbar';
+import page from '../components/page-wrapper';
 
-export default () => (
+export default page(({isAuthenticated, user}) => (
   <div>
-    <Navbar currentPage='/contact' />
+    <Navbar currentPage='/contact' isAuthenticated={isAuthenticated} user={user} />
     <section className='section' >
       <div className='container content'>
         <h1 className='title'>Contact Us</h1>
@@ -23,4 +24,4 @@ export default () => (
     </section>
 
   </div>
-);
+));

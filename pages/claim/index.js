@@ -1,8 +1,9 @@
 import Navbar from '../../components/navbar';
 import Link from 'next/link';
+import page from '../../components/page-wrapper';
 
-export default () => (<div>
-  <Navbar currentPage='/claim' />
+export default page(({ isAuthenticated, user }) => (<div>
+  <Navbar currentPage='/claim' isAuthenticated={isAuthenticated} user={user} />
   <section className='section '>
     <div className='container content'>
       <h1 className='title'>Claim</h1>
@@ -15,15 +16,16 @@ export default () => (<div>
           <p>Required Documents</p>
         </div>
         <div className='message-body'>
-              It is hard losing a loved one, and administrative tasks are likely the last thing on one's mind.
-              However before we can process the claim, we require the following supporting documents:
-              <ul>
-                <li>A copy of the deceased's ID and/or birth certificate</li>
-                <li>The deceased's death certificate</li>
-              </ul>
+            Before we can process the claim, we require the following supporting documents:
+            <ul>
+              <li>A copy of the deceased's ID and/or birth certificate</li>
+              <li>The deceased's death certificate</li>
+            </ul>
+            Note: Please do not hesitate to call one of our consultants on <a href='tel:083 555 1337'>083 555 1337</a> if
+            you experience difficulties obtaining these documents.
         </div>
       </article>
       <Link href='/claim/1'><button className='button is-primary'>Start</button></Link>
     </div>
   </section>
-</div>);
+</div>));

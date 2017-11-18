@@ -1,16 +1,19 @@
-import Navbar from '../components/navbar';
+import React from 'react';
+import Router from 'next/router';
 
-export default () => (<div>
-  <section className='hero is-info is-large'>
-    <Navbar />
-    <div className='hero-head' />
-    <div className='hero-body'>
-      <div className='container has-text-centered'>
-        <p className='title'>Hooray!!</p>
-        <p className='subtitle'>You're now signed in</p>
-      </div>
-    </div>
+import { setToken, checkSecret, extractInfoFromHash } from '../utils/auth';
 
-  </section>
-</div>
-);
+export default class extends React.Component {
+  componentDidMount () {
+    const {idToken, accessToken, secret} = extractInfoFromHash();
+    if (!checkSecret(secret) || !idToken) {
+      console.error('Something happened with the Sign In request');
+    } else {
+      setToken(idToken, accessToken);
+      Router.push('/');
+    }
+  }
+  render () {
+    return null;
+  }
+}

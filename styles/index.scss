@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 $blue: #1D3CD6;
-$pink: #FF80C9;//#FF80C9;
+$pink: #FF80C9;
 $red: #E03620;
 $green: #6FD877;
 
@@ -41,6 +41,11 @@ a.has-text-white {
 // These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide
 $widescreen: calculate(45rem);
 $fullhd: calculate(45rem);
+
+// Add additonal affordances to currently selected page in navbar
+.is-active {
+    border-bottom: 3px solid black;
+}
 
 @import "bulma/bulma";
 
