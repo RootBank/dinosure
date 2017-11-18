@@ -9,10 +9,12 @@ class SignUp extends React.Component {
     show(CONTAINER_ID, { allowLogin: false, languageDictionary: { title: 'Sign Up' } });
   }
   render () {
-    return (<div>
-      <Navbar />
-      <div id={CONTAINER_ID} />
-    </div>);
+    return (
+      <div>
+        <Navbar />
+        <div id={CONTAINER_ID} />
+      </div>
+    );
   }
 }
 

@@ -6,7 +6,7 @@ const CONTAINER_ID = 'put-login-container-here';
 
 class SignIn extends React.Component {
   componentDidMount () {
-    show(CONTAINER_ID, { allowSignUp: false, languageDictionary: { title: 'Sign In' } });
+    show(CONTAINER_ID, { allowSignUp: false, languageDictionary: { title: 'Log In' } });
   }
   render () {
     return (<div>

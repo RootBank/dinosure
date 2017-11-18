@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HTTPStatus from 'http-status';
 import Head from 'next/head';
-
+import Link from 'next/link';
 export default class Error extends React.Component {
   static getInitialProps ({ res, err }) {
     const statusCode = res ? res.statusCode : (err ? err.statusCode : null);
@@ -25,6 +25,7 @@ export default class Error extends React.Component {
       </Head>
       <div>
         <style dangerouslySetInnerHTML={{ __html: 'body { margin: 0 }' }} />
+        <Link href='/'><a><img src='static/logo.svg' /></a></Link>
         {statusCode ? <h1 style={styles.h1}>{statusCode}</h1> : null}
         <div style={styles.desc}>
           <h2 style={styles.h2}>{title}.</h2>

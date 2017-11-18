@@ -1,16 +1,9 @@
+
 import Link from 'next/link';
 
-export default ({ currentPage }) => (
+const Page = ({ currentPage }) => (
   <nav className='navbar'>
-    <style jsx>{`
-    #nav-toggle-state {
-      display: none;
-    }
 
-    #nav-toggle-state:checked ~ .nav-menu {
-      display: block;
-    }
-  `}</style>
     <div className='container'>
       <div className='navbar-brand'>
         <Link href='/'>
@@ -23,9 +16,6 @@ export default ({ currentPage }) => (
           <span />
           <span />
         </label>
-        {/* <!-- This checkbox is hidden --> */}
-        <input type='checkbox' id='nav-toggle-state' />
-
       </div>
       <div id='navbarMenuHero' className='navbar-menu nav-right nav-menu'>
         <div className='navbar-end'>
@@ -36,13 +26,13 @@ export default ({ currentPage }) => (
           <Link href='/about'><a className={`navbar-item ${currentPage === '/about' ? 'is-active' : ''}`}>About</a></Link>
           <Link href='/contact'><a className={`navbar-item ${currentPage === '/contact' ? 'is-active' : ''}`}>Contact</a></Link>
           <Link href='/claim'><a className={`navbar-item ${currentPage === '/claim' && 'is-active'}`}>Claim</a></Link>
-          <Link href='/sign-in'>
+          <Link href='/log-in'>
             <span className='navbar-item'>
               <a className='button is-info is-inverted'>
                 <span className='icon'>
                   <i className='fa fa-sign-in' />
                 </span>
-                <span>Sign In</span>
+                <span>Log In</span>
               </a>
             </span>
           </Link>
@@ -50,3 +40,16 @@ export default ({ currentPage }) => (
       </div>
     </div>
   </nav>);
+
+Page.getInitialProps = (ctx) => {
+  const loggedUser = process.browser ? getUserFromLocalCookie() : getUserFromServerCookie(ctx.req);
+  const pageProps = Page.getInitialProps && Page.getInitialProps(ctx);
+  return {
+    ...pageProps,
+    loggedUser,
+    currentUrl: ctx.pathname,
+    isAuthenticated: !!loggedUser
+  };
+};
+
+export default Page;

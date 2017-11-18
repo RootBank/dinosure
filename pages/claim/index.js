@@ -1,43 +1,29 @@
 import Navbar from '../../components/navbar';
+import Link from 'next/link';
 
-export default () => (<span>
-  <Navbar />
-  <section className='section'>
-    <div className='container'>
-      <h1 className='title'>Begin</h1>
-      <div className='columns'>
-        <div className='column' />
-        <div className='column'>
-          <div style={{ padding: '12px' }} >
-            <article className='message is-primary'>
-              <div className='message-header'>
-                <p>Required Documents</p>
-                <button className='delete' aria-label='delete' />
-              </div>
-              <div className='message-body content'>
+export default () => (<div>
+  <Navbar currentPage='/claim' />
+  <section className='section '>
+    <div className='container content'>
+      <h1 className='title'>Claim</h1>
+      <p>
+          Please click the button below to start the claims process.
+          Once started, you'll receive an email which will allow you to resume the process at any time.
+      </p>
+      <article className='message is-primary'>
+        <div className='message-header'>
+          <p>Required Documents</p>
+        </div>
+        <div className='message-body'>
               It is hard losing a loved one, and administrative tasks are likely the last thing on one's mind.
-              However before we can process the claim, we require the following documents:
+              However before we can process the claim, we require the following supporting documents:
               <ul>
-                <li>A copy of the deceased's ID Number</li>
-                <li>A copy of the deceased's ID Number</li>
+                <li>A copy of the deceased's ID and/or birth certificate</li>
+                <li>The deceased's death certificate</li>
               </ul>
-              </div>
-            </article>
-          </div>
         </div>
-
-        <div className='column'>
-
-          <div style={{ padding: '12px' }} >
-            <h1 className='title'>Begin</h1>
-            <div>
-            Please click the button below to start the claims process.
-            You'll be able to
-          </div>
-          </div>
-        </div>
-        <div className='column' />
-      </div>
+      </article>
+      <Link href='/claim/1'><button className='button is-primary'>Start</button></Link>
     </div>
   </section>
-</span>);
+</div>);

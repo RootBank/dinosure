@@ -8,7 +8,7 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 $blue: #1D3CD6;
-$pink: #FF80C9;
+$pink: #FF80C9;//#FF80C9;
 $red: #E03620;
 $green: #6FD877;
 
@@ -24,15 +24,23 @@ $family-primary: $family-sans-serif;
 
 $footer-background-color: $primary;
 
-// Give the footer some space to breath
+// Give the footer some space to breathe
 .footer {
-    padding-top: 1em;
+    padding-top: 10em;
 }
 
-// has-text-white removes decorations from text. Add them back to links
+.fork-me {
+    fill: $info
+}
+
+// "has-text-white" removes decorations from text. Add them back to links so that they look correct 
 a.has-text-white {
     text-decoration: underline;
 }
+
+// These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide
+$widescreen: calculate(45rem);
+$fullhd: calculate(45rem);
 
 @import "bulma/bulma";
 
@@ -42,6 +50,7 @@ a.has-text-white {
     background-color: $primary !important;
     border-radius: 5px !important;        
 }
+
 .auth0-lock {
     font-family: $family-primary !important;
 }
