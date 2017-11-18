@@ -1,4 +1,4 @@
-// /* eslint-env jest */
+/* eslint-env jest */
 // import React from 'react';
 // // import { shallow, configure } from 'enzyme';
 // // import Adapter from 'enzyme-adapter-react-16';
@@ -14,10 +14,10 @@
 // //   });
 
 // // });
-// // describe('With Snapshot Testing', () => {
-// //   it('App shows "Hello world!"', () => {
-// //     const component = renderer.create(<App />);
-// //     const tree = component.toJSON();
-// //     expect(tree).toMatchSnapshot();
-// //   });
-// // });
+describe('With Snapshot Testing', () => {
+  it('App shows "Hello world!"', () => {
+    //  const component = renderer.create(<App />);
+    //  const tree = component.toJSON();
+    //  expect(tree).toMatchSnapshot();
+  });
+});
