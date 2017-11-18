@@ -1,7 +1,7 @@
-
+import { getUserFromLocalCookie, getUserFromServerCookie } from '../utils/auth';
 import Link from 'next/link';
 
-const Page = ({ currentPage }) => (
+const Navbar = ({ currentPage }) => (
   <nav className='navbar'>
 
     <div className='container'>
@@ -41,15 +41,13 @@ const Page = ({ currentPage }) => (
     </div>
   </nav>);
 
-Page.getInitialProps = (ctx) => {
+Navbar.getInitialProps = (ctx) => {
   const loggedUser = process.browser ? getUserFromLocalCookie() : getUserFromServerCookie(ctx.req);
-  const pageProps = Page.getInitialProps && Page.getInitialProps(ctx);
   return {
-    ...pageProps,
     loggedUser,
     currentUrl: ctx.pathname,
     isAuthenticated: !!loggedUser
   };
 };
 
-export default Page;
+export default Navbar;
