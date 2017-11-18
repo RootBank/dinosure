@@ -16,6 +16,12 @@ const getOptions = (container, options = {}) => {
   return {
     container,
     closable: false,
+    theme: {
+      logo: ''
+    },
+    languageDictionary: {
+      title: ''
+    },
     auth: {
       responseType: 'token',
       redirectUrl: `${getBaseUrl()}/signed-in`,

@@ -7,18 +7,29 @@
 
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
-$family-sans-serif: 'Josefin Sans', sans-serif;
-
-$family-primary: $family-sans-serif;
 $blue: #1D3CD6;
-$footer-background-color: $blue;
+$pink: #FF80C9;
+$red: #E03620;
+$green: #6FD877;
+
+// Set application colors to $blue
+$primary: $blue;
+$info: $pink;
+
+
+// Fonts
+$family-sans-serif: 'Josefin Sans', sans-serif;
+$family-primary: $family-sans-serif;
+
+
+$footer-background-color: $primary;
 
 // Give the footer some space to breath
 .footer {
     padding-top: 1em;
 }
 
-// has-text-white removes decorations from text
+// has-text-white removes decorations from text. Add them back to links
 a.has-text-white {
     text-decoration: underline;
 }
@@ -28,8 +39,11 @@ a.has-text-white {
 // Override Auth0's styling
 
 .auth0-lock-submit {
-    background-color: $green !important;
+    background-color: $primary !important;
     border-radius: 5px !important;        
+}
+.auth0-lock {
+    font-family: $family-primary !important;
 }
 
 .auth0-lock-header-bg-blur {
@@ -38,4 +52,7 @@ a.has-text-white {
 
 .auth0-lock-header-bg {
     background: none !important;
+}
+.auth0-lock-header {
+    height: auto !important;
 }

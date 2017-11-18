@@ -1,4 +1,4 @@
-export default () => (<div class='container'>
+export default () => (<div className='container'>
   <div className='field'>
     <label className='label'>Name</label>
     <div className='control'>

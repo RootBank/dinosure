@@ -1,14 +1,18 @@
 import React from 'react';
 import { show } from '../utils/lock';
+import Navbar from '../components/navbar';
 
 const CONTAINER_ID = 'put-signup-container-here';
 
 class SignUp extends React.Component {
   componentDidMount () {
-    show(CONTAINER_ID, { allowLogin: false });
+    show(CONTAINER_ID, { allowLogin: false, languageDictionary: { title: 'Sign Up' } });
   }
   render () {
-    return <div id={CONTAINER_ID} />;
+    return (<div>
+      <Navbar />
+      <div id={CONTAINER_ID} />
+    </div>);
   }
 }
 

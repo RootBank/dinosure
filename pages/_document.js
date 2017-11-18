@@ -2,6 +2,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 import stylesheet from 'styles/index.scss';
 import Footer from '../components/footer';
+import ForkThis from '../components/github-fork';
 // This is the default document. All documents will include this code
 export default class extends Document {
   static getInitialProps ({ renderPage }) {
@@ -21,6 +22,7 @@ export default class extends Document {
         </Head>
         <body style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }}>
           <div style={{flex: 1}}>
+            <ForkThis />
             <Main />
             <NextScript />
           </div>

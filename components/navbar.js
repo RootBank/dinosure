@@ -15,7 +15,7 @@ export default ({ currentPage }) => (
       <div className='navbar-brand'>
         <Link href='/'>
           <a className='navbar-item'>
-            <img style={{ height: '64px', maxHeight: 'unset' }} src='/static/logo.svg' alt='Logo' />
+            <img style={{ height: '50px', maxHeight: 'unset' }} src='/static/logo.svg' alt='Logo' />
           </a>
         </Link>
         <label className='navbar-burger navbar-toggle burger' data-target='navbarMenuHero' htmlFor='nav-toggle-state'>
