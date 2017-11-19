@@ -9,7 +9,7 @@ export default page(({ isAuthenticated, user }) => (<div>
       <h1 className='title'>Claim</h1>
       <p>
           Please click the button below to start the claims process.
-          Once started, you'll receive an email which will allow you to resume the process at any time.
+          Once started, you'll be able to resume the process at any time provided you use the same browser.
       </p>
       <article className='message is-primary'>
         <div className='message-header'>

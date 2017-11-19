@@ -30,7 +30,7 @@ export default Page => class extends React.Component {
 
   logout (eve) {
     if (eve.key === 'logout') {
-      Router.push(`/?logout=${eve.newValue}`);
+      Router.replace(`./`);
     }
   }
 

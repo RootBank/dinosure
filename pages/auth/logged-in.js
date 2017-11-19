@@ -10,7 +10,7 @@ export default class extends React.Component {
       console.error('Something happened with the Sign In request');
     } else {
       setToken(idToken, accessToken);
-      Router.push('/');
+      Router.replace('/my-account');
     }
   }
   render () {

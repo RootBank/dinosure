@@ -18,7 +18,7 @@ app.prepare()
   });
 
   server.use(async (ctx, next) => {
-    ctx.res.statusCode = 200;
+    ctx.res.statusCode = ctx.res.statusCode || 200;
     await next();
   });
 

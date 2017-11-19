@@ -35,4 +35,4 @@ const getOptions = (container, options = {}) => {
 };
 
 export const show = (container, options) => getLock(getOptions(container, options)).show();
-export const logout = () => getLock().logout({ returnTo: getBaseUrl() });
+export const logout = () => getLock().logout({ returnTo: `${getBaseUrl()}/auth/logged-out` });

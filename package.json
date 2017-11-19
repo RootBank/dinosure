@@ -44,6 +44,7 @@
     "next": "^4.1.4",
     "node-sass": "^4.6.1",
     "normalize.css": "^7.0.0",
+    "path-match": "^1.2.4",
     "postcss-easy-import": "^3.0.0",
     "postcss-loader": "^2.0.8",
     "raw-loader": "^0.5.1",
