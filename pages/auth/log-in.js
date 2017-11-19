@@ -1,7 +1,7 @@
 import React from 'react';
-import { show } from '../utils/lock';
-import Navbar from '../components/navbar';
-import page from '../components/page-wrapper';
+import { show } from '../../utils/lock';
+import Navbar from '../../components/navbar';
+import page from '../../components/page-wrapper';
 
 const CONTAINER_ID = 'put-login-container-here';
 

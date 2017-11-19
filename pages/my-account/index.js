@@ -6,7 +6,7 @@ export default page(({user, isAuthenticated}) => (
     <Navbar currentPage='/my-account' isAuthenticated={isAuthenticated} user={user} />
     <section className='section' >
       <div className='container'>
-        <h1 className='title'>Welcome back {user.name},</h1>
+        <h1 className='title'>Welcome {user.name},</h1>
       </div>
     </section>
   </div>

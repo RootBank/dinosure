@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
 
-import { setToken, checkSecret, extractInfoFromHash } from '../utils/auth';
+import { setToken, checkSecret, extractInfoFromHash } from '../../utils/auth';
 
 export default class extends React.Component {
   componentDidMount () {

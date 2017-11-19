@@ -24,7 +24,7 @@ const getOptions = (container, options = {}) => {
     },
     auth: {
       responseType: 'token id_token',
-      redirectUrl: `${getBaseUrl()}/logged-in`,
+      redirectUrl: `${getBaseUrl()}/auth/logged-in`,
       params: {
         scope: 'openid profile email',
         state: secret

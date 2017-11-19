@@ -1,6 +1,6 @@
 import React from 'react';
-import { show } from '../utils/lock';
-import Navbar from '../components/navbar';
+import { show } from '../../utils/lock';
+import Navbar from '../../components/navbar';
 
 const CONTAINER_ID = 'put-signup-container-here';
 
