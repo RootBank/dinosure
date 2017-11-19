@@ -1,5 +1,4 @@
 import Navbar from '../../components/navbar';
-import Link from 'next/link';
 import page from '../../components/page-wrapper';
 import FormFooter from '../../components/form-footer';
 
