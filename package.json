@@ -7,8 +7,9 @@
     "test": "semistandard && jest",
     "prepush": "npm run test",
     "dev": "next",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build",    
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build",
     "update-snapshot":"jest --updateSnapshot"
   },
   "jest": {
