@@ -33,7 +33,7 @@ export default page(({isAuthenticated, user}) => (<div>
   <section className='hero is-primary'>
     <div className='hero-body' >
       <div className='container has-text-centered'>
-        <h1 className='title'>Prices start at R150 p/m</h1>
+        <h1 className='title'>Protection from<br /> R150 p/m</h1>
         <h1 className='subtitle'>Instant checkout</h1>
         <button className='button is-large is-info'>Get a Quote</button>
       </div>

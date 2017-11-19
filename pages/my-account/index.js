@@ -1,4 +1,4 @@
-import Navbar from '../components/navbar';
+import Navbar from '../../components/navbar';
 import page from '../../components/page-wrapper';
 
 export default page(({user, isAuthenticated}) => (
@@ -6,7 +6,7 @@ export default page(({user, isAuthenticated}) => (
     <Navbar currentPage='/my-account' isAuthenticated={isAuthenticated} user={user} />
     <section className='section' >
       <div className='container'>
-        <h1 className='title'>My Account</h1>
+        <h1 className='title'>Welcome back {user.name},</h1>
       </div>
     </section>
   </div>

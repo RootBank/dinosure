@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-const LoginElements = ({isAuthenticated}) => {
+const LoginElements = ({isAuthenticated, currentPage}) => {
   if (isAuthenticated) {
     return [
-      <Link key={'account'} prefetch href='/'><a className='navbar-item'>My Account</a></Link>,
+      <Link key={'account'} prefetch href='/my-account'><a className={`navbar-item ${currentPage === '/my-account' ? 'is-active' : ''}`}>My Account</a></Link>,
       <Link key={'logout'} prefetch href='/log-out'>
         <span className='navbar-item'>
           <a className='button is-primary is-inverted'>
@@ -56,7 +56,7 @@ export default ({ currentPage, user, isAuthenticated }) => {
             <Link prefetch href='/about'><a className={`navbar-item ${currentPage === '/about' ? 'is-active' : ''}`}>About</a></Link>
             <Link prefetch href='/contact'><a className={`navbar-item ${currentPage === '/contact' ? 'is-active' : ''}`}>Contact</a></Link>
             <Link prefetch href='/claim'><a className={`navbar-item ${currentPage === '/claim' && 'is-active'}`}>Claim</a></Link>
-            <LoginElements isAuthenticated={isAuthenticated} />
+            <LoginElements isAuthenticated={isAuthenticated} currentPage={currentPage} />
           </div>
         </div>
       </div>

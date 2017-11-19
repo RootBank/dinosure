@@ -44,7 +44,7 @@ $fullhd: calculate(45rem);
 
 // Add additonal affordances to currently selected page in navbar
 .is-active {
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid $primary;
 }
 
 @import "bulma/bulma";
