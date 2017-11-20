@@ -1,5 +1,5 @@
 export default ({ step, of: total }) =>
-  <section>
+  <section className='section' style={{ paddingBottom: '4rem', paddingTop: 0 }}>
     <div className='container'>
       <div className='columns'>
         <div className='column' />

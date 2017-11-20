@@ -3,7 +3,7 @@ import page from '../components/page';
 
 const homePage = page(() => [
   <section key='splash' className='hero'>
-    <img style={{ width: '100vw', maxWidth: 'unset', paddingTop: '2em' }} src='static/hero-splash.svg' />
+    <img style={{ width: '100vw', maxWidth: 'unset', paddingTop: '2em' }} src='/static/hero-splash.svg' />
   </section>,
   <section key='benefits' className='hero is-primary'>
     <div className='hero-body' >
@@ -18,14 +18,14 @@ const homePage = page(() => [
         <div className='columns'>
           <div className='column'>
             <div className='level' >
-              <img className='image level-item is-128x128' src='static/product-benefit-1.svg' />
+              <img className='image level-item is-128x128' src='/static/product-benefit-1.svg' />
             </div>
             <h5 className='title is-5'>Early Warning Network</h5>
             <p>The best way to avoid an attack is not be there</p>
           </div>
           <div className='column'>
             <div className='level' >
-              <img className='image level-item is-128x128' src='static/product-benefit-2.svg' />
+              <img className='image level-item is-128x128' src='/static/product-benefit-2.svg' />
             </div>
             <div>
               <h4 className='title is-4'>Extraction Team</h4>
@@ -34,7 +34,7 @@ const homePage = page(() => [
           </div>
           <div className='column'>
             <div className='level' >
-              <img className='image level-item is-128x128' src='static/product-benefit-3.svg' />
+              <img className='image level-item is-128x128' src='/static/product-benefit-3.svg' />
             </div>
             <h4 className='title is-4'>Security Consultants</h4>
             <p>Our consultants will help make your home a fortress</p>

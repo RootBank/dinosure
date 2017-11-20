@@ -26,7 +26,7 @@ export default class Error extends React.Component {
       </Head>
       <div>
         <style dangerouslySetInnerHTML={{ __html: 'body { margin: 0 }' }} />
-        <Link href='/'><a><img src='static/logo.svg' /></a></Link>
+        <Link href='/'><a><img src='/static/logo.svg' /></a></Link>
         {statusCode ? <h1 style={styles.h1}>{statusCode}</h1> : null}
         <div style={styles.desc}>
           <h2 style={styles.h2}>{title}.</h2>

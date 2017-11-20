@@ -5,7 +5,7 @@ export default page(() =>
     <div className='container content'>
       <h1 className='title'>About</h1>
       <p>
-          Dinosure was founded by Alistar McGraw in 2005. Alistar has long held the deep seated belief that his mother was tragically taken by a pack of velociraptors<sup><a href='#fn1' id='ref1'>1</a></sup>.
+          Dinosure was founded by Dennis Nedry in 2005. Alistar has long held the deep seated belief that his mother was tragically taken by a pack of velociraptors<sup><a href='#fn1' id='ref1'>1</a></sup>.
           Dinosure began as a way to ensure that no one else had to experience the same loss.
       </p>
       <p>
