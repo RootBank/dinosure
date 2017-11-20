@@ -1,14 +1,12 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 import stylesheet from 'styles/index.scss';
-import Footer from '../components/footer';
 import ForkThis from '../components/github-fork';
 // This is the default document. All documents will include this code
 export default class extends Document {
   static getInitialProps ({ renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage();
     const styles = flush();
-
     return { html, head, errorHtml, chunks, styles };
   }
 
@@ -17,9 +15,9 @@ export default class extends Document {
       <html>
         <Head>
           <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <meta http-equiv='x-ua-compatible' content='ie=edge' />
-          <meta charset='utf-8' />
-          <meta http-equiv='x-ua-compatible' content='ie=edge' />
+          <meta httpEquiv='x-ua-compatible' content='ie=edge' />
+          <meta charSet='utf-8' />
+          <meta httpEquiv='x-ua-compatible' content='ie=edge' />
           <title>Dinosure</title>
           <meta name='viewport' content='width=device-width, initial-scale=1' />
 
@@ -27,13 +25,10 @@ export default class extends Document {
           <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         </Head>
-        <body style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }}>
-          <div style={{flex: 1}}>
-            <ForkThis />
-            <Main />
-            <NextScript />
-          </div>
-          <Footer />
+        <body>
+          <ForkThis />
+          <Main />
+          <NextScript />
         </body>
       </html>
     );

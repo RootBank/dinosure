@@ -34,6 +34,7 @@
     "babel-plugin-module-resolver": "^3.0.0",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "bulma": "^0.6.1",
+    "bulma-extensions": "^0.2.3",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "glob": "^7.1.2",

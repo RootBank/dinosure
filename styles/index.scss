@@ -16,12 +16,17 @@ $green: #6FD877;
 $primary: $blue;
 $info: $pink;
 
-
 // Fonts
 $family-sans-serif: 'Josefin Sans', sans-serif;
 $family-primary: $family-sans-serif;
 
 $footer-background-color: $primary;
+
+// Prevent white line from appearing between images
+.hero.is-primary {
+    margin-top: -1%;
+    border-bottom: -1%;
+}
 
 // Give the footer some space to breathe
 .footer {
@@ -42,11 +47,17 @@ $widescreen: calculate(45rem);
 $fullhd: calculate(45rem);
 
 // Add additonal affordances to currently selected page in navbar
-.is-active {
+.navbar-item.is-active {
     border-bottom: 3px solid $primary;
 }
 
+// A little spacing between previous and next buttons
+.form-nav  .button {
+    margin: 0.4em;
+}
+
 @import "bulma/bulma";
+@import 'bulma-extensions/bulma-slider/slider';
 
 // Override Auth0's styling
 

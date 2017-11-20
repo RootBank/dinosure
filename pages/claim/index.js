@@ -1,9 +1,7 @@
-import Navbar from '../../components/navbar';
 import Link from 'next/link';
-import page from '../../components/page-wrapper';
+import page from '../../components/page';
 
-export default page(({ isAuthenticated, user }) => (<div>
-  <Navbar currentPage='/claim' isAuthenticated={isAuthenticated} user={user} />
+export default page(() => (
   <section className='section '>
     <div className='container content'>
       <h1 className='title'>Claim</h1>
@@ -22,10 +20,14 @@ export default page(({ isAuthenticated, user }) => (<div>
               <li>The deceased's death certificate</li>
             </ul>
             Note: Please do not hesitate to call one of our consultants on <a href='tel:083 555 1337'>083 555 1337</a> if
-            you experience difficulties obtaining these documents.
+            you experience difficulties in obtaining these documents.
         </div>
       </article>
-      <Link href='/claim/1'><button className='button is-primary'>Start</button></Link>
+    </div>
+    <div className='container level'>
+      <div className='level-item'>
+        <Link href='/claim/1'><button className='button is-primary'>Start</button></Link>
+      </div>
     </div>
   </section>
-</div>));
+));

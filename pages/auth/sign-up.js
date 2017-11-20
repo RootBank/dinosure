@@ -1,7 +1,7 @@
 import React from 'react';
 import { show } from '../../utils/lock';
 import Navbar from '../../components/navbar';
-
+import page from '../../components/page';
 const CONTAINER_ID = 'put-signup-container-here';
 
 class SignUp extends React.Component {
@@ -18,4 +18,4 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+export default page(SignUp);
