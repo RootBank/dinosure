@@ -9,28 +9,28 @@ export default page(() =>
       <div className='column'>
         <div className='content'>
           <div className='field'>
-            <input className='is-checkradio' id='exampleRadioInline1' type='radio' name='exampleRadioInline' checked='checked' />
-            <label for='exampleRadioInline1'>Up to Gr. 12</label>
+            <input className='is-checkradio' id='gr12' type='radio' name='gr12' />
+            <label for='gr12'>Up to Gr. 12</label>
           </div>
           <div className='field'>
-            <input className='is-checkradio' id='exampleRadioInline1' type='radio' name='exampleRadioInline' checked='checked' />
-            <label for='exampleRadioInline1'>Matric</label>
+            <input className='is-checkradio' id='matric' type='radio' name='matric' />
+            <label for='matric'>Matric</label>
           </div>
           <div className='field'>
-            <input className='is-checkradio' id='exampleRadioInline1' type='radio' name='exampleRadioInline' checked='checked' />
-            <label for='exampleRadioInline1'>Diploma</label>
+            <input className='is-checkradio' id='diploma' type='radio' name='diploma' />
+            <label for='diploma'>Diploma</label>
           </div>
           <div className='field'>
-            <input className='is-checkradio' id='exampleRadioInline1' type='radio' name='exampleRadioInline' checked='checked' />
-            <label for='exampleRadioInline1'>B Tech</label>
+            <input className='is-checkradio' id='btech' type='radio' name='btech' />
+            <label for='btech'>B Tech</label>
           </div>
           <div className='field'>
-            <input className='is-checkradio' id='exampleRadioInline1' type='radio' name='exampleRadioInline' checked='checked' />
-            <label for='exampleRadioInline1'>Undergraduate Degree</label>
+            <input className='is-checkradio' id='undergrad' type='radio' name='undergrad' />
+            <label for='undergrad'>Undergraduate Degree</label>
           </div>
           <div className='field'>
-            <input className='is-checkradio' id='exampleRadioInline1' type='radio' name='exampleRadioInline' checked='checked' />
-            <label for='exampleRadioInline1'>Professional Degree</label>
+            <input className='is-checkradio' id='proffessionalDegree' type='radio' name='proffessionalDegree' />
+            <label for='proffessionalDegree'>Professional Degree</label>
           </div>
         </div>
         <p className='content has-text-centered'>
