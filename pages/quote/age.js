@@ -1,26 +1,37 @@
 import FormFooter from '../../components/form-footer';
 import page from '../../components/page';
 import Link from 'next/link';
+import quoteStore from '../../datastores/quote';
 
-export default page(() =>
+const isValidAge = (value) => value <= 120;
+const setAge = (event) => {
+  const value = Number((event.target.value + '').replace(/[^\d]/, ''));
+  if (isValidAge(value)) {
+    quoteStore.update(state => ({ ...state, age: value }));
+  }
+};
+
+export default page(({ quote }) =>
   <section className='section'>
     <div className='columns'>
       <div className='column is-hidden-tablet' />
       <div className='column has-text-centered'>
+        {/* Tablet and desktop view */}
         <div className='level is-hidden-mobile'>
           <div className='level-item content title is-3'>
               I am
           <div style={{ margin: '0.6em' }} className='control'>
-            <input style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' />
+            <input onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
           </div>
               years old
         </div>
         </div>
+        {/* Mobile view */}
         <div className='is-hidden-desktop'>
           <h3 className='title is-3'>I am</h3>
           <div className='level'>
             <div style={{ margin: '0.6em' }} className='control level-item'>
-              <input style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' />
+              <input onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
             </div>
           </div>
           <h3 className='title is-3'>years old</h3>
@@ -30,16 +41,17 @@ export default page(() =>
     </div>
   </section>,
   {
-    footer: () => <div>
+    footer: ({ quote }) => <div>
       <section className='section'>
         <div className='level form-nav'>
           <div className='level-item'>
-            <Link href='/'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/quote/gender'><button className='button is-primary' disabled>Next</button></Link>
+            <Link href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+            <Link href='/quote/education'><button className='button is-primary' disabled={!quote.age}>Next</button></Link>
           </div>
         </div>
       </section>
-      <FormFooter step={1} of={3} />
-    </div>
+      <FormFooter step={3} of={6} />
+    </div>,
+    datastores: { quote: quoteStore }
   }
 );

@@ -1,4 +1,5 @@
 const Koa = require('koa');
+const helmet = require('koa-helmet');
 const next = require('next');
 const Router = require('koa-router');
 
@@ -10,6 +11,7 @@ const handle = app.getRequestHandler();
 app.prepare()
 .then(() => {
   const server = new Koa();
+  server.use(helmet());
   const router = new Router();
 
   router.get('*', async ctx => {

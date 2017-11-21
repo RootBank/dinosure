@@ -1,7 +1,13 @@
-import Link from 'next/link';
 import page from '../../components/page';
+import quoteStore from '../../datastores/quote';
+import Router from 'next/router';
 
-export default page(() =>
+const setQuoteStarted = () => {
+  quoteStore.update(state => ({ started: true, ...state }));
+  Router.push('/quote/cover');
+};
+
+export default page(({ quote }) =>
   <section className='section '>
     <div className='container content'>
       <h1 className='title'>Begin Quote</h1>
@@ -20,7 +26,7 @@ export default page(() =>
     footer: () => <section className='section'>
       <div className='level form-nav'>
         <div className='level-item'>
-          <Link href='/quote/cover'><button className='button is-primary'>Start</button></Link>
+          <button onClick={setQuoteStarted} className='button is-primary'>Start</button>
         </div>
       </div>
     </section>

@@ -1,26 +1,33 @@
 import FormFooter from '../../components/form-footer';
 import page from '../../components/page';
+import quoteStore from '../../datastores/quote';
+import Choice from '../../components/choice';
+import Link from 'next/link';
+import Router from 'next/router';
+
+const setSmoking = (smoking) => () => quoteStore.update(store => ({ ...store, smoking }));
+
+const next = () => Router.push('/quote/issue');
 
 export default page(() =>
   <section className='section'>
-    <div className='columns'>
-      <div className='column is-hidden-mobile' />
-      <div className='column'>
-        <div className='level is-mobile'>
+    <Choice
+      leftOption='Smoking' onLeft={setSmoking(true)}
+      rightOption='Non-Smoking' onRight={setSmoking(false)}
+      onEither={next}
+      instructions={'Please answer “Smoking” if you\'ve smoked tobacco in the last year.'}
+    />
+  </section>,
+  {
+    footer: () => <div>
+      <section className='section'>
+        <div className='level form-nav'>
           <div className='level-item'>
-            <button className='button is-primary'>Smoking</button>
-          </div>
-          <div style={{ paddingTop: '4em' }} className='is-divider-vertical' data-content='OR' />
-          <div className='level-item'>
-            <button className='button is-primary'>Non-smoking</button>
+            <Link href='/quote/income'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
           </div>
         </div>
-        <p className='has-text-centered'>
-            Please answer “Smoking” if you've smoked tobacco in the last year.
-          </p>
-      </div>
-      <div className='column is-hidden-mobile' />
+      </section>
+      <FormFooter step={6} of={6} />
     </div>
-  </section>,
-    { footer: () => <FormFooter step={2} of={3} /> }
+  }
 );

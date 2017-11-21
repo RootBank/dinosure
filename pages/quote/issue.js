@@ -2,7 +2,8 @@ import Link from 'next/link';
 import page from '../../components/page';
 
 export default page(() =>
-  <section className='section '>
+  <section className='section'>
+    <loader className='pageloader is-active'><span class='title'>Fetching Quote</span></loader>
     <div className='container content'>
       <h1 className='title'>Begin Quote</h1>
       <p>

@@ -1,26 +1,34 @@
 import FormFooter from '../../components/form-footer';
 import page from '../../components/page';
+import quoteStore from '../../datastores/quote';
+import Choice from '../../components/choice';
+import Link from 'next/link';
+import Router from 'next/router';
 
-export default page(() =>
+const setGender = (gender) => () => quoteStore.update(store => ({ ...store, gender }));
+
+const next = () => Router.push('/quote/age');
+
+export default page(({ quote }) =>
   <section className='section'>
-    <div className='columns'>
-      <div className='column' />
-      <div className='column'>
-        <div style={{height: '8rem'}} className='level is-mobile'>
+    <Choice
+      onLeft={setGender('female')} leftOption='Female'
+      onRight={setGender('male')} rightOption='Male'
+      onEither={next}
+      instructions='What was the gender you were assigned at birth?'
+    />
+  </section>,
+  {
+    footer: () => <div>
+      <section className='section'>
+        <div className='level form-nav'>
           <div className='level-item'>
-            <button className='button is-primary'>Female</button>
-          </div>
-          <div style={{ paddingTop: '4em' }} className='is-divider-vertical level-item' data-content='OR' />
-          <div className='level-item'>
-            <button className='button is-primary'>Male</button>
+            <Link href='/quote/cover'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
           </div>
         </div>
-        <p className='has-text-centered'>
-            What was the gender you were assigned at birth?
-        </p>
-      </div>
-      <div className='column' />
-    </div>
-  </section>,
-  { footer: () => <FormFooter step={2} of={3} /> }
+      </section>
+      <FormFooter step={2} of={6} />
+    </div>,
+    datastores: { quote: quoteStore }
+  }
 );
