@@ -3,8 +3,6 @@ import page from '../../components/page';
 import React from 'react';
 import quoteStore from '../../datastores/quote';
 import axios from 'axios';
-import addDays from 'date-fns/fp/addDays';
-import isBefore from 'date-fns/fp/isBefore';
 
 export default page(class extends React.Component {
   constructor (props) {
@@ -12,20 +10,8 @@ export default page(class extends React.Component {
     this.state = { loading: false };
   }
 
-  isValidQuote (quote) {
-    if (quote) {
-      const addDay = addDays(1);
-      const expiry = addDay(new Date(quote.createdAt));
-      const now = new Date();
-      const isBeforeExpiry = isBefore(expiry);
-      return isBeforeExpiry(now);
-    } else {
-      return false;
-    }
-  }
-
   async componentDidMount () {
-    if (!this.isValidQuote(this.props.quote.result)) {
+    if (!quoteStore.isValid) {
       this.setState({ loading: true });
       let result = (await axios.post('/api/quote', this.props.quote)).data;
       quoteStore.update(state => ({ ...state, result }));
@@ -50,7 +36,7 @@ export default page(class extends React.Component {
   render () {
     return (
       <section className='section'>
-        <loader className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Fetching Quote</span></loader>
+        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Fetching Quote</span></div>
         <div className='container content'>
           <div className='columns is-reversed-mobile'>
             <div className='pricing-table column'>
@@ -64,24 +50,30 @@ export default page(class extends React.Component {
                   <div className='plan-item'>24 Hour Support</div>
                 </div>
                 <div className='plan-footer'>
-                  <button className='button is-fullwidth'>
-                    <span className='icon'><i className='fa fa-shopping-cart' /></span>&nbsp; Checkout</button>
+                  <Link href='/apply'>
+                    <a>
+                      <button className='button is-fullwidth'>
+                        <span className='icon'><i className='fa fa-shopping-cart' /></span>&nbsp; Checkout
+                      </button>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>
             <div style={{display: 'inline-flex', flexDirection: 'column'}} className='column content is-two-thirds'>
               <div style={{flex: 1}}>
                 <h1 className='title is-3'>Get Dinosured!</h1>
-                <p>Your personalised quote for <strong>R {this.formattedSumAssured}</strong> cover
+                <p>
+                  Your personalised quote for <strong>R {this.formattedSumAssured}</strong> cover
                   at <strong>R {this.formattedPremium}</strong> per month is valid for the
                   next 24 hours.
+                </p>
+                <p>
+                  Dinosure offers <em>instant</em> cover. If you're stuck on an island, and there are raptors around, we can help you out <sup><a href='#fn1' id='ref1'>1</a></sup>.
+                  Our<span className='icon'><i className='fa fa-lock' /></span>secure checkout is simple and requires only a valid credit card.
               </p>
                 <p>
-                Dinosure offers <em>instant</em> cover. If you're stuck on an island, and there are raptors around, we can help you out <sup><a href='#fn1' id='ref1'>1</a></sup>.
-                Our<span className='icon'><i className='fa fa-lock' /></span>secure checkout is a simple process which requires only a valid credit card.
-              </p>
-                <p>
-                  <Link><a>Click here</a></Link> to start the checkout process and get protected.
+                  <Link href='/apply'><a>Click here</a></Link> to start the checkout process and get protected.
               </p>
               </div>
               <div style={{flex: 0.1}}>

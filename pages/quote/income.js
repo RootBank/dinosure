@@ -27,7 +27,7 @@ export default page(({ quote }) =>
             </div>
         </div>
         {/* Mobile view */}
-        <div className='is-hidden-desktop'>
+        <div className='is-hidden-desktop is-hidden-tablet'>
           <h3 className='title is-3'>I earn</h3>
           <input onChange={setIncome} style={{width: '7em', textAlign: 'center'}} className='input title is-large' type='text' placeholder='income' value={quote.income ? `R ${formatIncome(quote.income)}` : ''} />
           <h3 className='title is-3'>per month</h3>

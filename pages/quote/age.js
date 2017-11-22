@@ -27,7 +27,7 @@ export default page(({ quote }) =>
         </div>
         </div>
         {/* Mobile view */}
-        <div className='is-hidden-desktop'>
+        <div className='is-hidden-desktop is-hidden-tablet'>
           <h3 className='title is-3'>I am</h3>
           <div className='level'>
             <div style={{ margin: '0.6em' }} className='control level-item'>

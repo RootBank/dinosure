@@ -5,14 +5,14 @@ const LoginElements = ({isAuthenticated, currentPage}) => {
     return [
       <Link key={'account'} prefetch href='/my-account'><a className={`navbar-item ${currentPage === '/my-account' ? 'is-active' : ''}`}>My Account</a></Link>,
       <Link key={'logout'} prefetch href='/auth/log-out'>
-        <span className='navbar-item'>
-          <a className='button is-primary is-inverted'>
+        <a className='navbar-item'>
+          <button className='button is-primary is-inverted'>
             <span className='icon'>
               <i className='fa fa-sign-in' />
             </span>
             <span>Log out</span>
-          </a>
-        </span>
+          </button>
+        </a>
       </Link>
     ];
   } else {

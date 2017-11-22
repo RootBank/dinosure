@@ -63,7 +63,7 @@ app.prepare()
         suggested_premium: premium,
         quote_package_id: quotePackageId
       } = quoteResult.data[0];
-      ctx.body = { createdAt, premium, quotePackageId };
+      ctx.body = { createdAt, premium: Math.ceil(premium / 100) * 100, quotePackageId };
       ctx.status = 200;
     } else {
       ctx.status = 404;
