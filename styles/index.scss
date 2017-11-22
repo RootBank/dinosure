@@ -52,15 +52,6 @@ a.has-text-white {
 $widescreen: calculate(45rem);
 $fullhd: calculate(45rem);
 
-// Add additonal affordances to currently selected page in navbar
-.navbar-item.is-active {
-    border-bottom: 3px solid $primary;
-}
-
-// A little spacing between previous and next buttons
-.form-nav  .button {
-    margin: 0.4em;
-}
 
 @import "bulma/bulma";
 @import 'bulma-extensions/bulma-slider/slider';
@@ -68,6 +59,25 @@ $fullhd: calculate(45rem);
 @import 'bulma-extensions/bulma-divider/divider';
 @import 'bulma-extensions/bulma-checkradio/checkradio';
 @import 'bulma-extensions/bulma-pricingtable/pricing-table';
+
+// Add additonal affordances to currently selected page in navbar
+.navbar-item.is-active {
+    @include desktop {
+        border-bottom: 3px solid $primary;
+    }        
+}
+
+.burger {
+    margin-top: 1rem;    
+    margin-right: 0.5rem;
+    margin-top: 1rem;    
+    border-radius: 50%; 
+}
+
+// A little spacing between previous and next buttons
+.form-nav  .button {
+    margin: 0.4em;
+}
 
 .columns.is-reversed-mobile {
     @include mobile {        
