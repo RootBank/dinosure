@@ -59,6 +59,8 @@ $fullhd: calculate(45rem);
 @import 'bulma-extensions/bulma-divider/divider';
 @import 'bulma-extensions/bulma-checkradio/checkradio';
 @import 'bulma-extensions/bulma-pricingtable/pricing-table';
+@import 'bulma-extensions/bulma-steps/steps';
+
 
 // Add additonal affordances to currently selected page in navbar
 .navbar-item.is-active {
@@ -81,10 +83,23 @@ $fullhd: calculate(45rem);
 
 .columns.is-reversed-mobile {
     @include mobile {        
-        display: flex;
-        flex-direction: column-reverse !important;        
+        display: block;    
+        -webkit-transform: scaleY(-1);
+        transform: scaleY(-1);
+        .column {
+            -webkit-transform: scaleY(-1);
+            transform: scaleY(-1);
+        }        
+    }
+}
+
+.is-divider-vertical {
+    @include mobile {
+      padding-left: 0.5em;
+      padding-right: 0.5em;
     }    
 }
+
 // Override Auth0's styling
 
 .auth0-lock-submit {

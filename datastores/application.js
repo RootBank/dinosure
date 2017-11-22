@@ -1,2 +1,2 @@
 import Datastore from '../utils/datastore';
-export default new Datastore({}, 'application', true);
+export default new Datastore({ started: false }, 'application', true);

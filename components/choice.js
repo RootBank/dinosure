@@ -16,4 +16,5 @@ export default ({ leftOption, rightOption, onLeft, onRight, instructions, onEith
       </p>
     </div>
     <div className='column is-hidden-mobile' />
-  </div>);
+  </div>
+);
