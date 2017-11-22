@@ -41,8 +41,8 @@ export default page(({ quote }) =>
       <section className='section'>
         <div className='level form-nav'>
           <div className='level-item'>
-            <Link href='/quote/education'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/quote/smoking'><button className='button is-primary' disabled={!quote.income || quote.income <= 1000}>Next</button></Link>
+            <Link prefetch href='/quote/education'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+            <Link prefetch href='/quote/smoking'><button className='button is-primary' disabled={!quote.income || quote.income <= 1000}>Next</button></Link>
           </div>
         </div>
       </section>

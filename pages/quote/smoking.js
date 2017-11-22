@@ -23,7 +23,7 @@ export default page(() =>
       <section className='section'>
         <div className='level form-nav'>
           <div className='level-item'>
-            <Link href='/quote/income'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+            <Link prefetch href='/quote/income'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
           </div>
         </div>
       </section>

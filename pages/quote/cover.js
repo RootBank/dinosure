@@ -29,8 +29,8 @@ export default page(({ quote }) =>
       <section className='section'>
         <div className='level form-nav'>
           <div className='level-item'>
-            <Link href='/quote'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/quote/gender'><button className='button is-primary'>Next</button></Link>
+            <Link prefetch href='/quote'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+            <Link prefetch href='/quote/gender'><button className='button is-primary'>Next</button></Link>
           </div>
         </div>
       </section>
