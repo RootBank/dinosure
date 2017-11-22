@@ -1,10 +1,10 @@
 // import FormFooter from '../../components/form-progress';
-import page from '../../../components/page';
+import page from '../../components/page';
 // import Link from 'next/link';
 import React from 'react';
-import quoteStore from '../../../datastores/quote';
-import applicationStore from '../../../datastores/application';
-import Steps from '../../../components/checkout-steps';
+import quoteStore from '../../datastores/quote';
+import applicationStore from '../../datastores/application';
+import Steps from '../../components/checkout-steps';
 
 export default page(class extends React.Component {
   render () {
@@ -13,7 +13,7 @@ export default page(class extends React.Component {
 }, {
   footer: () =>
     <section className='section'>
-      <Steps currentStep={1} />
+      <Steps currentStep={2} />
     </section>,
   datastores: { quote: quoteStore, application: applicationStore }
 });

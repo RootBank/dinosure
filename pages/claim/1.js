@@ -1,5 +1,5 @@
 import page from '../../components/page';
-import FormFooter from '../../components/form-footer';
+import FormFooter from '../../components/form-progress';
 
 export default page(({ isAuthenticated, user }) =>
   <section className='section '>

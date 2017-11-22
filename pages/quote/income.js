@@ -1,4 +1,4 @@
-import FormFooter from '../../components/form-footer';
+import FormFooter from '../../components/form-progress';
 import page from '../../components/page';
 import Link from 'next/link';
 import quoteStore from '../../datastores/quote';
