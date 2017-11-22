@@ -28,6 +28,7 @@ export default (Page, { footer: AuxiliaryFooter, getInitialProps, datastores = {
     );
     this.setState({ currentPage: window.location.pathname });
   }
+
   componentWillUnmount () {
     Object.keys(datastores).forEach((key, index) => {
       datastores[key].unsubscribe(this.subscriptions[index]);

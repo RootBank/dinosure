@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import React from 'react';
 
 const LoginElements = ({isAuthenticated, currentPage}) => {
   if (isAuthenticated) {
@@ -31,35 +32,47 @@ const LoginElements = ({isAuthenticated, currentPage}) => {
   }
 };
 
-export default ({ currentPage, user, isAuthenticated }) => {
-  return (
-    <nav className='navbar'>
-      <div className='container'>
-        <div className='navbar-brand'>
-          <Link prefetch href='/'>
-            <a className='navbar-item'>
-              <img style={{ height: '50px', maxHeight: 'unset' }} src='/static/logo.svg' alt='Logo' />
-            </a>
-          </Link>
-          <label className='navbar-burger navbar-toggle burger' data-target='navbarMenuHero' htmlFor='nav-toggle-state'>
-            <span />
-            <span />
-            <span />
-          </label>
-        </div>
-        <div id='navbarMenuHero' className='navbar-menu nav-right nav-menu'>
-          <div className='navbar-end'>
-            {/* The following section the current page's navbar item to selected.
-              It uses a ternery operator to perform the check on each item
-           */}
-            <Link prefetch href='/'><a className={`navbar-item ${currentPage === '/' ? 'is-active' : ''}`}>Home</a></Link>
-            <Link prefetch href='/about'><a className={`navbar-item ${currentPage === '/about' ? 'is-active' : ''}`}>About</a></Link>
-            <Link prefetch href='/contact'><a className={`navbar-item ${currentPage === '/contact' ? 'is-active' : ''}`}>Contact</a></Link>
-            <Link prefetch href='/claim'><a className={`navbar-item ${currentPage === '/claim' && 'is-active'}`}>Claim</a></Link>
-            <LoginElements isAuthenticated={isAuthenticated} currentPage={currentPage} />
+export default class extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = { menuOpen: false };
+  }
+
+  toggleMenuVisibility () {
+    this.setState({ menuOpen: !this.state.menuOpen });
+  }
+
+  render () {
+    const { currentPage, isAuthenticated } = this.props;
+    return (
+      <nav className='navbar'>
+        <div className='container'>
+          <div className='navbar-brand'>
+            <Link prefetch href='/'>
+              <a className='navbar-item'>
+                <img style={{ height: '50px', maxHeight: 'unset' }} src='/static/logo.svg' alt='Logo' />
+              </a>
+            </Link>
+            <label onClick={this.toggleMenuVisibility.bind(this)} className='navbar-burger navbar-toggle burger' >
+              <span />
+              <span />
+              <span />
+            </label>
+          </div>
+          <div id='navbarMenuHero' className={`navbar-menu nav-right nav-menu ${this.state.menuOpen ? 'is-active' : ''}`}>
+            <div className='navbar-end'>
+              {/* The following section the current page's navbar item to selected.
+                  It uses a ternery operator to perform the check on each item
+               */}
+              <Link prefetch href='/'><a className={`navbar-item ${currentPage === '/' ? 'is-active' : ''}`}>Home</a></Link>
+              <Link prefetch href='/about'><a className={`navbar-item ${currentPage === '/about' ? 'is-active' : ''}`}>About</a></Link>
+              <Link prefetch href='/contact'><a className={`navbar-item ${currentPage === '/contact' ? 'is-active' : ''}`}>Contact</a></Link>
+              <Link prefetch href='/claim'><a className={`navbar-item ${currentPage === '/claim' && 'is-active'}`}>Claim</a></Link>
+              <LoginElements isAuthenticated={isAuthenticated} currentPage={currentPage} />
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  );
-};
+      </nav>
+    );
+  }
+}
