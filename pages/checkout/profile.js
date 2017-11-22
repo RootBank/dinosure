@@ -1,6 +1,6 @@
-import FormFooter from '../../components/form-footer';
+// import FormFooter from '../../components/form-footer';
 import page from '../../components/page';
-import Link from 'next/link';
+// import Link from 'next/link';
 import React from 'react';
 import quoteStore from '../../datastores/quote';
 import applicationStore from '../../datastores/application';
