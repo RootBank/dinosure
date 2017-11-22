@@ -3,44 +3,99 @@ import page from '../../components/page';
 import React from 'react';
 import quoteStore from '../../datastores/quote';
 import axios from 'axios';
+import addDays from 'date-fns/fp/addDays';
+import isBefore from 'date-fns/fp/isBefore';
 
 export default page(class extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { loading: true };
+    this.state = { loading: false };
+  }
+
+  isValidQuote (quote) {
+    if (quote) {
+      const addDay = addDays(1);
+      const expiry = addDay(new Date(quote.createdAt));
+      const now = new Date();
+      const isBeforeExpiry = isBefore(expiry);
+      return isBeforeExpiry(now);
+    } else {
+      return false;
+    }
   }
 
   async componentDidMount () {
-    let result = await axios.post('/api/quote', this.props.quote);
+    if (!this.isValidQuote(this.props.quote.result)) {
+      this.setState({ loading: true });
+      let result = (await axios.post('/api/quote', this.props.quote)).data;
+      quoteStore.update(state => ({ ...state, result }));
+    }
     this.setState({ loading: false });
-    console.log(result.data);
+  }
+
+  get formattedPremium () {
+    if (this.props.quote.result) {
+      const amount = this.props.quote.result.premium;
+      return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
+    } else {
+      return '';
+    }
+  }
+
+  get formattedSumAssured () {
+    const amount = this.props.quote.sumAssured;
+    return Number(amount).toLocaleString().replace(/,/g, ' ');
   }
 
   render () {
-    return <section className='section'>
-      <loader className={`pageloader ${this.state.loading && 'is-active'}`}><span className='title'>Fetching Quote</span></loader>
-      <div className='container content'>
-        <h1 className='title'>Begin Quote</h1>
-        <p>
-          You are going to be asked a few questions in order to receive a quote for
-          Dinosure Life Insurance. Dinosure provides whole life policies and unless explicitly
-          stated otherwise, only covers dinosaur related deaths. Quotes remain valid for 24 hours
-          after they have been received.
-      </p>
-        <p>
-          Click the button below to begin. Once started, you'll be able to resume the process at any time provided you use the same browser.
-      </p>
-      </div>
-    </section>;
+    return (
+      <section className='section'>
+        <loader className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Fetching Quote</span></loader>
+        <div className='container content'>
+          <div className='columns is-reversed-mobile'>
+            <div className='pricing-table column'>
+              <div style={{marginTop: 0}} className='pricing-plan is-primary'>
+                <div className='plan-header'>R {this.formattedSumAssured} cover</div>
+                <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
+                <div className='plan-items'>
+                  <div className='plan-item'>Early Warning Network</div>
+                  <div className='plan-item'>Extraction Team</div>
+                  <div className='plan-item'>Security Consultants</div>
+                  <div className='plan-item'>24 Hour Support</div>
+                </div>
+                <div className='plan-footer'>
+                  <button className='button is-fullwidth'>
+                    <span className='icon'><i className='fa fa-shopping-cart' /></span>&nbsp; Checkout</button>
+                </div>
+              </div>
+            </div>
+            <div style={{display: 'inline-flex', flexDirection: 'column'}} className='column content is-two-thirds'>
+              <div style={{flex: 1}}>
+                <h1 className='title is-3'>Get Dinosured!</h1>
+                <p>Your personalised quote for <strong>R {this.formattedSumAssured}</strong> cover
+                  at <strong>R {this.formattedPremium}</strong> per month is valid for the
+                  next 24 hours.
+              </p>
+                <p>
+                Dinosure offers <em>instant</em> cover. If you're stuck on an island, and there are raptors around, we can help you out <sup><a href='#fn1' id='ref1'>1</a></sup>.
+                Our<span className='icon'><i className='fa fa-lock' /></span>secure checkout is a simple process which requires only a valid credit card.
+              </p>
+                <p>
+                  <Link><a>Click here</a></Link> to start the checkout process and get protected.
+              </p>
+              </div>
+              <div style={{flex: 0.1}}>
+                <sup id='fn1'>1. Terms and conditions apply<a href='#ref1' title='Jump back to footnote 1 in the text.'>↩</a></sup>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+    );
   }
 }, {
-  footer: () => <section className='section'>
-    <div className='level form-nav'>
-      <div className='level-item'>
-        <Link href='/quote/cover'><button className='button is-primary'>Start</button></Link>
-      </div>
-    </div>
-  </section>,
   datastores: { quote: quoteStore }
 }
 );

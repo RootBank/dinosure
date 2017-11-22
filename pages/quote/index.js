@@ -3,7 +3,7 @@ import quoteStore from '../../datastores/quote';
 import Router from 'next/router';
 
 const setQuoteStarted = () => {
-  quoteStore.update(state => ({ started: true, ...state }));
+  quoteStore.update(state => ({ started: true }));
   Router.push('/quote/cover');
 };
 
@@ -13,7 +13,10 @@ export default page(({ quote }) =>
       <h1 className='title'>Begin Quote</h1>
       <p>
           You are going to be asked a few questions in order to receive a quote for
-          Dinosure Life Insurance. Dinosure provides whole life policies and unless explicitly
+          Dinosure Life Insurance.
+      </p>
+      <p>
+          Dinosure provides whole life policies and unless explicitly
           stated otherwise, only covers dinosaur related deaths. Quotes remain valid for 24 hours
           after they have been received.
       </p>

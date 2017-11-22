@@ -37,6 +37,11 @@ $footer-background-color: $primary;
     fill: $info
 }
 
+.content a {
+    text-decoration: underline;
+}
+
+
 // "has-text-white" removes decorations from text. Add them back to links so that they look correct 
 a.has-text-white {
     text-decoration: underline;
@@ -61,7 +66,14 @@ $fullhd: calculate(45rem);
 @import 'bulma-extensions/bulma-pageloader/pageloader';
 @import 'bulma-extensions/bulma-divider/divider';
 @import 'bulma-extensions/bulma-checkradio/checkradio';
+@import 'bulma-extensions/bulma-pricingtable/pricing-table';
 
+.columns.is-reversed-mobile {
+    @include mobile {        
+        display: flex;
+        flex-direction: column-reverse !important;        
+    }    
+}
 // Override Auth0's styling
 
 .auth0-lock-submit {

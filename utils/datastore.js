@@ -3,9 +3,14 @@ export default class Datastore {
     this.subscribers = [];
     this.saveInLocalStorage = saveInLocalStorage;
     this.name = name;
-    if (process.browser) {
+    if (process.browser && saveInLocalStorage) {
       let item = window.localStorage.getItem(name);
-      this._state = item ? JSON.parse(item) : initialState;
+      if (item) {
+        this._state = JSON.parse(item);
+      } else {
+        this._state = initialState;
+        window.localStorage.setItem(name, JSON.stringify(this._state));
+      }
     } else {
       this._state = initialState;
     }
@@ -19,7 +24,7 @@ export default class Datastore {
     this._state = state;
     this.subscribers.forEach(subscriber => setImmediate(() => subscriber(this._state)));
     if (this.saveInLocalStorage) {
-      window.localStorage.setItem(this.name, JSON.stringify(this._state));
+      window.localStorage.setItem(this.name, JSON.stringify(state));
     }
   }
 
