@@ -6,11 +6,17 @@ import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
 
-const isPotentiallyValidIdNumber = (id) => {};
+const isPotentiallyValidIdNumber = (id) => {
+  return /^[0-9]{0,13}$/.test(id);
+};
+
 const isValidIdNumber = (id) => {};
 
 const setIdNumber = (event) => {
-  applicationStore.update(state => ({ ...state, id: event.target.value }));
+  const nextId = event.target.value;
+  if (isPotentiallyValidIdNumber(nextId)) {
+    applicationStore.update(state => ({ ...state, id: event.target.value }));
+  }
 };
 
 export default page(class extends React.Component {
