@@ -17,7 +17,7 @@ export default page(class extends React.Component {
       <div className='columns'>
         <div className='column' />
         <div className='column has-text-centered'>
-          <div display className='title is-3'>My email address is</div>
+          <div className='title is-3'>My email address is</div>
           <div className='columns is-mobile'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
