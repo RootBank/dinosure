@@ -1,14 +1,25 @@
-// import FormFooter from '../../components/form-progress';
 import page from '../../../components/page';
 import Link from 'next/link';
 import React from 'react';
+import Router from 'next/router';
 import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
+import differenceInYears from 'date-fns/fp/differenceInYears';
 
 const isPotentiallyValidIdNumber = (id = '') => /^[0-9]{0,13}$/.test(id);
 
-let isValidIdNumber = (potentialId = '') => {
+const idToAge = (id = '') => {
+  const rawYear = parseInt(id.substring(0, 2), 10);
+  const year = rawYear < (new Date().getFullYear() + '').substr(2) ? (2000 + rawYear) : (1900 + rawYear); // Where the 99s rolled over
+  const month = id.substring(2, 4);
+  const day = id.substring(4, 6);
+  const dateOfBirth = new Date(Date.parse(`${year}-${month}-${day}`));
+  var currentDate = new Date();
+  return differenceInYears(dateOfBirth, currentDate);
+};
+
+const isValidIdNumber = (potentialId = '') => {
   // accept only digits
   if (/[^0-9]+/.test(potentialId)) return false;
   // check length
@@ -42,6 +53,16 @@ const setIdNumber = (event) => {
   const nextId = event.target.value;
   if (isPotentiallyValidIdNumber(nextId)) {
     applicationStore.update(state => ({ ...state, id: event.target.value }));
+  }
+};
+
+const next = (id) => () => {
+  const age = idToAge(id);
+  if (age >= 18 && age <= 63) {
+    Router.push('/checkout/questions');
+  } else {
+    // Applicant too old
+    Router.push({ pathname: '/do-not-qualify', query: { reason: 'age' } });
   }
 };
 
@@ -86,7 +107,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/checkout/profile/name'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/checkout/profile/email'><button className='button is-primary' disabled={!isValidIdNumber(application.id)}>Next</button></Link>
+            <button onClick={next(application.id)} className='button is-primary' disabled={!isValidIdNumber(application.id || '')}>Next</button>
 
           </div>
         </div>

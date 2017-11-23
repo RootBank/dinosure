@@ -2,12 +2,21 @@ import FormFooter from '../../components/form-progress';
 import page from '../../components/page';
 import Link from 'next/link';
 import quoteStore from '../../datastores/quote';
+import Router from 'next/router';
 
 const isValidAge = (value) => value <= 120;
 const setAge = (event) => {
   const value = Number((event.target.value + '').replace(/[^\d]/, ''));
   if (isValidAge(value)) {
     quoteStore.update(state => ({ ...state, age: value }));
+  }
+};
+
+const next = (age) => () => {
+  if (age >= 18 && age <= 63) {
+    Router.push('/quote/education');
+  } else {
+    Router.push({ pathname: '/do-not-qualify', query: { reason: 'age' } });
   }
 };
 
@@ -46,7 +55,7 @@ export default page(({ quote }) =>
         <div className='level form-nav'>
           <div className='level-item'>
             <Link prefetch href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link prefetch href='/quote/education'><button className='button is-primary' disabled={!quote.age}>Next</button></Link>
+            <button onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
           </div>
         </div>
       </section>
