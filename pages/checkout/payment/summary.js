@@ -30,9 +30,9 @@ export default page(class extends React.Component {
   }
 
   get formattedEducation () {
-    switch(this.props.quote.education) {
+    switch (this.props.quote.education) {
       case 'grade_12_no_matric':
-       return 'Up to Gr. 12';
+        return 'Up to Gr. 12';
       case 'grade_12_matric':
         return 'Matric';
       case 'diploma':
@@ -51,7 +51,7 @@ export default page(class extends React.Component {
   }
 
   get formattedSmoking () {
-    return this.props.quote.smoking ? 'Yes': 'No';
+    return this.props.quote.smoking ? 'Yes' : 'No';
   }
 
   render () {
@@ -88,8 +88,7 @@ export default page(class extends React.Component {
                 <h1 className='title is-3'>Application Summary</h1>
                 <h2 className='subtitle is-5'>accept the terms and conditions to continue</h2>
 
-                
-                <div className="payment-summary-info">
+                <div className='payment-summary-info'>
                   <table>
                     <tbody>
                       <tr>
@@ -128,7 +127,7 @@ export default page(class extends React.Component {
                 <ul>
                   <li>The information in this application is true and correct; and</li>
                   <li>I am aware of no other information which might be relevant to Guardrisk Life Limited’s decision to offer me cover; and</li>
-                  <li>I confirm the questions and answers relating to my health as true and correct and I agree to abide by the terms set out in the <a target="_blank" href="/static/TermsAndConditions.pdf">policy document</a>; and</li>
+                  <li>I confirm the questions and answers relating to my health as true and correct and I agree to abide by the terms set out in the <a target='_blank' href='/static/TermsAndConditions.pdf'>policy document</a>; and</li>
                   <li>I consent to the exchange of any information between Guardrisk Life Limited and any medical or other institution/Doctor which consent continues even after my death.</li>
                 </ul>
                 <div className='field'>
