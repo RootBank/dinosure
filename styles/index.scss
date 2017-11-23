@@ -8,13 +8,13 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
 
 $blue: #1D3CD6;
-$pink: #FF80C9;
-$red: #E03620;
-$green: #6FD877;
+$green: #00d1b2;
+$red: #e54146;
 
 // Set application colors to $blue
-$primary: $blue;
-$info: $pink;
+$primary: $red;
+$info: $green;
+$card-header-color: $green;
 
 
 // Fonts
@@ -43,7 +43,7 @@ $footer-background-color: $primary;
 }
 
 
-// "has-text-white" removes decorations from text. Add them back to links so that they look correct 
+// "has-text-white" removes decorations from text. Add them back to links so that they look correct
 a.has-text-white {
     text-decoration: underline;
 }
@@ -66,14 +66,14 @@ $fullhd: calculate(45rem);
 .navbar-item.is-active {
     @include desktop {
         border-bottom: 3px solid $primary;
-    }        
+    }
 }
 
 .burger {
-    margin-top: 1rem;    
+    margin-top: 1rem;
     margin-right: 0.5rem;
-    margin-top: 1rem;    
-    border-radius: 50%; 
+    margin-top: 1rem;
+    border-radius: 50%;
 }
 
 // A little spacing between previous and next buttons
@@ -82,14 +82,14 @@ $fullhd: calculate(45rem);
 }
 
 .columns.is-reversed-mobile {
-    @include mobile {        
-        display: block;    
+    @include mobile {
+        display: block;
         -webkit-transform: scaleY(-1);
         transform: scaleY(-1);
         .column {
             -webkit-transform: scaleY(-1);
             transform: scaleY(-1);
-        }        
+        }
     }
 }
 
@@ -97,14 +97,14 @@ $fullhd: calculate(45rem);
     @include mobile {
       padding-left: 0.5em;
       padding-right: 0.5em;
-    }    
+    }
 }
 
 // Override Auth0's styling
 
 .auth0-lock-submit {
     background-color: $primary !important;
-    border-radius: 5px !important;        
+    border-radius: 5px !important;
 }
 
 .auth0-lock {

@@ -8,7 +8,7 @@
     "prepush": "npm run test",
     "dev": "nodemon server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "node server.js",
     "heroku-postbuild": "npm run build",
     "update-snapshot": "jest --updateSnapshot"
   },
@@ -59,7 +59,6 @@
     "koa-router": "^7.3.0",
     "next": "^4.1.4",
     "node-sass": "^4.6.1",
-    "nodemon": "^1.12.1",
     "normalize.css": "^7.0.0",
     "path-match": "^1.2.4",
     "postcss-easy-import": "^3.0.0",
@@ -74,6 +73,7 @@
     "enzyme-adapter-react-16": "^1.1.0",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
+    "nodemon": "^1.12.1",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.1.1",
     "semistandard": "^11.0.0"
