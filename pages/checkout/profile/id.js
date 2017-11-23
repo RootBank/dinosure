@@ -5,6 +5,7 @@ import Router from 'next/router';
 import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
+import differenceInYears from 'date-fns/fp/differenceInYears';
 
 const isPotentiallyValidIdNumber = (id = '') => /^[0-9]{0,13}$/.test(id);
 
@@ -15,9 +16,7 @@ const idToAge = (id = '') => {
   const day = id.substring(4, 6);
   const dateOfBirth = new Date(Date.parse(`${year}-${month}-${day}`));
   var currentDate = new Date();
-  const ageInMilliseconds = currentDate.getTime() - dateOfBirth.getTime();
-  const approximateLengthOfYearInMilliseconds = (1000 * 60 * 60 * 24 * 365.25);
-  return Math.floor(ageInMilliseconds / approximateLengthOfYearInMilliseconds);
+  return differenceInYears(dateOfBirth, currentDate);
 };
 
 const isValidIdNumber = (potentialId = '') => {
