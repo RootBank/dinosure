@@ -4,7 +4,7 @@
   "description": "The world's most comprehensive triassic protection plan",
   "main": "index.js",
   "scripts": {
-    "test": "semistandard && jest",
+    "test": "semistandard",
     "prepush": "npm run test",
     "dev": "nodemon server.js",
     "build": "next build",
