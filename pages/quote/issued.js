@@ -50,7 +50,7 @@ export default page(class extends React.Component {
                   <div className='plan-item'>24 Hour Support</div>
                 </div>
                 <div className='plan-footer'>
-                  <Link prefetch href='/checkout/profile'>
+                  <Link prefetch href='/checkout'>
                     <a>
                       <button className='button is-fullwidth'>
                         <span className='icon'><i className='fa fa-shopping-cart' /></span>&nbsp; Checkout
@@ -73,7 +73,7 @@ export default page(class extends React.Component {
                   Our<span className='icon'><i className='fa fa-lock' /></span>secure checkout is simple and requires only a valid credit card.
               </p>
                 <p>
-                  <Link prefetch href='/checkout/profile'><a>Click here</a></Link> to start the checkout process and get protected.
+                  <Link prefetch href='/checkout'><a>Click here</a></Link> to start the checkout process and get protected.
               </p>
               </div>
               <div style={{flex: 0.1}}>

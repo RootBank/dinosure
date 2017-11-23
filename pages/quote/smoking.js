@@ -7,7 +7,7 @@ import Router from 'next/router';
 
 const setSmoking = (smoking) => () => quoteStore.update(store => ({ ...store, smoking }));
 
-const next = () => Router.push('/quote/issue');
+const next = () => Router.push('/quote/issued');
 
 export default page(() =>
   <section className='section'>
