@@ -1,14 +1,26 @@
-// import FormFooter from '../../components/form-progress';
 import page from '../../../components/page';
 import Link from 'next/link';
 import React from 'react';
+import Router from 'next/router';
 import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
 
 const isPotentiallyValidIdNumber = (id = '') => /^[0-9]{0,13}$/.test(id);
 
-let isValidIdNumber = (potentialId = '') => {
+const idToAge = (id = '') => {
+  const rawYear = parseInt(id.substring(0, 2), 10);
+  const year = rawYear < (new Date().getFullYear() + '').substr(2) ? (2000 + rawYear) : (1900 + rawYear); // Where the 99s rolled over
+  const month = id.substring(2, 4);
+  const day = id.substring(4, 6);
+  const dateOfBirth = new Date(Date.parse(`${year}-${month}-${day}`));
+  var currentDate = new Date();
+  const ageInMilliseconds = currentDate.getTime() - dateOfBirth.getTime();
+  const approximateLengthOfYearInMilliseconds = (1000 * 60 * 60 * 24 * 365.25);
+  return Math.floor(ageInMilliseconds / approximateLengthOfYearInMilliseconds);
+};
+
+const isValidIdNumber = (potentialId = '') => {
   // accept only digits
   if (/[^0-9]+/.test(potentialId)) return false;
   // check length
@@ -45,6 +57,17 @@ const setIdNumber = (event) => {
   }
 };
 
+const next = (id) => () => {
+  const age = idToAge(id);
+  console.log(age);
+  if (age >= 18 && age <= 63) {
+    Router.push('/checkout/questions');
+  } else {
+    // Applicant too old
+    Router.push({ pathname: '/do-not-qualify', query: { reason: 'age' } });
+  }
+};
+
 export default page(class extends React.Component {
   render () {
     const application = this.props.application;
@@ -59,17 +82,17 @@ export default page(class extends React.Component {
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
 
-              <div class='field'>
-                <div class='control'>
+              <div className='field'>
+                <div className='control'>
                   <input onChange={setIdNumber}
                     // Space for 13 characters
                     style={{ width: '13rem', textAlign: 'center' }}
-                    class={`input title column is-large ${isPotentiallyValid ? '' : 'is-danger'}`}
+                    className={`input title column is-large ${isPotentiallyValid ? '' : 'is-danger'}`}
                     type='text'
                     placeholder='ID Number'
                     value={application.id || ''} />
                 </div>
-                <p class={`help ${isPotentiallyValid ? 'is-hidden' : 'is-danger'}`}>This id number is invalid</p>
+                <p className={`help ${isPotentiallyValid ? 'is-hidden' : 'is-danger'}`}>This id number is invalid</p>
               </div>
             </div>
             <div className='column' />
@@ -86,7 +109,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/checkout/profile/name'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <button onClick={console.log} className='button is-primary' disabled={!isValidIdNumber(application.id)}>Next</button>
+            <button onClick={next(application.id)} className='button is-primary' disabled={!isValidIdNumber(application.id || '')}>Next</button>
           </div>
         </div>
       </section>
