@@ -5,11 +5,6 @@ import applicationStore from '../../../datastores/application';
 import quoteStore from '../../../datastores/quote';
 import Steps from '../../../components/checkout-steps';
 
-// const toggleAccepted = () =>
-//   applicationStore.update(({accepted = false, ...state}) => ({...state, accepted: !accepted}));
-
-// const Tickbox = ({application: {accepted, firstName, lastName, id}}) =>
-
 export default page(class extends React.Component {
   constructor (props) {
     super(props);
@@ -74,7 +69,7 @@ export default page(class extends React.Component {
                 </ul>
                 <div className='field'>
                   <input onClick={this.toggleAccepted.bind(this)} className='is-checkradio is-primary' id='i-accept' type='checkbox' name='i-accept' checked={this.state.accepted ? 'checked' : ''} />
-                  <label htmlFor='i-accept'>By ticking this box I confirm all of the above..</label>
+                  <label htmlFor='i-accept'>By ticking this box I confirm all of the above.</label>
                 </div>
               </div>
             </div>

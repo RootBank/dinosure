@@ -18,7 +18,7 @@ const next = (age) => () => {
   } else {
     Router.push({ pathname: '/do-not-qualify', query: { reason: 'age' } });
   }
-}
+};
 
 export default page(({ quote }) =>
   <section className='section'>
@@ -55,7 +55,7 @@ export default page(({ quote }) =>
         <div className='level form-nav'>
           <div className='level-item'>
             <Link prefetch href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <button onClick={next(quote.age || 0)} className='button is-primary' disabled={!quote.age}>Next</button></Link>
+            <button onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
           </div>
         </div>
       </section>
