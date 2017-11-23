@@ -58,7 +58,6 @@ const setIdNumber = (event) => {
 
 const next = (id) => () => {
   const age = idToAge(id);
-  console.log(age);
   if (age >= 18 && age <= 63) {
     Router.push('/checkout/questions');
   } else {
