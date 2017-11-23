@@ -49,58 +49,58 @@ const homePage = page(() => [
         <h2 className='subtitle'>Always know what you’ll pay.</h2>
         <div className='columns'>
           <div className='column'>
-            <div className="card">
-              <header className="card-header">
-                <h3 className="card-header-title subtitle is-centered is-green is-5">R 289 p/m for R 1 500 000</h3>
+            <div className='card'>
+              <header className='card-header'>
+                <h3 className='card-header-title subtitle is-centered is-green is-5'>R 289 p/m for R 1 500 000</h3>
               </header>
-              <div className="card-content">
-                <div className="content">
+              <div className='card-content'>
+                <div className='content'>
                   Just get the basics in place for if something should happen to you tomorrow. Then well help you sort out the more complicated stuff.
                   <br />
                   <br />
-                  <a href="#">#imahero </a>
-                  <a href="#">#letsdothis</a>
+                  <a href='#'>#imahero </a>
+                  <a href='#'>#letsdothis</a>
                 </div>
               </div>
-              <footer className="card-footer is-bold">
-                <a href="#" className="card-footer-item">Pick me!</a>
+              <footer className='card-footer is-bold'>
+                <a href='#' className='card-footer-item'>Pick me!</a>
               </footer>
             </div>
           </div>
           <div className='column'>
-            <div className="card">
-              <header className="card-header">
-                <p className="card-header-title subtitle is-centered is-5">R 429 p/m for R 2 500 000</p>
+            <div className='card'>
+              <header className='card-header'>
+                <p className='card-header-title subtitle is-centered is-5'>R 429 p/m for R 2 500 000</p>
               </header>
-              <div className="card-content">
-                <div className="content">
+              <div className='card-content'>
+                <div className='content'>
                   This is for the parents with 2 kids, ages from 3 - 12, wants to go to a public shool and later to university.
                   <br />
                   <br />
-                  <a href="#">#mykidsfuturesorted </a>
-                  <a href="#">#nomoreworries</a>
+                  <a href='#'>#mykidsfuturesorted </a>
+                  <a href='#'>#nomoreworries</a>
                 </div>
               </div>
-              <footer className="card-footer">
-                <a href="#" className="card-footer-item">Pick me!</a>
+              <footer className='card-footer'>
+                <a href='#' className='card-footer-item'>Pick me!</a>
               </footer>
             </div>
           </div>
           <div className='column'>
-            <div className="card">
-              <header className="card-header">
-                <p className="card-header-title subtitle is-centered is-5">R 629 p/m for R 4 000 000</p>
+            <div className='card'>
+              <header className='card-header'>
+                <p className='card-header-title subtitle is-centered is-5'>R 629 p/m for R 4 000 000</p>
               </header>
-              <div className="card-content">
-                <div className="content">
+              <div className='card-content'>
+                <div className='content'>
                   This is for the parents with 2 kids, ages from 3 - 12, wants to go to a private shool and later to university .
                   <br />
                   <br />
-                  <a href="#">#mykidsdreamsdone</a>
+                  <a href='#'>#mykidsdreamsdone</a>
                 </div>
               </div>
-              <footer className="card-footer">
-                <a href="#" className="card-footer-item">Pick me!</a>
+              <footer className='card-footer'>
+                <a href='#' className='card-footer-item'>Pick me!</a>
               </footer>
             </div>
           </div>
@@ -111,5 +111,3 @@ const homePage = page(() => [
 ]);
 
 export default homePage;
-
-//<img style={{ width: '100vw', maxWidth: 'unset', paddingTop: '2em' }} src='/static/hero-splash.svg' />
