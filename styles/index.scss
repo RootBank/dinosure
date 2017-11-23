@@ -126,3 +126,10 @@ $fullhd: calculate(45rem);
 p.is-danger {
     margin-top: 5px;
 }
+
+.payment-summary-info {
+    //background: whitesmoke;
+    margin-bottom: 1.5em;
+    box-shadow: inset 0px 0px 1px 1px darken(whitesmoke, 10%);
+    width: 400px;
+}

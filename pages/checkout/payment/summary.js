@@ -29,8 +29,35 @@ export default page(class extends React.Component {
     return Number(amount).toLocaleString().replace(/,/g, ' ');
   }
 
+  get formattedEducation () {
+    switch(this.props.quote.education) {
+      case 'grade_12_no_matric':
+       return 'Up to Gr. 12';
+      case 'grade_12_matric':
+        return 'Matric';
+      case 'diploma':
+        return 'Diploma';
+      case 'btech':
+        return 'BTech';
+      case 'undergraduate_degree':
+        return 'Undergraduate Degree';
+      case 'professional_degree':
+        return 'Professional Degree';
+    }
+  }
+
+  get formattedIncome () {
+    return 'R ' + this.props.quote.income.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1, ');
+  }
+
+  get formattedSmoking () {
+    return this.props.quote.smoking ? 'Yes': 'No';
+  }
+
   render () {
     const { firstName, lastName, id } = this.props.application;
+    const { age, gender } = this.props.quote;
+    console.log(this.props);
     return (
       <section className='section'>
         <div className='container content'>
@@ -60,11 +87,48 @@ export default page(class extends React.Component {
               <div className='container content'>
                 <h1 className='title is-3'>Application Summary</h1>
                 <h2 className='subtitle is-5'>accept the terms and conditions to continue</h2>
+
+                
+                <div className="payment-summary-info">
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>First Name</td>
+                        <td>{firstName}</td>
+                      </tr>
+                      <tr>
+                        <td>Last Name</td>
+                        <td>{lastName}</td>
+                      </tr>
+                      <tr>
+                        <td>Gender</td>
+                        <td style={{'text-transform': 'capitalize'}}>{gender}</td>
+                      </tr>
+                      <tr>
+                        <td>Age</td>
+                        <td>{age}</td>
+                      </tr>
+                      <tr>
+                        <td>Income</td>
+                        <td>{this.formattedIncome}</td>
+                      </tr>
+                      <tr>
+                        <td>Education</td>
+                        <td>{this.formattedEducation}</td>
+                      </tr>
+                      <tr>
+                        <td>Smoker?</td>
+                        <td>{this.formattedSmoking}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 I {firstName} {lastName} (ID Number {id}), confirm that:
                 <ul>
                   <li>The information in this application is true and correct; and</li>
                   <li>I am aware of no other information which might be relevant to Guardrisk Life Limited’s decision to offer me cover; and</li>
-                  <li>I confirm the questions and answers relating to my health as true and correct and I agree to abide by the terms set out in the policy document; and</li>
+                  <li>I confirm the questions and answers relating to my health as true and correct and I agree to abide by the terms set out in the <a target="_blank" href="/static/TermsAndConditions.pdf">policy document</a>; and</li>
                   <li>I consent to the exchange of any information between Guardrisk Life Limited and any medical or other institution/Doctor which consent continues even after my death.</li>
                 </ul>
                 <div className='field'>
