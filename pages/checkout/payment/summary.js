@@ -46,7 +46,7 @@ export default page(class extends React.Component {
                   <div className='plan-item'>24 Hour Support</div>
                 </div>
                 <div className='plan-footer'>
-                  <Link prefetch href='/checkout'>
+                  <Link prefetch href='/checkout/payment/pay'>
                     <a>
                       <button className='button is-fullwidth' disabled={!this.state.accepted}>
                         <span className='icon'><i className='fa fa-lock' /></span>&nbsp; Pay
