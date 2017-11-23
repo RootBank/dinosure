@@ -17,7 +17,7 @@ export default page(({ quote }) =>
           <input onChange={updateSumAssured} className='slider is-fullwidth is-info' step='500000' min='500000' max='10000000' value={quote.sumAssured || 5000000} type='range' />
           <h5 className='subtitle is-h5'>sum assured</h5>
           <p className='has-text-centered'>
-            Please select the sum that will be paid out should your life be terminated by dinosaur.
+            Please select the sum that will be paid out should your life be terminated by a dinosaur.
           </p>
         </div>
         <div className='column' />

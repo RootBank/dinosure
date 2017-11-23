@@ -59,17 +59,17 @@ export default page(class extends React.Component {
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
 
-              <div class='field'>
-                <div class='control'>
+              <div className='field'>
+                <div className='control'>
                   <input onChange={setIdNumber}
                     // Space for 13 characters
                     style={{ width: '13rem', textAlign: 'center' }}
-                    class={`input title column is-large ${isPotentiallyValid ? '' : 'is-danger'}`}
+                    className={`input title column is-large ${isPotentiallyValid ? '' : 'is-danger'}`}
                     type='text'
                     placeholder='ID Number'
                     value={application.id || ''} />
                 </div>
-                <p class={`help ${isPotentiallyValid ? 'is-hidden' : 'is-danger'}`}>This id number is invalid</p>
+                <p className={`help ${isPotentiallyValid ? 'is-hidden' : 'is-danger'}`}>This id number is invalid</p>
               </div>
             </div>
             <div className='column' />
@@ -86,7 +86,8 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/checkout/profile/name'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <button onClick={console.log} className='button is-primary' disabled={!isValidIdNumber(application.id)}>Next</button>
+            <Link href='/checkout/profile/email'><button className='button is-primary' disabled={!isValidIdNumber(application.id)}>Next</button></Link>
+
           </div>
         </div>
       </section>

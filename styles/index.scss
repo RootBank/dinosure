@@ -121,3 +121,8 @@ $fullhd: calculate(45rem);
 .auth0-lock-header {
     height: auto !important;
 }
+
+// Move input error messages down slightly
+p.is-danger {
+    margin-top: 5px;
+}
