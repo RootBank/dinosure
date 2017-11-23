@@ -1,4 +1,3 @@
-// import FormFooter from '../../components/form-progress';
 import page from '../../components/page';
 // import Link from 'next/link';
 import React from 'react';
@@ -7,7 +6,7 @@ import applicationStore from '../../datastores/application';
 import Steps from '../../components/checkout-steps';
 
 const Tickbox = ({ firstName = '', lastName = '', id = '' }) =>
-  // Checking if the firstName is set prevents the page from flashing 
+  // Checking if the firstName is set prevents the page from flashing
   // if the data has not been loaded yet.
   firstName && <section className='section'>
     <div className='container content'>
@@ -26,14 +25,14 @@ const Tickbox = ({ firstName = '', lastName = '', id = '' }) =>
   </section>;
 
 export default page(class extends React.Component {
-  render() {
+  render () {
     const application = this.props.application;
     return <Tickbox {...application} />;
   }
 }, {
-    footer: () =>
-      <section className='section'>
-        <Steps currentStep={2} />
-      </section>,
-    datastores: { quote: quoteStore, application: applicationStore }
-  });
+  footer: () =>
+    <section className='section'>
+      <Steps currentStep={2} />
+    </section>,
+  datastores: { quote: quoteStore, application: applicationStore }
+});
