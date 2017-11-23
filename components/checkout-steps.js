@@ -1,6 +1,6 @@
 export default ({ currentStep }) =>
   <div className='container'>
-    <div className='steps'>
+    <div className='steps is-small'>
       <div className={`step-item ${currentStep !== 0 ? 'is-completed' : 'is-active'} is-info`}>
         <div className='step-marker'>
           <span className='icon'>
@@ -14,11 +14,11 @@ export default ({ currentStep }) =>
       <div className={`step-item ${currentStep >= 2 ? 'is-completed' : (currentStep === 1 ? 'is-active' : '')} is-info`}>
         <div className='step-marker'>
           <span className='icon'>
-            <i className='fa fa-gavel' />
+            <i className='fa fa-question' />
           </span>
         </div>
         <div className='step-details'>
-          <p className='step-title'>Underwriting</p>
+          <p className='step-title'>Questions</p>
         </div>
       </div>
       <div className={`step-item ${currentStep === 2 ? 'is-active' : ''} is-info`}>
