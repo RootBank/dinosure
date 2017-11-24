@@ -59,7 +59,7 @@ const setIdNumber = (event) => {
 const next = (id) => () => {
   const age = idToAge(id);
   if (age >= 18 && age <= 63) {
-    Router.push('/checkout/email');
+    Router.push('/checkout/profile/email');
   } else {
     // Applicant too old
     Router.push({ pathname: '/do-not-qualify', query: { reason: 'age' } });
