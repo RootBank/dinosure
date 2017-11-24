@@ -1,7 +1,7 @@
 import page from '../components/page';
 import React from 'react';
-import applicationStore from '../../../datastores/application';
-import quoteStore from '../../../datastores/quote';
+import applicationStore from '../datastores/application';
+import quoteStore from '../datastores/quote';
 
 export default page(class extends React.Component {
   componentDidMount () {
