@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import page from '../../../components/page';
 import React from 'react';
 import applicationStore from '../../../datastores/application';
