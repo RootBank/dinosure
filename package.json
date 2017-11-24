@@ -1,7 +1,7 @@
 {
-  "name": "dinosure",
+  "name": "herolife",
   "version": "1.0.0",
-  "description": "The world's most comprehensive triassic protection plan",
+  "description": "Term life insurance for parents",
   "main": "index.js",
   "scripts": {
     "test": "semistandard && jest",
@@ -66,6 +66,7 @@
     "raw-loader": "^0.5.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-intercom": "^1.0.13",
     "sass-loader": "^6.0.6"
   },
   "devDependencies": {

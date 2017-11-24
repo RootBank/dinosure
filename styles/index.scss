@@ -23,6 +23,16 @@ $family-primary: $family-sans-serif;
 
 $footer-background-color: $primary;
 
+//  Background image on landing page
+.hero.is-hero-background-image {
+  background: url('../static/hero-splash.png') no-repeat center;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  padding-top: 2em;
+  height: 60vw;
+}
+
 // Prevent white line from appearing between images
 .hero.is-primary {
     margin-top: -1%;

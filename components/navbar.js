@@ -66,7 +66,7 @@ export default class extends React.Component {
                */}
               <Link prefetch href='/'><a className={`navbar-item ${currentPage === '/' ? 'is-active' : ''}`}>Home</a></Link>
               <Link prefetch href='/about'><a className={`navbar-item ${currentPage === '/about' ? 'is-active' : ''}`}>About</a></Link>
-              <Link prefetch href='/contact'><a className={`navbar-item ${currentPage === '/contact' ? 'is-active' : ''}`}>Contact</a></Link>
+              <Link prefetch href='/contact'><a className={`navbar-item ${currentPage === '/contact' ? 'is-active' : ''}`}>Say Hello</a></Link>
               <Link prefetch href='/claim'><a className={`navbar-item ${currentPage === '/claim' && 'is-active'}`}>Claim</a></Link>
               <LoginElements isAuthenticated={isAuthenticated} currentPage={currentPage} />
             </div>
