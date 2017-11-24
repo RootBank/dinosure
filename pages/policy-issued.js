@@ -1,3 +1,5 @@
+import page from '../components/page';
+
 export default () => page(({reason}) =>
   <section className='section'>
     <div className='container'>
