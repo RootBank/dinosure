@@ -1,8 +1,8 @@
 import page from '../components/page';
 
-export default () => page(({reason}) =>
+export default page(() =>
   <section className='section'>
-    <div className='container'>
+    <div className='container content'>
       <h1 className='title is-3'>Hooray!</h1>
       <p> You've just been issued a new dinosure policy!
           Please check your email: it contains your policy documents, along with
@@ -10,4 +10,5 @@ export default () => page(({reason}) =>
           manage your policy.
       </p>
     </div>
-  </section>);
+  </section>
+);
