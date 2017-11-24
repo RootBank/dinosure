@@ -21,6 +21,10 @@ export default class Datastore {
     return this._state;
   }
 
+  clear () {
+    this.state = this.initialState;
+  }
+
   set state (state) {
     this._state = state;
     this.subscribers.forEach(subscriber => setImmediate(() => subscriber(this._state)));
