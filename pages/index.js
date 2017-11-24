@@ -6,14 +6,14 @@ const homePage = page(() => [
     <div className='hero-body container'>
       <h1 className='title'>Become your familys Hero</h1>
       <h2 className='subtitle is-4'>Understand what you need. Super easy to get.</h2>
-      <a className='button is-large is-info' href="#subscriptions">Lets get started</a>
+      <a className='button is-large is-info' href='#subscriptions'>Lets get started</a>
     </div>
   </section>,
   <section key='splash' className='hero is-hidden-tablet'>
     <div className='hero-body container'>
       <h1 className='title'>Become your familys Hero</h1>
       <h2 className='subtitle is-4'>Understand what you need. Super easy to get.</h2>
-      <a className='button is-large is-info' href="#subscriptions">Lets get started</a>
+      <a className='button is-large is-info' href='#subscriptions'>Lets get started</a>
     </div>
   </section>,
   <section key='benefits' className='hero is-primary is-bold'>
@@ -41,7 +41,7 @@ const homePage = page(() => [
               <img className='image level-item is-128x128' src='/static/product-benefit-3.svg' />
             </div>
             <h4 className='title is-4'>You control everything</h4>
-            <p>30 day money back garuatee, cancel at anytime and change whenever you want.</p>
+            <p>30 day money back guarantee, cancel at anytime and change whenever you want.</p>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@ const homePage = page(() => [
           <div className='column'>
             <div className='card'>
               <header className='card-header'>
-                <h3 className='card-header-title subtitle is-centered is-green is-5'>R 289 p/m for R 1 500 000</h3>
+                <h3 className='card-header-title subtitle is-centered is-green is-5'>R 305 p/m for R 1 500 000</h3>
               </header>
               <div className='card-content'>
                 <div className='content'>
@@ -75,7 +75,7 @@ const homePage = page(() => [
           <div className='column'>
             <div className='card'>
               <header className='card-header'>
-                <p className='card-header-title subtitle is-centered is-5'>R 429 p/m for R 2 500 000</p>
+                <p className='card-header-title subtitle is-centered is-5'>R 449 p/m for R 2 500 000</p>
               </header>
               <div className='card-content'>
                 <div className='content'>
@@ -94,7 +94,7 @@ const homePage = page(() => [
           <div className='column'>
             <div className='card'>
               <header className='card-header'>
-                <p className='card-header-title subtitle is-centered is-5'>R 629 p/m for R 4 000 000</p>
+                <p className='card-header-title subtitle is-centered is-5'>R 659 p/m for R 4 000 000</p>
               </header>
               <div className='card-content'>
                 <div className='content'>

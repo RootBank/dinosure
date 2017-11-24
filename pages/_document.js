@@ -1,7 +1,6 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 import stylesheet from 'styles/index.scss';
-import ForkThis from '../components/github-fork';
 
 // This is the default document. All documents will include this code
 export default class extends Document {
