@@ -47,7 +47,7 @@ const homePage = page(() => [
       </div>
     </div>
   </section>,
-  <section key='get-quote' className='hero' id='subscriptions'>
+  <section key='get-quote' className='hero is-primary is-bold' id='subscriptions'>
     <div className='hero-body'>
       <div className='container has-text-centered'>
         <h1 className='title'>Simple, transparent pricing.</h1>
@@ -56,7 +56,7 @@ const homePage = page(() => [
           <div className='column'>
             <div className='card'>
               <header className='card-header'>
-                <h3 className='card-header-title subtitle is-centered is-green is-5'>R 305 p/m for R 1 500 000</h3>
+                <h3 className='card-header-title is-centered is-5'>R 305 p/m for R 1 500 000</h3>
               </header>
               <div className='card-content'>
                 <div className='content'>
@@ -75,7 +75,7 @@ const homePage = page(() => [
           <div className='column'>
             <div className='card'>
               <header className='card-header'>
-                <p className='card-header-title subtitle is-centered is-5'>R 449 p/m for R 2 500 000</p>
+                <p className='card-header-title is-centered is-5'>R 449 p/m for R 2 500 000</p>
               </header>
               <div className='card-content'>
                 <div className='content'>
@@ -94,7 +94,7 @@ const homePage = page(() => [
           <div className='column'>
             <div className='card'>
               <header className='card-header'>
-                <p className='card-header-title subtitle is-centered is-5'>R 659 p/m for R 4 000 000</p>
+                <p className='card-header-title is-centered is-5'>R 659 p/m for R 4 000 000</p>
               </header>
               <div className='card-content'>
                 <div className='content'>
@@ -105,7 +105,7 @@ const homePage = page(() => [
                 </div>
               </div>
               <footer className='card-footer'>
-                <a href='#' className='card-footer-item button is-info is-outlined is-medium'>Pick me!</a>
+                <Link prefetch href='/quote/underwriting'><a className='card-footer-item button is-info is-outlined is-medium'>Pick me!</a></Link>
               </footer>
             </div>
           </div>
