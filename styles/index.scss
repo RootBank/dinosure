@@ -24,7 +24,7 @@ $family-primary: $family-sans-serif;
 $footer-background-color: $primary;
 
 //  Background image on landing page
-.hero.is-hero-background-image {
+.is-hero-background-image {
   background: url('../static/hero-splash.png') no-repeat center;
   -webkit-background-size: contain;
   -moz-background-size: contain;
@@ -37,6 +37,12 @@ $footer-background-color: $primary;
 .hero.is-primary {
     margin-top: -1%;
     border-bottom: -1%;
+}
+
+// Give the subscriptions section some space to breath
+#subscriptions {
+  padding-top: 3em;
+  padding-bottom: 3em;
 }
 
 // Give the footer some space to breathe
@@ -71,6 +77,11 @@ $fullhd: calculate(45rem);
 @import 'bulma-extensions/bulma-pricingtable/pricing-table';
 @import 'bulma-extensions/bulma-steps/steps';
 
+
+// Add a little spacing on top of navbar-item
+.navbar {
+  margin-top: 1em;
+}
 
 // Add additonal affordances to currently selected page in navbar
 .navbar-item.is-active {

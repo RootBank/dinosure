@@ -2,7 +2,14 @@ import Link from 'next/link';
 import page from '../components/page';
 
 const homePage = page(() => [
-  <section key='splash' className='hero is-hero-background-image'>
+  <section key='splash-mobile' className='hero is-hero-background-image is-hidden-mobile'>
+    <div className='hero-body container'>
+      <h1 className='title'>Become your familys Hero</h1>
+      <h2 className='subtitle is-4'>Understand what you need. Super easy to get.</h2>
+      <a className='button is-large is-info' href="#subscriptions">Lets get started</a>
+    </div>
+  </section>,
+  <section key='splash' className='hero is-hidden-tablet'>
     <div className='hero-body container'>
       <h1 className='title'>Become your familys Hero</h1>
       <h2 className='subtitle is-4'>Understand what you need. Super easy to get.</h2>
@@ -61,7 +68,7 @@ const homePage = page(() => [
                 </div>
               </div>
               <footer className='card-footer is-bold'>
-                <a href='#' className='card-footer-item'>Pick me!</a>
+                <a href='#' className='card-footer-item button is-info is-outlined is-medium'>Pick me!</a>
               </footer>
             </div>
           </div>
@@ -80,7 +87,7 @@ const homePage = page(() => [
                 </div>
               </div>
               <footer className='card-footer'>
-                <a href='#' className='card-footer-item'>Pick me!</a>
+                <a href='#' className='card-footer-item button is-info is-medium'>Pick me!</a>
               </footer>
             </div>
           </div>
@@ -98,7 +105,7 @@ const homePage = page(() => [
                 </div>
               </div>
               <footer className='card-footer'>
-                <a href='#' className='card-footer-item'>Pick me!</a>
+                <a href='#' className='card-footer-item button is-info is-outlined is-medium'>Pick me!</a>
               </footer>
             </div>
           </div>
