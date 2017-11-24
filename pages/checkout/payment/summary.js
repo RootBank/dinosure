@@ -47,7 +47,7 @@ export default page(class extends React.Component {
   }
 
   get formattedIncome () {
-    return 'R ' + this.props.quote.income.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1, ');
+    return 'R ' + (this.props.quote.income || 0).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1, ');
   }
 
   get formattedSmoking () {
@@ -62,34 +62,36 @@ export default page(class extends React.Component {
       <section className='section'>
         <div className='container content'>
           <div className='columns is-reversed-mobile'>
-            <div className='pricing-table column'>
-              <div style={{ marginTop: 0 }} className='pricing-plan is-primary'>
-                <div className='plan-header'>R {this.formattedSumAssured} cover</div>
-                <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
-                <div className='plan-items'>
-                  <div className='plan-item'>Early Warning Network</div>
-                  <div className='plan-item'>Extraction Team</div>
-                  <div className='plan-item'>Security Consultants</div>
-                  <div className='plan-item'>24 Hour Support</div>
-                </div>
-                <div className='plan-footer'>
-                  <Link prefetch href='/checkout/payment/pay'>
-                    <a>
-                      <button className='button is-fullwidth' disabled={!this.state.accepted}>
-                        <span className='icon'><i className='fa fa-lock' /></span>&nbsp; Pay
+            <div className='column'>
+              <div className='pricing-table'>
+                <div style={{ marginTop: 0 }} className='pricing-plan is-primary'>
+                  <div className='plan-header'>R {this.formattedSumAssured} cover</div>
+                  <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
+                  <div className='plan-items'>
+                    <div className='plan-item'>Early Warning Network</div>
+                    <div className='plan-item'>Extraction Team</div>
+                    <div className='plan-item'>Security Consultants</div>
+                    <div className='plan-item'>24 Hour Support</div>
+                  </div>
+                  <div className='plan-footer'>
+                    <Link prefetch href='/checkout/payment/pay'>
+                      <a>
+                        <button className='button is-fullwidth' disabled={!this.state.accepted}>
+                          <span className='icon'><i className='fa fa-lock' /></span>&nbsp; Pay
                       </button>
-                    </a>
-                  </Link>
+                      </a>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }} className='column content is-two-thirds'>
+            <div className='column content is-two-thirds'>
               <div className='container content'>
-                <h1 className='title is-3'>Application Summary</h1>
-                <h2 className='subtitle is-5'>accept the terms and conditions to continue</h2>
+                <h1 className='title is-3'>Summary</h1>
+                <h2 className='subtitle is-5'>Accept the terms and conditions to continue</h2>
 
                 <div className='payment-summary-info'>
-                  <table>
+                  <table className='summary'>
                     <tbody>
                       <tr>
                         <td>First Name</td>
@@ -101,7 +103,7 @@ export default page(class extends React.Component {
                       </tr>
                       <tr>
                         <td>Gender</td>
-                        <td style={{'text-transform': 'capitalize'}}>{gender}</td>
+                        <td style={{textTransform: 'capitalize'}}>{gender}</td>
                       </tr>
                       <tr>
                         <td>Age</td>
@@ -116,8 +118,12 @@ export default page(class extends React.Component {
                         <td>{this.formattedEducation}</td>
                       </tr>
                       <tr>
-                        <td>Smoker?</td>
+                        <td>Smoker</td>
                         <td>{this.formattedSmoking}</td>
+                      </tr>
+                      <tr>
+                        <td>Visiting Isla Nublar</td>
+                        <td>No</td>
                       </tr>
                     </tbody>
                   </table>
@@ -149,5 +155,4 @@ export default page(class extends React.Component {
       <Steps currentStep={2} />
     </section>,
   datastores: { quote: quoteStore, application: applicationStore }
-}
-);
+});
