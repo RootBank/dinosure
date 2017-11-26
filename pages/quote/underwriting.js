@@ -70,11 +70,11 @@ export default page(({ quote = { underwriting: false } }) =>
             <div className='level form-nav'>
               <div className='level-item'>
                 <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-                <Link prefetch href='/quote/issued'><button className='button is-primary' disabled={this.state.nextDisabled}>Next</button></Link>
+                <Link prefetch href='/quote/id'><button className='button is-primary' disabled={this.state.nextDisabled}>Next</button></Link>
               </div>
             </div>
           </section>
-          <FormFooter step={1} of={6} />
+          <FormFooter step={1} of={5} />
         </div>;
       }
     },

@@ -57,6 +57,10 @@ a.has-text-white {
     text-decoration: underline;
 }
 
+a {
+  color: $primary;
+}
+
 // These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide
 $widescreen: calculate(45rem);
 $fullhd: calculate(45rem);
