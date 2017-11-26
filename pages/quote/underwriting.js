@@ -69,8 +69,8 @@ export default page(({ quote = { underwriting: false } }) =>
           <section className='section'>
             <div className='level form-nav'>
               <div className='level-item'>
-                <Link prefetch href='/quote/age'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-                <Link prefetch href='/quote/income'><button className='button is-primary' disabled={this.state.nextDisabled}>Next</button></Link>
+                <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+                <Link prefetch href='/quote/issued'><button className='button is-primary' disabled={this.state.nextDisabled}>Next</button></Link>
               </div>
             </div>
           </section>

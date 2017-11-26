@@ -5,7 +5,7 @@ const homePage = page(() => [
   <section key='splash-mobile' className='hero is-hero-background-image is-hidden-mobile'>
     <div className='hero-body container'>
       <h1 className='title'>Become your familys Hero</h1>
-      <h2 className='subtitle is-4'>Understand what you need. Super easy to get.</h2>
+      <h2 className='subtitle is-4'>Get your perfect life insurance.</h2>
       <a className='button is-large is-info' href='#subscriptions'>Lets get started</a>
     </div>
   </section>,
@@ -13,10 +13,10 @@ const homePage = page(() => [
     <div className='hero-body container'>
       <h1 className='title'>Become your familys Hero</h1>
       <h2 className='subtitle is-4'>Understand what you need. Super easy to get.</h2>
-      <a className='button is-large is-info' href='#subscriptions'>Lets get started</a>
+      <a className='button is-large is-info'>Lets get started</a>
     </div>
   </section>,
-  <section key='benefits' className='hero is-primary is-bold'>
+  <section key='benefits' className='hero is-primary'>
     <div className='hero-body'>
       <div className='hero-body container has-text-centered'>
         <div className='columns'>
@@ -47,7 +47,7 @@ const homePage = page(() => [
       </div>
     </div>
   </section>,
-  <section key='get-quote' className='hero is-primary is-bold' id='subscriptions'>
+  <section key='get-quote' className='hero is-primary' id='subscriptions'>
     <div className='hero-body'>
       <div className='container has-text-centered'>
         <h1 className='title'>Simple, transparent pricing.</h1>

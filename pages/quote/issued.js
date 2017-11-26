@@ -36,7 +36,7 @@ export default page(class extends React.Component {
   render () {
     return (
       <section className='section'>
-        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Fetching Quote</span></div>
+        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Getting everything ready...</span></div>
         <div className='container content'>
           <div className='columns is-reversed-mobile'>
             <div className='pricing-table column'>
