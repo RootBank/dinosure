@@ -4,7 +4,7 @@ import Link from 'next/link';
 import quoteStore from '../../datastores/quote';
 
 const setId = (event) => {
-  //rewrite this to extract gender, age, etc from Id number
+  //  rewrite this to extract gender, age, etc from Id number
 
   const value = event.target.value;
   console.log(value);
@@ -16,15 +16,15 @@ export default page(({ quote }) =>
     <div className='columns'>
       <div className='column is-10 is-offset-1 has-text-centered'>
         {/* Tablet and desktop view */}
-        <div className='level is-hidden-mobile'>
-          <div className='level-item content title is-3'>My ID is
-          <div style={{ margin: '0.6em' }} className='control'>
-            <input onChange={setId} style={{ width: '10em', textAlign: 'center' }} className='input title is-medium' type='text' placeholder='South African ID' value={quote.id || ''} />
+          <div className='level is-hidden-mobile'>
+            <div className='level-item content title is-3'>My ID is
+            <div style={{ margin: '0.6em' }} className='control'>
+              <input onChange={setId} style={{ width: '10em', textAlign: 'center' }} className='input title is-medium' type='text' placeholder='South African ID' value={quote.id || ''} />
+            </div>
           </div>
-        </div>
-        </div>
-        {/* Mobile view */}
-        <div className='is-hidden-desktop is-hidden-tablet'>
+      </div>
+      {/* Mobile view */}
+      <div className='is-hidden-desktop is-hidden-tablet'>
           <h3 className='title is-3'>My ID is</h3>
           <div className='level'>
             <div style={{ margin: '0.6em' }} className='control level-item'>
