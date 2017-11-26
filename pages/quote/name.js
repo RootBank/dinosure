@@ -5,12 +5,7 @@ import quoteStore from '../../datastores/quote';
 
 const setName = (event) => {
   const value = event.target.value.replace(/[^\d]/g, '');
-    quoteStore.update(state => ({ ...state, name: value }));
-};
-
-const setLastname = (event) => {
-  const value = event.target.value.replace(/[^\d]/g, '');
-    quoteStore.update(state => ({ ...state, lastname: value }));
+  quoteStore.update(state => ({ ...state, name: value }));
 };
 
 export default page(({ quote }) =>
