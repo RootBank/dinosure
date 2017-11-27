@@ -1,7 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 import stylesheet from 'styles/index.scss';
-import gtmBody from 'static/gtmBody.js';
+import gtm_body from 'static/gtmBody.js';
 
 // This is the default document. All documents will include this code
 export default class extends Document {
@@ -29,7 +29,7 @@ export default class extends Document {
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         </Head>
         <body>
-          <gtmBody />
+          <gtm_body />
           <Main />
           <NextScript />
         </body>
