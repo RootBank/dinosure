@@ -75,7 +75,7 @@ export default page(class extends React.Component {
       <div className='columns'>
         <div className='column' />
         <div className='column has-text-centered'>
-          <div className='title is-3'>My <img alt='South Africa' style={{height: '0.8em', marginTop: '0.5em', display: 'inline-block'}} src='/static/za-flag.svg' /> Id Number is</div>
+          <div className='title is-3'>My <img alt='South Africa' style={{height: '0.8em', marginTop: '0.5em', display: 'inline-block'}} src='/static/za-flag.svg' /> ID Number is</div>
           <div className='columns is-mobile'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>

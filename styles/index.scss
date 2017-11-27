@@ -21,6 +21,10 @@ $family-sans-serif: 'Josefin Sans', sans-serif;
 $family-primary: $family-sans-serif;
 $footer-background-color: $primary;
 
+html {
+  color: #484848;
+}
+
 //  Background image on landing page
 .is-hero-background-image {
   background: url('../static/hero-splash.png') no-repeat center;
@@ -59,6 +63,10 @@ a.has-text-white {
 
 a {
   color: $primary;
+}
+
+.card-header-title.is-centered {
+  color: $green;
 }
 
 // These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide

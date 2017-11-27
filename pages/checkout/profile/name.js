@@ -29,6 +29,7 @@ export default page(class extends React.Component {
             </div>
             <div className='column' />
           </div>
+          {/* Mobile view */}
           <div className='columns is-mobile'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
