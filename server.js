@@ -94,20 +94,22 @@ app.prepare()
   router.post('/api/quote', async ctx => {
     const input = ctx.request.body;
 
+    /*
     const educationStatus =
       input.education === 'btech' || input.education === 'diploma'
       ? 'diploma_or_btech'
       : input.education;
+    */
 
     const quoteParams = {
-      type: 'guardrisk_term',
-      age: input.age,
+      type: 'mmi_hero',
+      //  age: input.age,
       cover_amount: input.sumAssured * 100,
-      cover_period: 'whole_life',
-      basic_income_per_month: input.income * 100,
-      education_status: educationStatus,
-      smoker: input.smoking,
-      gender: input.gender
+      cover_period: '5_year',
+      //  basic_income_per_month: input.income * 100,
+      //  education_status: educationStatus,
+      //  smoker: input.smoking,
+      //  gender: input.gender
     };
 
     const quoteResult = await axios.post(`${rootUrl}/quote/`, quoteParams, { auth });

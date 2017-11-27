@@ -5,7 +5,7 @@ import Router from 'next/router';
 
 export default class extends React.Component {
   componentDidMount () {
-    Router.replace('/checkout/questions/island');
+    Router.replace('/checkout/questions/parents');
   }
 
   render () { return null; }

@@ -56,7 +56,7 @@ export default page(class extends React.Component {
 
   render () {
     const { firstName, lastName, id } = this.props.application;
-    const { age, gender } = this.props.quote;
+    const { sumAssured } = this.props.quote;
     console.log(this.props);
     return (
       <section className='section'>
@@ -102,28 +102,24 @@ export default page(class extends React.Component {
                         <td>{lastName}</td>
                       </tr>
                       <tr>
-                        <td>Gender</td>
-                        <td style={{textTransform: 'capitalize'}}>{gender}</td>
+                        <td>SA ID</td>
+                        <td>{id}</td>
                       </tr>
                       <tr>
-                        <td>Age</td>
-                        <td>{age}</td>
+                        <td>I have children, I am pregnant or my partner is pregnant.</td>
+                        <td>Yes</td>
                       </tr>
                       <tr>
-                        <td>Income</td>
-                        <td>{this.formattedIncome}</td>
+                        <td>I have never applied for life insurance or if I have, I have never been declined life insurance before, for any health or other reasons.</td>
+                        <td>Yes</td>
                       </tr>
                       <tr>
-                        <td>Education</td>
-                        <td>{this.formattedEducation}</td>
+                        <td>In the last 5 years, I haven't been hospitalised for more than 2 days, I haven't taken any medicine for a period longer than 2 weeks and I haven''t seen any medical specialist except for my pregnancy.</td>
+                        <td>Yes</td>
                       </tr>
                       <tr>
-                        <td>Smoker</td>
-                        <td>{this.formattedSmoking}</td>
-                      </tr>
-                      <tr>
-                        <td>Visiting Isla Nublar</td>
-                        <td>No</td>
+                        <td>Other than childbirth or pregnancy, I am not planning on seeing any medical professional in the next 8 weeks.</td>
+                        <td>Yes</td>
                       </tr>
                     </tbody>
                   </table>

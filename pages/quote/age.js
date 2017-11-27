@@ -50,7 +50,8 @@ export default page(({ quote }) =>
     </div>
   </section>,
   {
-    footer: ({ quote }) => <div>
+    footer: ({ quote }) =>
+    <div>
       <section className='section'>
         <div className='level form-nav'>
           <div className='level-item'>

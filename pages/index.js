@@ -1,5 +1,10 @@
 import Link from 'next/link';
 import page from '../components/page';
+import quoteStore from '../datastores/quote';
+
+const setSumAssured = (value) => {
+  quoteStore.update(state => ({ ...state, sumAssured: value }));
+};
 
 const homePage = page(() => [
   <section key='splash-mobile' className='hero is-hero-background-image is-hidden-mobile'>
@@ -107,12 +112,13 @@ const homePage = page(() => [
             <div className='plan-item'>This is for the parents with 2 kids, ages from 3 - 12, wants to go to a public shool and later to university.</div>
           </div>
           <div className='plan-footer'>
-            <Link href='quote/issued'><button className='button is-fullwidth'>Choose</button></Link>
+            <Link href='quote/summary'><button className='button is-fullwidth' onClick={() => setSumAssured(4000000)}>Choose</button></Link>
           </div>
         </div>
       </div>
     </div>
   </section>
 ]);
+
 
 export default homePage;

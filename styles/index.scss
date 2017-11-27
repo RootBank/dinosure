@@ -68,7 +68,7 @@ a.has-text-white {
 }
 
 a {
-  color: $primary;
+  text-decoration: none !important;
 }
 
 .card-header-title.is-centered {
@@ -99,6 +99,13 @@ a {
 .has-background {
   background: $primary !important;
 }
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 100% !important;
+  }
+}
+
 
 // These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide
 $widescreen: calculate(45rem);
@@ -203,7 +210,7 @@ p.is-danger {
     margin-bottom: 1.5em;
 
     table {
-        width: 90%;
+        width: 100%;
     }
 
     tbody td:nth-child(odd) {
