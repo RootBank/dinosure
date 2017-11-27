@@ -87,7 +87,7 @@ const homePage = page(() => [
             <div className='plan-item'>This is for the parents with 2 kids, ages from 3 - 12, wants to go to a public shool and later to university.</div>
           </div>
           <div className='plan-footer'>
-            <button className='button is-fullwidth'>Choose</button>
+            <Link href='checkout/profile/name'><button className='button is-fullwidth'>Choose</button></Link>
           </div>
         </div>
         <div className='pricing-plan'>
@@ -107,7 +107,7 @@ const homePage = page(() => [
             <div className='plan-item'>This is for the parents with 2 kids, ages from 3 - 12, wants to go to a public shool and later to university.</div>
           </div>
           <div className='plan-footer'>
-            <button className='button is-fullwidth'>Choose</button>
+            <Link href='quote/issued'><button className='button is-fullwidth'>Choose</button></Link>
           </div>
         </div>
       </div>
