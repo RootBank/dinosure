@@ -44,8 +44,7 @@ const rootClientSecret = process.env.ROOT_CLIENT_SECRET;
 const rootUrl = process.env.ROOT_INSURANCE_URL;
 const auth = { username: rootClientId, password: rootClientSecret };
 
-app.prepare()
-.then(() => {
+app.prepare().then(() => {
   const server = new Koa();
   server.use(helmet());
   server.use(bodyParser());
@@ -112,9 +111,21 @@ app.prepare()
         lastName: result.last_name,
         id: result.id.number,
         email: result.email,
+        paymentMethods:
+          (await axios.get(`${rootUrl}/policyholders/${policyholderId}/payment-methods`, { auth })).data.map(paymentMethod => ({
+            paymentMethodId: paymentMethod.payment_method_id,
+            type: paymentMethod.type,
+            card: {
+              bin: paymentMethod.card.bin,
+              holder: paymentMethod.card.holder,
+              expiryMonth: paymentMethod.card.expiry_month,
+              expiryYear: paymentMethod.card.expiry_year
+            }
+          })),
         policies: (await axios.get(`${rootUrl}/policyholders/${policyholderId}/policies`, { auth })).data
           .filter(policy => policy.status !== 'pending_initial_payment')
           .map(policy => ({
+            policyNumber: policy.policy_number,
             policyId: policy.policy_id,
             sumAssured: policy.sum_assured,
             monthlyPremium: policy.monthly_premium,
@@ -127,7 +138,8 @@ app.prepare()
             createdAt: policy.created_at,
             startDate: policy.start_date,
             endDate: policy.end_date,
-            status: policy.status
+            status: policy.status,
+            policy
           }))
       };
     } else {
@@ -168,6 +180,7 @@ app.prepare()
       policyholder_id: policyholder.policyholder_id,
       quote_package_id: quotePackageId
     };
+
     const application = await axios.post(`${rootUrl}/applications/`, applicationBody, { auth });
 
     const issuePolicyBody = { application_id: application.data.application_id };
