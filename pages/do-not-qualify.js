@@ -14,7 +14,7 @@ export default page(({reason}) =>
   <section className='section'>
     <div className='container'>
       <h1 className='title is-3'>We're sorry</h1>
-      <p>Unfortunately you do not qualify for Dinosure. {toReasonPhrase(reason)}</p>
+      <p>Unfortunately you do not qualify for Hero. {toReasonPhrase(reason)}</p>
     </div>
   </section>, {
     getInitialProps ({ query }) {

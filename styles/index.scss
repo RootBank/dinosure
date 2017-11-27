@@ -19,10 +19,16 @@ $info: $green;
 // Fonts
 $family-sans-serif: 'Josefin Sans', sans-serif;
 $family-primary: $family-sans-serif;
-$footer-background-color: $primary;
 
 html {
   color: #484848;
+}
+
+.has-gradient {
+  background: -moz-linear-gradient(top, rgba(229,65,70,1) 0%, rgba(0, 209, 178, 0.25) 99%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(229,65,70,1) 0%,rgba(0, 209, 178, 0.25) 99%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, rgba(229,65,70,1) 0%,rgba(0, 209, 178, 0.25) 99%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e54146', endColorstr='#1a00d1b2',GradientType=0) !important; /* IE6-9 */
 }
 
 //  Background image on landing page
@@ -43,7 +49,7 @@ html {
 
 // Give the footer some space to breathe
 .footer {
-    padding-top: 10em;
+    padding: 3em 1.5em !important;
 }
 
 .fork-me {
@@ -67,6 +73,31 @@ a {
 
 .card-header-title.is-centered {
   color: $green;
+}
+
+.hero-body {
+  padding: 1.5em !important;
+}
+
+.has-small-padding {
+  padding: 1.5em !important;
+}
+
+.has-large-padding {
+  padding: 4em 1.5em !important;
+}
+
+.plan-item {
+  color: inherit !important;
+  background: $white !important;
+}
+
+.plan-items {
+  border-top: 0.1rem solid whitesmoke;
+}
+
+.has-background {
+  background: $primary !important;
 }
 
 // These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide
@@ -114,6 +145,11 @@ and also iPads specifically.
         }
         tbody td:nth-child(odd)::after {
             content: ':';
+        }
+
+        //  one card on width on mobile
+        .pricing-table .pricing-plan {
+          flex: inherit !important;
         }
 
     }
