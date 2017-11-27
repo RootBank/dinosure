@@ -105,7 +105,7 @@ app.prepare()
       type: 'mmi_hero',
       //  age: input.age,
       cover_amount: input.sumAssured * 100,
-      cover_period: '5_year',
+      cover_period: '5_year'
       //  basic_income_per_month: input.income * 100,
       //  education_status: educationStatus,
       //  smoker: input.smoking,

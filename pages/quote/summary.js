@@ -1,4 +1,3 @@
-import FormFooter from '../../components/form-progress';
 import Link from 'next/link';
 import page from '../../components/page';
 import React from 'react';
@@ -34,10 +33,8 @@ export default page(class extends React.Component {
     return Number(amount).toLocaleString().replace(/,/g, ' ');
   }
 
-  get nextUnderwritingDate() {
+  get nextUnderwritingDate () {
     const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth();
     const year = date.getFullYear();
     return year + 5;
   }
@@ -65,7 +62,8 @@ export default page(class extends React.Component {
       </section>
     );
   }
-}, {
+},
+{
   footer: ({ quote }) =>
   <div>
     <section className='section'>

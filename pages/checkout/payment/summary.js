@@ -56,7 +56,6 @@ export default page(class extends React.Component {
 
   render () {
     const { firstName, lastName, id } = this.props.application;
-    const { sumAssured } = this.props.quote;
     console.log(this.props);
     return (
       <section className='section'>
