@@ -106,6 +106,11 @@ app.prepare().then(() => {
       ctx.status = 200;
       let result = (await axios.get(`${rootUrl}/policyholders/${policyholderId}`, { auth })).data;
 
+      const getPaymentMethodId = (events) => {
+        const paymentEvents = events.filter(x => x.type === 'payment_successful');
+        return paymentEvents.length > 0 ? paymentEvents[paymentEvents.length - 1].paymentMethodId : undefined;
+      };
+
       ctx.body = {
         firstName: result.first_name,
         lastName: result.last_name,
@@ -127,6 +132,7 @@ app.prepare().then(() => {
           .map(policy => ({
             policyNumber: policy.policy_number,
             policyId: policy.policy_id,
+            paymentMethodId: getPaymentMethodId(policy.events),
             sumAssured: policy.sum_assured,
             monthlyPremium: policy.monthly_premium,
             packageName: policy.packageName,
@@ -138,8 +144,7 @@ app.prepare().then(() => {
             createdAt: policy.created_at,
             startDate: policy.start_date,
             endDate: policy.end_date,
-            status: policy.status,
-            policy
+            status: policy.status
           }))
       };
     } else {
