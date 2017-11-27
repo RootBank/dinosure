@@ -63,18 +63,18 @@ export default page(class extends React.Component {
     );
   }
 },
-{
-  footer: ({ quote }) =>
-  <div>
-    <section className='section'>
-      <div className='level form-nav'>
-        <div className='level-item'>
-          <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Home</a></button></Link>
-          <Link prefetch href='/checkout/profile/name'><button className='button is-primary'>Start</button></Link>
+  {
+    footer: ({ quote }) =>
+    <div>
+      <section className='section'>
+        <div className='level form-nav'>
+          <div className='level-item'>
+            <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Home</a></button></Link>
+            <Link prefetch href='/checkout/profile/name'><button className='button is-primary'>Start</button></Link>
+          </div>
         </div>
-      </div>
-    </section>
-  </div>,
-  datastores: { quote: quoteStore }
-}
+      </section>
+    </div>,
+    datastores: { quote: quoteStore }
+  }
 );
