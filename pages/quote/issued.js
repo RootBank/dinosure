@@ -39,24 +39,26 @@ export default page(class extends React.Component {
         <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Getting everything ready...</span></div>
         <div className='container content'>
           <div className='columns is-reversed-mobile'>
-            <div className='pricing-table column'>
-              <div style={{marginTop: 0}} className='pricing-plan is-primary'>
-                <div className='plan-header'>R {this.formattedSumAssured} cover</div>
-                <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
-                <div className='plan-items'>
-                  <div className='plan-item'>Early Warning Network</div>
-                  <div className='plan-item'>Extraction Team</div>
-                  <div className='plan-item'>Security Consultants</div>
-                  <div className='plan-item'>24 Hour Support</div>
-                </div>
-                <div className='plan-footer'>
-                  <Link prefetch href='/checkout'>
-                    <a>
-                      <button className='button is-fullwidth'>
-                        <span className='icon'><i className='fa fa-shopping-cart' /></span>&nbsp; Checkout
+            <div className='column'>
+              <div className='pricing-table'>
+                <div style={{marginTop: 0}} className='pricing-plan is-primary'>
+                  <div className='plan-header'>R {this.formattedSumAssured} cover</div>
+                  <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
+                  <div className='plan-items'>
+                    <div className='plan-item'>Early Warning Network</div>
+                    <div className='plan-item'>Extraction Team</div>
+                    <div className='plan-item'>Security Consultants</div>
+                    <div className='plan-item'>24 Hour Support</div>
+                  </div>
+                  <div className='plan-footer'>
+                    <Link prefetch href='/checkout'>
+                      <a>
+                        <button className='button is-fullwidth'>
+                          <span className='icon'><i className='fa fa-shopping-cart' /></span>&nbsp; Checkout
                       </button>
-                    </a>
-                  </Link>
+                      </a>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

@@ -37,6 +37,55 @@ app.prepare()
     }
   });
 
+  const getOrCreatePolicyholder = async (firstName, lastName, email, id) => {
+    const policyholderBody = {
+      id: {
+        type: 'id',
+        country: 'ZA',
+        number: id
+      },
+      first_name: firstName,
+      last_name: lastName,
+      email
+    };
+
+    const potentialPolicyholder = await axios.get(`${rootUrl}/policyholders?id_number=${id}`, { auth });
+    if (potentialPolicyholder.data.length > 0) {
+      return potentialPolicyholder.data[0];
+    } else {
+      return (await axios.post(`${rootUrl}/policyholders/`, policyholderBody, { auth })).data;
+    }
+  };
+
+  router.post('/api/apply', async ctx => {
+    const input = ctx.request.body;
+    const { quotePackageId, firstName, lastName, email, id } = input;
+
+    let policyholder = await getOrCreatePolicyholder(firstName, lastName, email, id);
+
+    const applicationBody = {
+      policyholder_id: policyholder.policyholder_id,
+      quote_package_id: quotePackageId
+    };
+    const application = await axios.post(`${rootUrl}/applications/`, applicationBody, { auth });
+
+    const issuePolicyBody = { application_id: application.data.application_id };
+    const policy = await axios.post(`${rootUrl}/policies/`, issuePolicyBody, { auth });
+
+    ctx.body = { policyId: policy.data.policy_id };
+    ctx.status = 200;
+  });
+
+  // Get card payment script.
+  router.get('/api/card-payment.js', async ctx => {
+    const policyId = ctx.request.query.policyId;
+    const scriptUrl = `${rootUrl}/payment-methods/card/${rootClientId}.js?policy_id=${policyId}`;
+    const script = await axios.get(scriptUrl);
+    ctx.body = script.data;
+    ctx.type = 'text/javascript';
+    ctx.status = 200;
+  });
+
   router.post('/api/quote', async ctx => {
     const input = ctx.request.body;
 

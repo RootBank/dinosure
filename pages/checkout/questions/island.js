@@ -3,8 +3,9 @@ import applicationStore from '../../../datastores/application';
 import Choice from '../../../components/choice';
 import Router from 'next/router';
 import Steps from '../../../components/checkout-steps';
+
 const disqualified = () => Router.push({ pathname: '/do-not-qualify', query: { reason: 'island' } });
-const next = () => Router.push('/checkout/payment');
+const next = () => Router.push('/checkout/payment/summary');
 
 export default page(({ quote }) =>
   <section className='section'>

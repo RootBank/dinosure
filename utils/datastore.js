@@ -3,6 +3,7 @@ export default class Datastore {
     this.subscribers = [];
     this.saveInLocalStorage = saveInLocalStorage;
     this.name = name;
+    this.initialState = initialState;
     if (process.browser && saveInLocalStorage) {
       let item = window.localStorage.getItem(name);
       if (item) {
@@ -18,6 +19,10 @@ export default class Datastore {
 
   get state () {
     return this._state;
+  }
+
+  clear () {
+    this.state = this.initialState;
   }
 
   set state (state) {

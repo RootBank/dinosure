@@ -55,6 +55,7 @@ $footer-background-color: $primary;
 // "has-text-white" removes decorations from text. Add them back to links so that they look correct
 a.has-text-white {
     text-decoration: underline;
+    text-decoration-color: white;
 }
 
 a {
@@ -64,8 +65,7 @@ a {
 // These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide
 $widescreen: calculate(45rem);
 $fullhd: calculate(45rem);
-
-
+@import "font-awesome/scss/font-awesome";
 @import "bulma/bulma";
 @import 'bulma-extensions/bulma-slider/slider';
 @import 'bulma-extensions/bulma-pageloader/pageloader';
@@ -78,6 +78,36 @@ $fullhd: calculate(45rem);
 // Add a little spacing on top of navbar-item
 .navbar {
   margin-top: 1em;
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@include mobile  {
+    .payment-summary-info {
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+            border: none;
+        }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            position: relative;
+        }
+
+
+        tbody td:nth-child(odd) {
+            /* Remove border between key and value */
+            border-bottom: none;
+        }
+        tbody td:nth-child(odd)::after {
+            content: ':';
+        }
+
+    }
 }
 
 // Add additonal affordances to currently selected page in navbar
@@ -118,6 +148,25 @@ $fullhd: calculate(45rem);
     }
 }
 
+
+// Move input error messages down slightly
+p.is-danger {
+    margin-top: 5px;
+}
+
+.payment-summary-info {
+    margin-bottom: 1.5em;
+
+    table {
+        width: 90%;
+    }
+
+    tbody td:nth-child(odd) {
+        /* Make keys bold */
+        font-weight: bold;
+    }
+}
+
 // Override Auth0's styling
 
 .auth0-lock-submit {
@@ -138,4 +187,57 @@ $fullhd: calculate(45rem);
 }
 .auth0-lock-header {
     height: auto !important;
+}
+
+
+// Override payment provider's styling
+.wpwl-button {
+    @extend .button;
+}
+
+.wpwl-button-pay {
+    @extend .is-primary;
+}
+
+.wpwl-control {
+    @extend .control;
+}
+
+.wpwl-wrapper-brand {
+    @extend .select;
+    padding-right: 0;
+}
+
+.wpwl-control:not(.wpwl-control-brand) {
+    @extend .input;
+}
+
+.wpwl-hint, .wpwl-hint-cardNumberError {
+    @extend .help;
+    color: $danger !important;
+}
+
+.wpwl-wrapper-brand {
+    width: 45%;
+}
+
+.wpwl-brand-card {
+    font-size: 2em;
+    text-align: right;
+    width: 20%;
+}
+
+.wpwl-brand-VISA {
+    @extend .fa;
+    @extend .fa-cc-visa;
+    color: $info;
+    background: none;
+}
+
+
+.wpwl-brand-MASTER {
+    @extend .fa;
+    @extend .fa-cc-mastercard;
+    color: $info;
+    background: none;
 }
