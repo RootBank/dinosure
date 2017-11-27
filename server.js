@@ -108,7 +108,7 @@ app.prepare().then(() => {
 
       const getPaymentMethodId = (events) => {
         const paymentEvents = events.filter(x => x.type === 'payment_successful');
-        return paymentEvents.length > 0 ? paymentEvents[paymentEvents.length - 1].paymentMethodId : undefined;
+        return paymentEvents.length > 0 ? (paymentEvents[paymentEvents.length - 1].paymentMethodId || paymentEvents[paymentEvents.length - 1].payment_method_id) : undefined;
       };
 
       ctx.body = {
