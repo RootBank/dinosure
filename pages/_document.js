@@ -14,7 +14,7 @@ export default class extends Document {
     return (
       <html>
         <Head>
-          <script type='text/javascript' src='static/gtm.js'></script>
+          <script type='text/javascript' src='static/gtm.js' />
           <meta name='viewport' content='width=device-width, initial-scale=1' />
           <meta httpEquiv='x-ua-compatible' content='ie=edge' />
           <meta charSet='utf-8' />
@@ -28,7 +28,7 @@ export default class extends Document {
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         </Head>
         <body>
-          <noscript type='text/javascript' src='static/gtmBody.js'></noscript>
+          <noscript type='text/javascript' src='static/gtmBody.js' />
           <Main />
           <NextScript />
         </body>
