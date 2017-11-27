@@ -108,7 +108,8 @@ app.prepare()
       education_status: educationStatus,
       smoker: input.smoking,
       gender: input.gender
-    };    
+    };
+
     const quoteResult = await axios.post(`${rootUrl}/quote/`, quoteParams, { auth });
     if (quoteResult.data.length > 0) {
       console.log(JSON.stringify(quoteResult.data));
