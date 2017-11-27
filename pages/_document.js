@@ -1,6 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import flush from 'styled-jsx/server';
 import stylesheet from 'styles/index.scss';
+import gtmBody from 'static/gtmBody.js';
 
 // This is the default document. All documents will include this code
 export default class extends Document {
@@ -28,9 +29,7 @@ export default class extends Document {
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         </Head>
         <body>
-          <noscript>
-            <iframe src='https://www.googletagmanager.com/ns.html?id=GTM-P4FNPB7' height='0' width='0' style='display: none; visibility: hidden' />
-          </noscript>
+          <gtmBody />
           <Main />
           <NextScript />
         </body>
