@@ -105,7 +105,7 @@ const homePage = page(() => [
                 </div>
               </div>
               <footer className='card-footer'>
-                <Link prefetch href='/quote/underwriting'><a className='card-footer-item button is-info is-outlined is-medium'>Pick me!</a></Link>
+                <Link prefetch href='/checkout/profile/name'><a className='card-footer-item button is-info is-outlined is-medium'>Pick me!</a></Link>
               </footer>
             </div>
           </div>
