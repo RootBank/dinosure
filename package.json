@@ -40,6 +40,7 @@
   },
   "homepage": "https://github.com/RootBank/dinosure#readme",
   "dependencies": {
+    "auth0": "^2.8.0",
     "auth0-lock": "^10.24.1",
     "autoprefixer": "^7.1.6",
     "axios": "^0.17.1",
@@ -53,6 +54,8 @@
     "font-awesome": "^4.7.0",
     "glob": "^7.1.2",
     "js-cookie": "^2.2.0",
+    "jsonwebtoken": "^8.1.0",
+    "jwks-rsa": "^1.2.1",
     "jwt-decode": "^2.2.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",

@@ -1,4 +1,5 @@
 require('dotenv').config();
+const promisify = require('util').promisify;
 const Koa = require('koa');
 const helmet = require('koa-helmet');
 const next = require('next');
@@ -6,9 +7,37 @@ var bodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
 const axios = require('axios');
 const port = parseInt(process.env.PORT, 10) || 3000;
+const jwt = require('jsonwebtoken');
+const jwks = require('jwks-rsa');
+const ManagementClient = require('auth0').ManagementClient;
+
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
+
+// Authorization Boilerplate
+const auth0config = require('./config.json');
+
+const auth0 = new ManagementClient({
+  domain: auth0config.AUTH0_CLIENT_DOMAIN,
+  clientId: process.env.AUTH0_MANAGEMENT_CLIENT_ID,
+  clientSecret: process.env.AUTH0_MANAGEMENT_CLIENT_SECRET,
+  scope: 'read:users_app_metadata update:users_app_metadata create:users_app_metadata'
+});
+
+// This automatically fetches the authorization configuration from the auth0 tenant
+const client = jwks({
+  jwksUri: auth0config.AUTH0_JWKS_URI
+});
+
+const verifyJwt = async (ctx, kid, token) => {
+  const key = await promisify(client.getSigningKey)(kid);
+  let signingKey = key.publicKey || key.rsaPublicKey;
+  let accessKey = jwt.verify(token, signingKey);
+  ctx.state.user = {
+    sub: accessKey.sub
+  };
+};
 
 const rootClientId = process.env.ROOT_CLIENT_ID;
 const rootClientSecret = process.env.ROOT_CLIENT_SECRET;
@@ -23,7 +52,7 @@ app.prepare()
   const router = new Router();
 
   // Error handling for api endpoints
-  router.use('/api/*', async (ctx, next) => {
+  router.all(/^\/api\/(.*)(?:\/|$)/, async (ctx, next) => {
     try {
       await next();
     } catch (e) {
@@ -34,6 +63,78 @@ app.prepare()
         console.error(e);
         ctx.response.status = 500;
       }
+    }
+  });
+
+  // Authorization middleware for user endpoint
+  router.all(/^\/api\/user\/(.*)(?:\/|$)/, async (ctx, next) => {
+    if (!ctx.request.headers.authorization) {
+      ctx.status = 401;
+      ctx.body = {
+        message: 'Unauthorized'
+      };
+      return;
+    }
+    let token = ctx.request.headers.authorization.replace('Bearer ', '');
+    const decodedToken = jwt.decode(token, {complete: true});
+    let kid = decodedToken.header.kid;
+    try {
+      await verifyJwt(ctx, kid, token);
+      const userId = { id: decodedToken.payload.sub };
+      let policyholderId = (decodedToken.payload.app_metadata || {}).policyholder_id;
+      if (!policyholderId) {
+        policyholderId = ((await auth0.getUser(userId)).app_metadata || {}).policyholder_id;
+      }
+      ctx.request.authorization = { ...(policyholderId ? { policyholderId } : {}), userId };
+      return next();
+    } catch (e) {
+      ctx.status = 403;
+      ctx.body = {
+        message: 'Forbidden'
+      };
+    }
+  });
+
+  router.post('/api/user/temp/policyholder', async(ctx, next) => {
+    const policyholderId = ctx.request.body.policyholderId;
+    await auth0.updateAppMetadata(ctx.request.authorization.userId, { policyholder_id: policyholderId });
+    ctx.status = 200;
+  });
+
+  router.get('/api/user/policyholder', async(ctx, next) => {
+    const policyholderId = ctx.request.authorization.policyholderId;
+    if (ctx.request.authorization.policyholderId) {
+      ctx.status = 200;
+      let result = (await axios.get(`${rootUrl}/policyholders/${policyholderId}`, { auth })).data;
+
+      ctx.body = {
+        firstName: result.first_name,
+        lastName: result.last_name,
+        id: result.id.number,
+        email: result.email,
+        policies: (await axios.get(`${rootUrl}/policyholders/${policyholderId}/policies`, { auth })).data
+          .filter(policy => policy.status !== 'pending_initial_payment')
+          .map(policy => ({
+            policyId: policy.policy_id,
+            sumAssured: policy.sum_assured,
+            monthlyPremium: policy.monthly_premium,
+            packageName: policy.packageName,
+            policyScheduleUri: policy.policy_schedule_uri,
+            termsUri: policy.terms_uri,
+            beneficiaries: policy.beneficiaries,
+            claims: policy.claim_ids,
+            complaints: policy.complaint_ids,
+            createdAt: policy.created_at,
+            startDate: policy.start_date,
+            endDate: policy.end_date,
+            status: policy.status
+          }))
+      };
+    } else {
+      ctx.status = 403;
+      ctx.body = {
+        message: 'Forbidden'
+      };
     }
   });
 
