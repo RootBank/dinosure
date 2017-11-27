@@ -59,14 +59,18 @@ app.prepare()
 
   router.post('/api/apply', async ctx => {
     const input = ctx.request.body;
+
+    //  after getQuote call so you have the values in the body
     const { quotePackageId, firstName, lastName, email, id } = input;
 
+    //  is there a policyholder for this id or not?
     let policyholder = await getOrCreatePolicyholder(firstName, lastName, email, id);
 
     const applicationBody = {
       policyholder_id: policyholder.policyholder_id,
       quote_package_id: quotePackageId
     };
+
     const application = await axios.post(`${rootUrl}/applications/`, applicationBody, { auth });
 
     const issuePolicyBody = { application_id: application.data.application_id };
@@ -86,6 +90,7 @@ app.prepare()
     ctx.status = 200;
   });
 
+  //  getQuote
   router.post('/api/quote', async ctx => {
     const input = ctx.request.body;
 
@@ -104,6 +109,7 @@ app.prepare()
       smoker: input.smoking,
       gender: input.gender
     };
+        
     const quoteResult = await axios.post(`${rootUrl}/quote/`, quoteParams, { auth });
     if (quoteResult.data.length > 0) {
       console.log(JSON.stringify(quoteResult.data));

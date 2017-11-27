@@ -19,7 +19,6 @@ $info: $green;
 // Fonts
 $family-sans-serif: 'Josefin Sans', sans-serif;
 $family-primary: $family-sans-serif;
-
 $footer-background-color: $primary;
 
 //  Background image on landing page
@@ -65,6 +64,7 @@ a {
 // These are to limit the width of form fields. On fullhd and widescreen monitors, UI elements are far too wide
 $widescreen: calculate(45rem);
 $fullhd: calculate(45rem);
+
 @import "font-awesome/scss/font-awesome";
 @import "bulma/bulma";
 @import 'bulma-extensions/bulma-slider/slider';
@@ -78,6 +78,7 @@ $fullhd: calculate(45rem);
 // Add a little spacing on top of navbar-item
 .navbar {
   margin-top: 1em;
+}
 
 /*
 Max width before this PARTICULAR table gets nasty
