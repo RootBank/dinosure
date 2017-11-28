@@ -10,6 +10,7 @@ const port = parseInt(process.env.PORT, 10) || 3000;
 const jwt = require('jsonwebtoken');
 const jwks = require('jwks-rsa');
 const ManagementClient = require('auth0').ManagementClient;
+const { format } = require('libphonenumber-js');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -157,6 +158,8 @@ app.prepare().then(() => {
   });
 
   const getOrCreatePolicyholder = async (firstName, lastName, email, id, cellphone) => {
+    const formattedCellphone = format({ country: 'ZA', phone: cellphone.replace(/\s/g, '').replace(/^0/, '') }, 'International');
+    console.log(formattedCellphone);
     const policyholderBody = {
       id: {
         type: 'id',
@@ -166,7 +169,7 @@ app.prepare().then(() => {
       first_name: firstName,
       last_name: lastName,
       email,
-      cellphone
+      cellphone: formattedCellphone
     };
 
     const potentialPolicyholder = await axios.get(`${rootUrl}/policyholders?id_number=${id}`, { auth });

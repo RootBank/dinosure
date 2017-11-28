@@ -11,7 +11,8 @@ export default page(class extends React.Component {
   }
 
   async componentDidMount () {
-    this.setState({ loading: true });
+    const origin = window.location.origin;
+    this.setState({ loading: true, origin });
     const { id, firstName, lastName, email, cellphone } = this.props.application;
     const { quotePackageId } = this.props.quote.result;
     const applicationBody = { id, firstName, lastName, email, quotePackageId, cellphone };
@@ -55,7 +56,7 @@ export default page(class extends React.Component {
           <div className='columns'>
             <div className='column' />
             <div className='column'>
-              <div id='root-credit-card-form' data-redirect-url={`${this.props.origin}/policy-issued`} />
+              <div id='root-credit-card-form' data-redirect-url={`${this.state.origin}/policy-issued`} />
             </div>
             <div className='column' />
           </div>
@@ -64,8 +65,5 @@ export default page(class extends React.Component {
     );
   }
 }, {
-  datastores: { quote: quoteStore, application: applicationStore },
-  getInitialProps: (ctx) => ({
-    origin: process.browser ? window.location.origin : (`${ctx.req.headers.referer.replace(ctx.req.url, '')}`)
-  })
+  datastores: { quote: quoteStore, application: applicationStore }
 });

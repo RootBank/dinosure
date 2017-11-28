@@ -57,8 +57,8 @@ export default page(class extends React.Component {
   render () {
     const { firstName, lastName, id } = this.props.application;
     const { age, gender } = this.props.quote;
-    console.log(this.props);
-    return (
+
+    return (firstName &&
       <section className='section'>
         <div className='container content'>
           <div className='columns is-reversed-mobile'>
@@ -147,7 +147,7 @@ export default page(class extends React.Component {
         </div>
 
       </section>
-    );
+    ) || null;
   }
 }, {
   footer: () =>
