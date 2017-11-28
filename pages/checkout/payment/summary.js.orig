@@ -56,8 +56,14 @@ export default page(class extends React.Component {
 
   render () {
     const { firstName, lastName, id } = this.props.application;
+<<<<<<< HEAD
+    console.log(this.props);
+    return (
+=======
+    const { age, gender } = this.props.quote;
 
     return (firstName &&
+>>>>>>> master
       <section className='section'>
         <div className='container content'>
           <div className='columns is-reversed-mobile'>

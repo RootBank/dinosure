@@ -182,9 +182,18 @@ app.prepare().then(() => {
 
   router.post('/api/apply', async ctx => {
     const input = ctx.request.body;
+<<<<<<< HEAD
+
+    //  after getQuote call so you have the values in the body
+    const { quotePackageId, firstName, lastName, email, id } = input;
+
+    //  is there a policyholder for this id or not?
+    let policyholder = await getOrCreatePolicyholder(firstName, lastName, email, id);
+=======
     const { quotePackageId, firstName, lastName, email, id, cellphone } = input;
 
     let policyholder = await getOrCreatePolicyholder(firstName, lastName, email, id, cellphone);
+>>>>>>> master
 
     const applicationBody = {
       policyholder_id: policyholder.policyholder_id,

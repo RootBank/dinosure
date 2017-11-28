@@ -12,4 +12,11 @@ class SignUp extends React.Component {
   }
 }
 
-export default page(SignUp);
+export default page(SignUp, {
+  getInitialProps: (ctx) => {
+    if (process.browser) {
+    } else {
+      console.log(ctx.req.query);
+    }
+  }
+});

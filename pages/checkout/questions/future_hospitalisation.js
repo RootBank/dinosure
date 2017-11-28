@@ -9,15 +9,13 @@ const next = () => Router.push('/checkout/payment/summary');
 
 export default page(({ quote }) =>
   <section className='section'>
-    <div className='columns has-text-centered'>
-      <div className='column is-8 is-offset-2'>
-        <h1>Question 4</h1>
-      </div>
+    <div className='has-text-centered'>
+      <h1 className='title is-5'>Question 4</h1>
     </div>
     <Choice
       instructions='Other than childbirth or pregnancy, I am not planning on seeing any medical professional in the next 8 weeks.'
-      onLeft={disqualified} leftOption='No'
-      onRight={next} rightOption='Yes'
+      onLeft={next} leftOption='Yes'
+      onRight={disqualified} rightOption='No'
     />
   </section>,
   {

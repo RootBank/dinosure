@@ -9,15 +9,13 @@ const next = () => Router.push('/checkout/questions/future_hospitalisation');
 
 export default page(({ quote }) =>
   <section className='section'>
-    <div className='columns has-text-centered'>
-      <div className='column is-8 is-offset-2'>
-        <h1>Question 3</h1>
-      </div>
+    <div className='has-text-centered'>
+      <h1 className='title is-5'>Question 3</h1>
     </div>
     <Choice
       instructions="In the last 5 years, I haven't been hospitalised for more than 2 days, I haven't taken any medicine for a period longer than 2 weeks and I haven't seen any medical specialist except for my pregnancy."
-      onLeft={disqualified} leftOption='No'
-      onRight={next} rightOption='Yes'
+      onLeft={next} leftOption='Yes'
+      onRight={disqualified} rightOption='No'
     />
   </section>,
   {

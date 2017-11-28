@@ -5,13 +5,13 @@ import Router from 'next/router';
 
 const setSumAssured = (value) => {
   quoteStore.update(state => ({ ...state, sumAssured: value }));
-  Router.push('/quote/summary');
+  Router.push('/quote');
 };
 
 const homePage = page(({quote}) => [
   <section key='splash-mobile' className='hero is-hero-background-image is-hidden-mobile'>
     <div className='hero-body container'>
-      <h1 className='title'>Be your familys Hero</h1>
+      <h1 className='title'>Be a Family Hero</h1>
       <h2 className='subtitle is-4'>Choose your perfect life cover.</h2>
       <a className='button is-large is-info' href='#subscriptions'>Lets get started</a>
     </div>

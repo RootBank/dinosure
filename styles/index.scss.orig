@@ -293,6 +293,9 @@ p.is-danger {
     color: $info;
     background: none;
 }
+<<<<<<< HEAD
+=======
+
 .policy-summary {
     &-money {
 
@@ -366,3 +369,4 @@ p.is-danger {
         }
     }
 }
+>>>>>>> master

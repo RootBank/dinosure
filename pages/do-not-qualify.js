@@ -5,7 +5,7 @@ import React from 'react';
 const toReasonPhrase = (reason) => {
   switch (reason) {
     case 'age': return 'Our policy is only available to those who are between the ages of 18 and 63 inclusively. This is because people between the ages of 18 and 63 cannot run away from dinosaurs fast enough.';
-    case 'island': return 'Our policy is not available to those who are planning to visit Isla Nublar. The island is a known dinosaur hotspot.';
+    case 'parents': return 'Hero only insures parents.';
   }
   return reason;
 };

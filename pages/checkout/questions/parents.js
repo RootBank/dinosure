@@ -8,16 +8,14 @@ const disqualified = () => Router.push({ pathname: '/do-not-qualify', query: { r
 const next = () => Router.push('/checkout/questions/previous_insurance');
 
 export default page(({ quote }) =>
-  <section className='section has-text-centered'>
-    <div className='columns'>
-      <div className='column is-8 is-offset-2'>
-        <h1 className='title is-5'>The Hero community trusts us to keep their subscriptions as low as possible. The following 4 questions help us do it.</h1>
-      </div>
+  <section className='section'>
+    <div className='container has-text-centered'>
+      <h1 className='title is-5'>To keep premiums low, we ask that our clients answer the following 4 questions</h1>
     </div>
     <Choice
       instructions='I have children, I am pregnant or my partner is pregnant.'
-      onLeft={disqualified} leftOption='No'
-      onRight={next} rightOption='Yes'
+      onLeft={next} leftOption='Yes'
+      onRight={disqualified} rightOption='No'
     />
   </section>,
   {

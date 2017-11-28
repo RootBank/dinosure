@@ -19,7 +19,7 @@ export default page(class extends React.Component {
     return <section className='section'>
       <div className='columns'>
         <div className='column is-8 is-offset-2 has-text-centered'>
-          <div className='title is-3'>We would really like to call you on your name</div>
+          <div className='title is-3'>My name is</div>
         </div>
       </div>
       <div className='columns'>

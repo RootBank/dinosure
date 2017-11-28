@@ -1,18 +1,22 @@
 import React from 'react';
-import { getUserFromLocalCookie, getUserFromServerCookie } from '../utils/auth';
+import * as Utils from '../utils/auth';
 import Router from 'next/router';
-
+import isBefore from 'date-fns/fp/isBefore';
 // This components wraps pages and handles parsing of authorization tokens
 // The parsed tokens are parsed to the provided page as part of its props
 export default Page => class extends React.Component {
   static getInitialProps (ctx) {
-    const user = process.browser ? getUserFromLocalCookie() : getUserFromServerCookie(ctx.req);
+    const user = process.browser ? Utils.getUserFromLocalCookie() : Utils.getUserFromServerCookie(ctx.req);
+    const authToken = process.browser ? Utils.getAuthTokenFromLocalCookie() : Utils.getAuthTokenFromServerCookie(ctx.req);
     const pageProps = Page.getInitialProps && Page.getInitialProps(ctx);
+    const isBeforeExpiry = !!user && isBefore(new Date((user.exp || 0) * 1000));
+
     return {
       ...pageProps,
       user,
       currentUrl: ctx.pathname,
-      isAuthenticated: !!user
+      isAuthenticated: !!user && isBeforeExpiry(new Date()),
+      authToken
     };
   }
 
@@ -23,8 +27,10 @@ export default Page => class extends React.Component {
   }
 
   componentDidMount () {
-    const user = getUserFromLocalCookie();
-    this.setState({ user, isAuthenticated: !!user });
+    const user = Utils.getUserFromLocalCookie();
+    const authToken = Utils.getAuthTokenFromLocalCookie();
+    const isBeforeExpiry = !!user && isBefore(new Date((user.exp || 0) * 1000));
+    this.setState({ user, isAuthenticated: !!user && isBeforeExpiry(new Date()), authToken });
     window.addEventListener('storage', this.logout, false);
   }
 

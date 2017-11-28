@@ -10,30 +10,12 @@ export default page(class extends React.Component {
     this.state = { loading: false };
   }
 
-/*  ##
-  componentWillMount () {
-    const sumAssured = this.props.quote.sumAssured;
-    console.log('componentWillMount');
-    console.dir(this.props.quote);
-  }
-*/
-
-  //  if a quote needs to be generated and is only valid for a certain time
-  /*
   async componentDidMount () {
     if (!quoteStore.isValid) {
       this.setState({ loading: true });
       let result = (await axios.post('/api/quote', this.props.quote)).data;
       quoteStore.update(state => ({ ...state, result }));
     }
-    this.setState({ loading: false });
-  }
-  */
-
-  async componentDidMount () {
-    this.setState({ loading: true });
-    let result = (await axios.post('/api/quote', this.props.quote)).data;
-    quoteStore.update(state => ({ ...state, result }));
     this.setState({ loading: false });
   }
 
@@ -56,9 +38,10 @@ export default page(class extends React.Component {
       <section className='section'>
         <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Getting everything ready...</span></div>
         <div className='columns'>
-          <div className='column is-two-thirds is-offset-2'>
+          <div className='column' />
+          <div className='column'>
             <div className='content has-text-centered'>
-              <h1 className='title is-3'>On your way to be a Hero!</h1>
+              <h1 className='title is-3'>On your way to becoming a Hero!</h1>
             </div>
             <div className='pricing-table'>
               <div style={{marginTop: 0}} className='pricing-plan is-primary'>
@@ -72,6 +55,7 @@ export default page(class extends React.Component {
               </div>
             </div>
           </div>
+          <div className='column' />
         </div>
       </section>
     );
@@ -83,7 +67,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Home</a></button></Link>
-            <Link prefetch href='/checkout/profile/name'><button className='button is-primary'>Start</button></Link>
+            <Link prefetch href='/checkout'><button className='button is-primary'>Start</button></Link>
           </div>
         </div>
       </section>

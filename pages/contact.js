@@ -10,8 +10,8 @@ export default page(() => (
         contact us via the following channels:
       </p>
       <ul>
-        <li>email <a href='mailto:hello@dinosure.io'>hello@dinosure.io</a></li>
-        <li>telephone <a href='tel:0835551337'>083 555 1337</a></li>
+        <li>email <a href='mailto:hello@herolife.co.za'>hello@herolife.co.za</a></li>
+        <li>telephone <a href='tel:+27875504246'>087 550 4246</a></li>
       </ul>
       <p>
         If we have not sucessfully adressed your concerns, you can foward your issue to the <a href='http://www.ombud.co.za/'>Ombudsman for Long-term Insurance</a>.
