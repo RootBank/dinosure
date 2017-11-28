@@ -70,7 +70,7 @@ const homePage = page(({quote}) => [
                 <span style={{ fontSize: '1.5em', fontWeight: '700' }}>R 1.5 million</span> life cover
               </span>
             </div>
-            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/small_family.svg'></img></div>
+            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/small_family.svg' /></div>
           </div>
           <div className='plan-footer'>
             <button className='button is-fullwidth' onClick={(() => setSumAssured(1500000))}>Choose</button>
@@ -89,7 +89,7 @@ const homePage = page(({quote}) => [
                 <span style={{ fontSize: '1.5em', fontWeight: '700' }}>R 2.5 million</span> life cover
               </span>
             </div>
-            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg'></img></div>
+            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg' /></div>
           </div>
           <div className='plan-footer'>
             <button className='button is-fullwidth' onClick={(() => setSumAssured(2500000))}>Choose</button>
@@ -109,7 +109,7 @@ const homePage = page(({quote}) => [
               </span>
             </div>
             <div className='plan-item'>
-              <img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg'></img>
+              <img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg' />
             </div>
           </div>
           <div className='plan-footer'>
@@ -131,7 +131,7 @@ const homePage = page(({quote}) => [
                 <span style={{ fontSize: '1.5em', fontWeight: '700' }}>R 1.5 million</span> life cover
               </span>
             </div>
-            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/small_family.svg'></img></div>
+            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/small_family.svg' /></div>
           </div>
           <div className='plan-footer'>
             <button className='button is-fullwidth' onClick={(() => setSumAssured(1500000))}>Choose</button>
@@ -150,7 +150,7 @@ const homePage = page(({quote}) => [
                 <span style={{ fontSize: '1.5em', fontWeight: '700' }}>R 2.5 million</span> life cover
               </span>
             </div>
-            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg'></img></div>
+            <div className='plan-item'><img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg' /></div>
           </div>
           <div className='plan-footer'>
             <button className='button is-fullwidth' onClick={(() => setSumAssured(2500000))}>Choose</button>
@@ -170,7 +170,7 @@ const homePage = page(({quote}) => [
               </span>
             </div>
             <div className='plan-item'>
-              <img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg'></img>
+              <img style={{ width: '30%', margin: '0 auto' }} className='image' src='../static/medium_family.svg' />
             </div>
           </div>
           <div className='plan-footer'>
