@@ -36,16 +36,19 @@ const PaymentMethod = (props) => {
     render () {
       return (
         <div className={'payment-method-column'}>
-          <div className='box'>
+          <div className={'box ' + (props.paymentMethodId ? 'payment-method-card' : '')}>
             {props.paymentMethodId && <div className='payment-method'>
               <div className='payment-method-type'>
                 <div>{props.type}</div>
               </div>
-              <div className='payment-method-holder'>
-                <div>{props.card.holder}</div>
+              <div className='payment-method-card-number'>
+                <div>.... .... .... ....</div>
               </div>
               <div className='payment-method-expiry'>
                 <div>{props.card.expiryMonth}/{props.card.expiryYear.substring(2)}</div>
+              </div>
+              <div className='payment-method-holder'>
+                <div>{props.card.holder}</div>
               </div>
             </div>}
             {!props.paymentMethodId && <div className='payment-method-add-button'>+</div>}
@@ -56,25 +59,68 @@ const PaymentMethod = (props) => {
   };
 };
 
-const Beneficiary = (props) => {
-  return {
-    render () {
-      return (
-        <div className={'beneficiary-column'}>
-          <div className='box'>
-            <div className='beneficiary'>
-              <div className='beneficiary-name'>
-                <div>{props.first_name} {props.last_name}</div>
-                <div>{props.id.number}</div>
-                <div>{props.percentage}%</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  };
-};
+class ContactDetails extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      editing: false
+    };
+
+    this.editClicked = this.editClicked.bind(this);
+    this.cancelClicked = this.cancelClicked.bind(this);
+    this.saveClicked = this.saveClicked.bind(this);
+  }
+
+  editClicked () {
+    this.setState({
+      editing: true
+    });
+
+    this.emailAddress = this.props.emailAddress;
+  }
+
+  saveClicked () {
+    // TODO: Make API Call
+    this.cancelClicked();
+  }
+
+  cancelClicked () {
+    this.setState({
+      editing: false
+    });
+
+    this.emailAddress = undefined;
+  }
+
+  render () {
+    return (
+      <div className='content'>
+        <h3>Contact Details</h3>
+        <table className='dashboard-contact-details-table'>
+          <tbody>
+            <tr>
+              <td>Email</td>
+              <td>
+                {!this.state.editing && <span>{this.props.emailAddress}</span>}
+                {this.state.editing && <input name='' type='text' value={this.emailAddress} />}
+              </td>
+              <td className='has-text-right'>
+                {!this.state.editing && <button className='button is-primary is-inverted' onClick={this.editClicked}>edit</button>}
+                {this.state.editing && (
+                  <div>
+                    <button className='button is-primary is-inverted' onClick={this.saveClicked}>save</button>
+                    <button className='button' onClick={this.cancelClicked}>cancel</button>
+                  </div>
+                )}
+              </td>
+            </tr>
+            <tr><td>ID Number</td><td>{this.props.idNumber}</td><td className='has-text-right' /></tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
 
 export default page(class extends React.Component {
   constructor (props) {
@@ -128,41 +174,19 @@ export default page(class extends React.Component {
     return groups;
   }
 
-  getBeneficiaries (policies) {
-    if (!policies) {
-      return [];
-    }
-    const beneficiaries = [];
-    policies.forEach(policy => {
-      beneficiaries.push(...policy.beneficiaries);
-    });
-
-    const uniqueBeneficiaries = Array.from(new Set(beneficiaries));
-    return uniqueBeneficiaries;
-  }
-
   render () {
     const { firstName, lastName, id, email, policies, paymentMethods } = this.state;
     const policyGroups = this.groupArray(policies);
-    const paymentMethodGroups = this.groupArray(paymentMethods);
-    const beneficiaries = this.getBeneficiaries(policies);
-    const beneficiaryGroups = this.groupArray(beneficiaries, 3, false);
+    const paymentMethodGroups = this.groupArray(paymentMethods, 4);
 
     return (
-      <section className='section'>
+      <section className='section dashboard'>
         <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Loading Your Profile</span></div>
         <div className='container'>
           <h1 className='title'>Welcome {firstName} {lastName},</h1>
           <div className='content'>
-            <div className='content'>
-              <h3>Contact Details</h3>
-              <table className='table'>
-                <tbody>
-                  <tr><th>Email</th><th>{email}</th><th className='has-text-right'><button className='button is-primary is-inverted'>edit</button></th></tr>
-                  <tr><th>ID Number</th><th>{id}</th><th className='has-text-right' /></tr>
-                </tbody>
-              </table>
-            </div>
+
+            <ContactDetails emailAddress={email} idNumber={id} />
             <div className='content'>
               <h3>Payment Methods</h3>
               {paymentMethodGroups.map(function (paymentMethods, i) {
@@ -170,18 +194,6 @@ export default page(class extends React.Component {
                   <div className='payment-method-columns' key={i}>
                     {paymentMethods.map((paymentMethod, j) => {
                       return (<PaymentMethod {...paymentMethod} key={i + ',' + j} />);
-                    })}
-                  </div>
-                );
-              })}
-            </div>
-            <div className='content'>
-              <h3>Beneficiaries</h3>
-              {beneficiaryGroups.map(function (beneficiaries, i) {
-                return (
-                  <div className='beneficiary-columns' key={i}>
-                    {beneficiaries.map((beneficiary, j) => {
-                      return (<Beneficiary {...beneficiary} key={i + ',' + j} />);
                     })}
                   </div>
                 );
