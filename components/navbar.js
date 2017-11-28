@@ -1,36 +1,36 @@
 import Link from 'next/link';
 import React from 'react';
 
-const LoginElements = ({isAuthenticated, currentPage}) => {
-  if (isAuthenticated) {
-    return [
-      <Link key={'account'} prefetch href='/my-account'><a className={`navbar-item ${currentPage === '/my-account' ? 'is-active' : ''}`}>My Account</a></Link>,
-      <Link key={'logout'} prefetch href='/auth/log-out'>
-        <a className='navbar-item'>
-          <button className='button is-primary is-inverted'>
-            <span className='icon'>
-              <i className='fa fa-sign-in' />
-            </span>
-            <span>Log out</span>
-          </button>
-        </a>
-      </Link>
-    ];
-  } else {
-    return (
-      <Link prefetch href='/auth/log-in'>
-        <span className='navbar-item'>
-          <a className='button is-primary is-inverted'>
-            <span className='icon'>
-              <i className='fa fa-sign-in' />
-            </span>
-            <span>Log In</span>
-          </a>
-        </span>
-      </Link>
-    );
-  }
-};
+// const LoginElements = ({isAuthenticated, currentPage}) => {
+//   if (isAuthenticated) {
+//     return [
+//       <Link key={'account'} prefetch href='/my-account'><a className={`navbar-item ${currentPage === '/my-account' ? 'is-active' : ''}`}>My Account</a></Link>,
+//       <Link key={'logout'} prefetch href='/auth/log-out'>
+//         <a className='navbar-item'>
+//           <button className='button is-primary is-inverted'>
+//             <span className='icon'>
+//               <i className='fa fa-sign-in' />
+//             </span>
+//             <span>Log out</span>
+//           </button>
+//         </a>
+//       </Link>
+//     ];
+//   } else {
+//     return (
+//       <Link prefetch href='/auth/log-in'>
+//         <span className='navbar-item'>
+//           <a className='button is-primary is-inverted'>
+//             <span className='icon'>
+//               <i className='fa fa-sign-in' />
+//             </span>
+//             <span>Log In</span>
+//           </a>
+//         </span>
+//       </Link>
+//     );
+//   }
+// };
 
 export default class extends React.Component {
   constructor (props) {
@@ -43,7 +43,7 @@ export default class extends React.Component {
   }
 
   render () {
-    const { currentPage, isAuthenticated } = this.props;
+    const { currentPage } = this.props;
     return (
       <nav className='navbar'>
         <div className='container'>
@@ -68,7 +68,9 @@ export default class extends React.Component {
               <Link prefetch href='/about'><a className={`navbar-item ${currentPage === '/about' ? 'is-active' : ''}`}>About</a></Link>
               <Link prefetch href='/contact'><a className={`navbar-item ${currentPage === '/contact' ? 'is-active' : ''}`}>Contact</a></Link>
               <Link prefetch href='/claim'><a className={`navbar-item ${currentPage === '/claim' && 'is-active'}`}>Claim</a></Link>
-              <LoginElements isAuthenticated={isAuthenticated} currentPage={currentPage} />
+              {/* Commenting this out for now for the demo:
+                <LoginElements isAuthenticated={isAuthenticated} currentPage={currentPage} />
+               */}
             </div>
           </div>
         </div>
