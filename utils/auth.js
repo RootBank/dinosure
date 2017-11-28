@@ -42,7 +42,7 @@ export const unsetToken = () => {
   window.localStorage.setItem('logout', Date.now());
 };
 
-export const getUserFromServerCookie = (req) => {
+export const getAuthTokenFromServerCookie = (req) => {
   if (!req.headers.cookie) {
     return undefined;
   }
@@ -51,11 +51,24 @@ export const getUserFromServerCookie = (req) => {
     return undefined;
   }
   const jwt = jwtCookie.split('=')[1];
-  return jwtDecode(jwt);
+  return jwt;
+}
+
+export const getUserFromServerCookie = (req) => {
+  const jwt = getAuthTokenFromServerCookie(req);
+  if(jwt) {
+    return jwtDecode(jwt);
+  }
+
+  return undefined;
 };
 
 export const getUserFromLocalCookie = () => {
   return Cookie.getJSON('user');
+};
+
+export const getAuthTokenFromLocalCookie = () => {
+  return Cookie.getJSON('idToken');
 };
 
 export const setSecret = (secret) => Cookie.set('secret', secret);
