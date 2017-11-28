@@ -157,7 +157,7 @@ app.prepare().then(() => {
     }
   });
 
-  const getOrCreatePolicyholder = async (firstName, lastName, email, id, cellphone) => {
+  const getOrUpdatePolicyholder = async (firstName, lastName, email, id, cellphone) => {
     const formattedCellphone = format({ country: 'ZA', phone: cellphone.replace(/\s/g, '').replace(/^0/, '') }, 'International');
     console.log(formattedCellphone);
     const policyholderBody = {
@@ -174,7 +174,8 @@ app.prepare().then(() => {
 
     const potentialPolicyholder = await axios.get(`${rootUrl}/policyholders?id_number=${id}`, { auth });
     if (potentialPolicyholder.data.length > 0) {
-      return potentialPolicyholder.data[0];
+      const policyholderId = potentialPolicyholder.data[0].policyholder_id;
+      return (await axios.patch(`${rootUrl}/policyholders/${policyholderId}`, policyholderBody, { auth })).data;
     } else {
       return (await axios.post(`${rootUrl}/policyholders/`, policyholderBody, { auth })).data;
     }
@@ -184,7 +185,7 @@ app.prepare().then(() => {
     const input = ctx.request.body;
     const { quotePackageId, firstName, lastName, email, id, cellphone } = input;
 
-    let policyholder = await getOrCreatePolicyholder(firstName, lastName, email, id, cellphone);
+    let policyholder = await getOrUpdatePolicyholder(firstName, lastName, email, id, cellphone);
 
     const applicationBody = {
       policyholder_id: policyholder.policyholder_id,

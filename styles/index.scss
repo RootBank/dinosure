@@ -34,8 +34,6 @@ html {
 .hero-splash-responsive-floor {
     background: $primary;
     height: 6vh;
-    transform-style: 'preserve-3d';
-    transform: scale(3);
     z-index: 0;
 }
 
@@ -122,13 +120,16 @@ $fullhd: calculate(45rem);
 
 //  Background image on landing page
 .is-hero-background-image {    
-    transform-style: 'preserve-3d';
+    
+    margin-bottom: -5vh;
+    position: relative;    
     @include desktop {
         background: url('/static/hero-splash.svg') no-repeat center bottom;
     }    
     @include tablet {        
         background: url('/static/hero-splash.svg') no-repeat center bottom;
     }
+
     @include mobile {
         @media screen and (orientation: portrait) {
             background: url('/static/hero-splash.svg') no-repeat center bottom;    
