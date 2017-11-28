@@ -4,10 +4,10 @@ import React from 'react';
 
 const toReasonPhrase = (reason) => {
   switch (reason) {
-    case 'age': return 'Our policy is only available to those who are between the ages of 18 and 63 inclusively. This is because people between the ages of 18 and 63 cannot run away from dinosaurs fast enough.';
+    case 'age': return 'Our policy is only available to those who are between the ages of 20 and 40 inclusively.';
     case 'parents': return 'Hero only insures parents.';
+    default: return '';
   }
-  return reason;
 };
 
 export default page(({reason}) =>

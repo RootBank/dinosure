@@ -5,8 +5,7 @@ export default page(() => (
     <div className='container content'>
       <h1 className='title'>Contact Us</h1>
       <p>
-        Dinosure is a registered insurance product. As such we have a responsibility to treat our customers fairly and timeously.
-        If you are experiencing problems with our service, would like to appeal a claim, or simply have questions, you can
+        Hero is a registered insurance product. As such we have a responsibility to treat our customers fairly and timeously.        If you are experiencing problems with our service, would like to appeal a claim, or simply have questions, you can
         contact us via the following channels:
       </p>
       <ul>
