@@ -71,7 +71,7 @@ export default page(class extends React.Component {
   render () {
     return (
       <section className='section'>
-        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Initialising shield...</span></div>
+        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Creating application...</span></div>
         <div className='container content'>
           <div className='columns'>
             <div className='column' />

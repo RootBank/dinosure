@@ -33,18 +33,28 @@ html {
 
 //  Background image on landing page
 .is-hero-background-image {    
+    transform-style: 'preserve-3d';
     background: url('/static/hero-splash.svg') no-repeat center bottom;
     background-size: contain;        
     -webkit-background-size: contain;
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;                    
-    z-index: 100 !important;    
+    z-index: 1000 !important;    
     height: 60vh;    
     padding-top: 2em;    
     overflow-x: hidden;    
-    padding-top: -2em;
+    padding-top: -2em;    
 }
+
+.hero-splash-responsive-floor {
+    background: $primary;
+    height: 6vh;
+    transform-style: 'preserve-3d';
+    transform: scale(3);
+    z-index: 0;
+}
+
 
 
 // Prevent white line from appearing between images

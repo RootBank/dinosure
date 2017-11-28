@@ -9,21 +9,15 @@ const setSumAssured = (value) => {
 };
 
 const homePage = page(({quote}) => [
-  <section key='splash-mobile' className='hero is-hero-background-image is-hidden-mobile'>
+  <div key='splash-mobile' style={{ transformStyle: 'preserve-3d' }} className='hero is-hero-background-image'>
     <div className='hero-body container'>
       <h1 className='title'>Be a Family Hero</h1>
       <h2 className='subtitle is-4'>Choose your perfect life cover.</h2>
-      <a className='button is-large is-info' href='#subscriptions'>Lets get started</a>
+      <a className='button is-large is-hidden-mobile is-info' href='#subscriptions'>Lets get started</a>
     </div>
-  </section>,
-  <section key='splash' className='hero is-hidden-tablet'>
-    <div className='hero-body container'>
-      <h1 className='title'>Be your familys Hero</h1>
-      <h2 className='subtitle is-4'>Choose your perfect life cover.</h2>
-      <a className='button is-large is-info'>Lets get started</a>
-    </div>
-  </section>,
-  <section key='benefits' className='benefits section has-text-white has-background'>
+  </div>,
+  <div className='hero-splash-responsive-floor' />,
+  <div key='benefits' className='benefits section has-text-white has-background'>
     <div className='container has-text-centered'>
       <div className='columns'>
         <div className='column'>
@@ -51,7 +45,7 @@ const homePage = page(({quote}) => [
         </div>
       </div>
     </div>
-  </section>,
+  </div>,
   <section key='get-quote' className='section has-large-padding' id='subscriptions'>
     <div className='container has-text-centered'>
       <h1 className='title'>Simple, transparent pricing.</h1>
