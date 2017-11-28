@@ -1,30 +1,73 @@
-import Link from 'next/link';
+// import FormFooter from '../../components/form-progress';
 import page from '../../components/page';
+import Link from 'next/link';
+import React from 'react';
+import claimStore from '../../datastores/claim';
 
-export default page(() => (
-  <section className='section '>
-    <div className='container content'>
-      <h1 className='title has-text-centered'>Submit a Claim</h1>
-      <p>
-        We know there are no words that could help. All we can do is complete this claim as quickly and easily as possible.
-      </p>
-      <p>
-        Please click the button below to start the claims process.
-        Once started, youll be able to resume the process at any time provided you use the same browser.
-      </p>
-      <div className='container level'>
-        <div className='level-item'>
-          <Link href='/claim/1'><button className='button is-primary'>Start</button></Link>
+const setFirstName = (event) => {
+  claimStore.update(state => ({ ...state, firstName: event.target.value }));
+};
+const setLastName = (event) => {
+  claimStore.update(state => ({ ...state, lastName: event.target.value }));
+};
+const setEmail = (event) => {
+  claimStore.update(state => ({ ...state, email: event.target.value }));
+};
+
+export default page(class extends React.Component {
+  render () {
+    const claim = this.props.claim;
+    return <section className='section'>
+      <div className='columns'>
+        <div className='column is-8 is-offset-2 has-text-centered'>
+          <h1 className='title has-text-centered'>Submit a Claim</h1>
+          <p>
+            We know there are no words that could help. All we can do is complete this claim as quickly and easily as possible.
+          </p>
+          <p>
+            Please fill in the form below and we will start the process.
+          </p>
         </div>
       </div>
-      <article className='message is-primary'>
-        <div className='message-header'>
-          <p>Note</p>
+      <div className='columns'>
+        <div className='column' />
+        <div className='column has-text-centered'>
+          <div className='columns is-mobile'>
+            <div className='column' />
+            <div className='column'>
+              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='Jack' value={claim.firstName || ''} />
+            </div>
+            <div className='column' />
+          </div>
+          <div className='columns is-mobile'>
+            <div className='column' />
+            <div className='column'>
+              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setLastName} className='input title is-medium' type='text' placeholder='Ripper' value={claim.lastName || ''} />
+            </div>
+            <div className='column' />
+          </div>
+          <div className='columns is-mobile'>
+            <div className='column' />
+            <div className='column'>
+              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setEmail} className='input title is-medium' type='text' placeholder='jack@gmail.com' value={claim.email || ''} />
+            </div>
+            <div className='column' />
+          </div>
         </div>
-        <div className='message-body'>
-          If you have any questions or queries you can find the little green bubble on the right hand corner of your screen. Just click on it and a fellow Hero will be there to help you.
+        <div className='column' />
+      </div>
+    </section>;
+  }
+}, {
+  footer: ({claim}) =>
+    <div>
+      <section className='section'>
+        <div className='level form-nav'>
+          <div className='level-item'>
+            <Link href='/claim/1'><button className='button is-primary' disabled={!claim.firstName || claim.firstName.length === 0 || !claim.lastName || claim.lastName.length === 0}>Submit</button></Link>
+          </div>
         </div>
-      </article>
-    </div>
-  </section>
-));
+      </section>
+    </div>,
+  datastores: { claim: claimStore }
+});
