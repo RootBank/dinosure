@@ -31,22 +31,6 @@ html {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e54146', endColorstr='#1a00d1b2',GradientType=0) !important; /* IE6-9 */
 }
 
-//  Background image on landing page
-.is-hero-background-image {    
-    transform-style: 'preserve-3d';
-    background: url('/static/hero-splash.svg') no-repeat center bottom;
-    background-size: contain;        
-    -webkit-background-size: contain;
-    -webkit-background-size: contain;
-    -moz-background-size: contain;
-    -o-background-size: contain;                    
-    z-index: 1000 !important;    
-    height: 60vh;    
-    padding-top: 2em;    
-    overflow-x: hidden;    
-    padding-top: -2em;    
-}
-
 .hero-splash-responsive-floor {
     background: $primary;
     height: 6vh;
@@ -136,6 +120,32 @@ $fullhd: calculate(45rem);
 @import 'bulma-extensions/bulma-pricingtable/pricing-table';
 @import 'bulma-extensions/bulma-steps/steps';
 
+//  Background image on landing page
+.is-hero-background-image {    
+    transform-style: 'preserve-3d';
+    @include desktop {
+        background: url('/static/hero-splash.svg') no-repeat center bottom;
+    }    
+    @include tablet {        
+        background: url('/static/hero-splash.svg') no-repeat center bottom;
+    }
+    @include mobile {
+        @media screen and (orientation: portrait) {
+            background: url('/static/hero-splash.svg') no-repeat center bottom;    
+        }        
+    }
+    
+    background-size: contain;        
+    -webkit-background-size: contain;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;                    
+    z-index: 1000 !important;    
+    height: 60vh;    
+    padding-top: 2em;    
+    overflow-x: hidden;    
+    padding-top: -2em;    
+}
 
 // Add a little spacing on top of navbar-item
 .navbar {
