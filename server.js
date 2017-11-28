@@ -95,44 +95,17 @@ app.prepare()
     const input = ctx.request.body;
     const coverAmount = input.sumAssured * 100;
 
-    /*
-    const educationStatus =
-      input.education === 'btech' || input.education === 'diploma'
-      ? 'diploma_or_btech'
-      : input.education;
-    */
+    const quoteParams = { type: 'mmi_hero' };
 
-    const quoteParams = {
-      type: 'mmi_hero',
-      //  age: input.age,
-      cover_amount: coverAmount,
-      cover_period: '5_year'
-      //  basic_income_per_month: input.income * 100,
-      //  education_status: educationStatus,
-      //  smoker: input.smoking,
-      //  gender: input.gender
-    };
-
-    const quoteResult = await axios.post(`${rootUrl}/quote/`, quoteParams, { auth });
-    if (quoteResult.data.length > 0) {
-      console.log(JSON.stringify(quoteResult.data));
-      const quotePackages = quoteResult.data;
-
-      const quotePackageChosen = quotePackages.filter((quotePackage) => {
-        return quotePackage.sum_assured === coverAmount;
-      });
-
-      if (quotePackageChosen[0] !== null) {
-        const {
+    const quoteResult = (await axios.post(`${rootUrl}/quote/`, quoteParams, { auth })).data.filter(x => x.sum_assured === coverAmount);
+    if (quoteResult.length > 0) {
+      const {
           created_at: createdAt,
           suggested_premium: premium,
           quote_package_id: quotePackageId
-        } = quotePackageChosen[0];
-        ctx.body = { createdAt, premium: Math.ceil(premium / 100) * 100, quotePackageId };
-        ctx.status = 200;
-      } else {
-        ctx.status = 404;
-      }
+        } = quoteResult[0];
+      ctx.body = { createdAt, premium: Math.ceil(premium / 100) * 100, quotePackageId };
+      ctx.status = 200;
     } else {
       ctx.status = 404;
     }
