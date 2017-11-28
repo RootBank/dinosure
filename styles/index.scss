@@ -32,15 +32,22 @@ html {
 }
 
 //  Background image on landing page
-.is-hero-background-image {
+.is-hero-background-image {    
     background: url('/static/hero-splash.svg') no-repeat center bottom;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height: 60vh;
-    padding-top: 2em;
+    background-size: contain;        
+    -webkit-background-size: contain;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;                    
+    z-index: 100 !important;    
+    height: 60vh;    
+    padding-top: 2em;    
+    overflow-x: hidden;    
+    padding-top: -2em;
 }
+
+
+
 
 // Prevent white line from appearing between images
 .hero.is-primary {

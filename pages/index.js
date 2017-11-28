@@ -23,7 +23,7 @@ const homePage = page(({quote}) => [
       <a className='button is-large is-info'>Lets get started</a>
     </div>
   </section>,
-  <section key='benefits' className='section has-small-padding has-text-white has-background'>
+  <section key='benefits' className='benefits section has-text-white has-background'>
     <div className='container has-text-centered'>
       <div className='columns'>
         <div className='column'>
