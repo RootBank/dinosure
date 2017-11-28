@@ -2,37 +2,34 @@ import React from 'react';
 import page from '../../components/page';
 import axios from 'axios';
 
-const Policy = (props) => {
-  return {
-    formattedPremium () {
-      const amount = this.props.monthlyPremium;
-      return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
-    },
+class Policy extends React.Component {
+  formattedPremium () {
+    const amount = this.props.monthlyPremium;
+    return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
+  }
 
-    formattedSumAssured () {
-      const amount = this.props.sumAssured;
-      return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
-    },
+  formattedSumAssured () {
+    const amount = this.props.sumAssured;
+    return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
+  }
 
-    render () {
-      return (
-        <div className='policy-column'>
-          <div className='box'>
-            {props.policyId && <div className='policy-summary'>
-              <div className='policy-summary-money'>
-                <div className='policy-summary-cover'>R {this.formattedSumAssured()} cover</div>
-                <div className='policy-summary-premium'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium()}</span>/month</div>
-              </div>
-              <div>{new Date(this.props.startDate).toLocaleDateString()}</div>
-              <div>{new Date(this.props.endDate).toLocaleDateString()}</div>
-            </div>}
-            {!props.policyId && <div className='policy-add-button'>+</div>}
-          </div>
+  render () {
+    return (
+      <div className='policy-column'>
+        <div className='box'>
+          {this.props.policyId && <div className='policy-summary'>
+            <div className='policy-summary-money'>
+              <div className='policy-summary-cover'>R {this.formattedSumAssured()} cover</div>
+              <div className='policy-summary-premium'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium()}</span>/month</div>
+            </div>
+            <div>{new Date(this.props.startDate).toLocaleDateString()} - {new Date(this.props.endDate).toLocaleDateString()}</div>
+          </div>}
+          {!this.props.policyId && <div className='policy-add-button'>+</div>}
         </div>
-      );
-    }
-  };
-};
+      </div>
+    );
+  }
+}
 
 const PaymentMethod = (props) => {
   return {
@@ -52,6 +49,26 @@ const PaymentMethod = (props) => {
               </div>
             </div>}
             {!props.paymentMethodId && <div className='payment-method-add-button'>+</div>}
+          </div>
+        </div>
+      );
+    }
+  };
+};
+
+const Beneficiary = (props) => {
+  return {
+    render () {
+      return (
+        <div className={'beneficiary-column'}>
+          <div className='box'>
+            <div className='beneficiary'>
+              <div className='beneficiary-name'>
+                <div>{props.first_name} {props.last_name}</div>
+                <div>{props.id.number}</div>
+                <div>{props.percentage}%</div>
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -89,28 +106,47 @@ export default page(class extends React.Component {
     }
   }
 
-  groupArray (arr, size = 3) {
+  groupArray (arr, size = 3, addButton = true) {
     if (!arr || arr.length === 0) {
       return [];
     }
 
+    arr = [...arr];
+
     const groups = [];
     while (arr.length > 0) { groups.push(arr.splice(0, size)); }
 
-    let groupToAddTo = groups[groups.length - 1];
-    if (groupToAddTo.length === size) {
-      groups.push([{}]);
-    } else {
-      groupToAddTo.push({});
+    if (addButton) {
+      let groupToAddTo = groups[groups.length - 1];
+      if (groupToAddTo.length === size) {
+        groups.push([{}]);
+      } else {
+        groupToAddTo.push({});
+      }
     }
 
     return groups;
+  }
+
+  getBeneficiaries (policies) {
+    if (!policies) {
+      return [];
+    }
+    const beneficiaries = [];
+    policies.forEach(policy => {
+      beneficiaries.push(...policy.beneficiaries);
+    });
+
+    const uniqueBeneficiaries = Array.from(new Set(beneficiaries));
+    return uniqueBeneficiaries;
   }
 
   render () {
     const { firstName, lastName, id, email, policies, paymentMethods } = this.state;
     const policyGroups = this.groupArray(policies);
     const paymentMethodGroups = this.groupArray(paymentMethods);
+    const beneficiaries = this.getBeneficiaries(policies);
+    const beneficiaryGroups = this.groupArray(beneficiaries, 3, false);
 
     return (
       <section className='section'>
@@ -131,9 +167,21 @@ export default page(class extends React.Component {
               <h3>Payment Methods</h3>
               {paymentMethodGroups.map(function (paymentMethods, i) {
                 return (
-                  <div class='payment-method-columns'>
+                  <div className='payment-method-columns' key={i}>
                     {paymentMethods.map((paymentMethod, j) => {
                       return (<PaymentMethod {...paymentMethod} key={i + ',' + j} />);
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+            <div className='content'>
+              <h3>Beneficiaries</h3>
+              {beneficiaryGroups.map(function (beneficiaries, i) {
+                return (
+                  <div className='beneficiary-columns' key={i}>
+                    {beneficiaries.map((beneficiary, j) => {
+                      return (<Beneficiary {...beneficiary} key={i + ',' + j} />);
                     })}
                   </div>
                 );
@@ -143,7 +191,7 @@ export default page(class extends React.Component {
               <h3>Policies</h3>
               {policyGroups.map(function (policies, i) {
                 return (
-                  <div class='policy-columns'>
+                  <div className='policy-columns' key={i}>
                     {policies.map((policy, j) => {
                       return (<Policy {...policy} key={i + ',' + j} />);
                     })}

@@ -242,7 +242,7 @@ p.is-danger {
     }
 }
 
-.payment-method, .policy { 
+.payment-method, .policy, .beneficiary { 
     
     &-columns {
         display: flex;
@@ -250,7 +250,7 @@ p.is-danger {
     }
 
     &-column {
-        flex: 1;
+        flex: 0 0 33%;
         margin-right: 20px;
         
         &:hover {
