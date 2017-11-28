@@ -33,12 +33,12 @@ html {
 
 //  Background image on landing page
 .is-hero-background-image {
-  background: url('../static/hero-splash.svg') no-repeat center;
+  background: url('/static/hero-splash.svg') no-repeat center bottom;
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
-  padding-top: 2em;
   height: 60vw;
+  padding-top: 2em;  
 }
 
 // Prevent white line from appearing between images

@@ -231,6 +231,14 @@ app.prepare().then(() => {
     }
   });
 
+  router.post('/api/claim', async ctx => {
+    const { firstName, lastName, email } = ctx.request.body;
+    const claimBody = ({ claimant: { first_name: firstName, last_name: lastName, email: email } });
+    const claimResult = (await axios.post(`${rootUrl}/claims/`, claimBody, { auth }));
+    ctx.body = claimResult.data;
+    ctx.status = 200;
+  });
+
   router.post('/api/user/add-beneficiary', async ctx => {
     const input = ctx.request.body;
     const { policyId, firstName, lastName, id, percentage } = input;
