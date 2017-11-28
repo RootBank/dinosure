@@ -238,6 +238,27 @@ app.prepare().then(() => {
     }
   });
 
+  router.post('/api/add-beneficiary', async ctx => {
+    const input = ctx.request.body;
+    const { policyId, firstName, lastName, id, percentage } = input;
+
+    const applicationBody = {
+      first_name: firstName,
+      last_name: lastName,
+      id: {
+        type: 'id',
+        number: id,
+        country: 'ZA'
+      },
+      percentage: 100
+    };
+
+    const application = await axios.put(`${rootUrl}/policies/${policyId}/beneficiaries`, [applicationBody], { auth });
+
+    ctx.body = applicationBody;
+    ctx.status = 200;
+  });
+
   router.get('*', async ctx => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
