@@ -35,8 +35,6 @@ export default page(class extends React.Component {
     let result = (await axios.post('/api/quote', this.props.quote)).data;
     quoteStore.update(state => ({ ...state, result }));
     this.setState({ loading: false });
-    console.log('componentDidMount');
-    console.dir(this.props.quote.result);
   }
 
   get formattedPremium () {
