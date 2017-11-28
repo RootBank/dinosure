@@ -1,5 +1,4 @@
 import page from '../../components/page';
-import Link from 'next/link';
 import React from 'react';
 import claimStore from '../../datastores/claim';
 import Router from 'next/router';
