@@ -52,11 +52,11 @@ export const getAuthTokenFromServerCookie = (req) => {
   }
   const jwt = jwtCookie.split('=')[1];
   return jwt;
-}
+};
 
 export const getUserFromServerCookie = (req) => {
   const jwt = getAuthTokenFromServerCookie(req);
-  if(jwt) {
+  if (jwt) {
     return jwtDecode(jwt);
   }
 

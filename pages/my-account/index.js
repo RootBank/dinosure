@@ -4,17 +4,17 @@ import axios from 'axios';
 
 const Policy = (props) => {
   return {
-    formattedPremium() {
+    formattedPremium () {
       const amount = this.props.monthlyPremium;
       return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
     },
 
-    formattedSumAssured() {
+    formattedSumAssured () {
       const amount = this.props.sumAssured;
       return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
     },
 
-    render() {
+    render () {
       return (
         <div className='policy-column'>
           <div className='box'>
@@ -31,12 +31,12 @@ const Policy = (props) => {
         </div>
       );
     }
-  }
-}
+  };
+};
 
 const PaymentMethod = (props) => {
   return {
-    render() {
+    render () {
       return (
         <div className={'payment-method-column'}>
           <div className='box'>
@@ -56,17 +56,16 @@ const PaymentMethod = (props) => {
         </div>
       );
     }
-  }
-}
-
+  };
+};
 
 export default page(class extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = { loading: true };
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     this.setState({ loading: true });
 
     // For testing purposes to skip the API call.
@@ -85,33 +84,30 @@ export default page(class extends React.Component {
       // localStorage.setItem('policyholder', JSON.stringify(Object.assign({ loading: false }, response)));
 
       this.setState(Object.assign({ loading: false }, response));
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e);
     }
   }
 
-  groupArray(arr, size = 3) {
+  groupArray (arr, size = 3) {
     if (!arr || arr.length === 0) {
       return [];
     }
 
     const groups = [];
-    while (arr.length > 0)
-      groups.push(arr.splice(0, size));
+    while (arr.length > 0) { groups.push(arr.splice(0, size)); }
 
     let groupToAddTo = groups[groups.length - 1];
     if (groupToAddTo.length === size) {
       groups.push([{}]);
-    }
-    else {
+    } else {
       groupToAddTo.push({});
     }
 
     return groups;
   }
 
-  render() {
+  render () {
     const { firstName, lastName, id, email, policies, paymentMethods } = this.state;
     const policyGroups = this.groupArray(policies);
     const paymentMethodGroups = this.groupArray(paymentMethods);
@@ -127,7 +123,7 @@ export default page(class extends React.Component {
               <table className='table'>
                 <tbody>
                   <tr><th>Email</th><th>{email}</th><th className='has-text-right'><button className='button is-primary is-inverted'>edit</button></th></tr>
-                  <tr><th>ID Number</th><th>{id}</th><th className='has-text-right'></th></tr>
+                  <tr><th>ID Number</th><th>{id}</th><th className='has-text-right' /></tr>
                 </tbody>
               </table>
             </div>
@@ -135,7 +131,7 @@ export default page(class extends React.Component {
               <h3>Payment Methods</h3>
               {paymentMethodGroups.map(function (paymentMethods, i) {
                 return (
-                  <div class="payment-method-columns">
+                  <div class='payment-method-columns'>
                     {paymentMethods.map((paymentMethod, j) => {
                       return (<PaymentMethod {...paymentMethod} key={i + ',' + j} />);
                     })}
@@ -147,7 +143,7 @@ export default page(class extends React.Component {
               <h3>Policies</h3>
               {policyGroups.map(function (policies, i) {
                 return (
-                  <div class="policy-columns">
+                  <div class='policy-columns'>
                     {policies.map((policy, j) => {
                       return (<Policy {...policy} key={i + ',' + j} />);
                     })}
