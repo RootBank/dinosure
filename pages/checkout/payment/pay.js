@@ -47,10 +47,30 @@ export default page(class extends React.Component {
     return Number(amount).toLocaleString().replace(/,/g, ' ');
   }
 
+  /*
+  get changeLoadingText () {
+    setInterval((value) => {
+      const loadingText = value;
+    }, 1000);
+    switch (i) {
+      case 0:
+        'Fetching rollerblades...'
+        break;
+      case 1:
+        'Fetching rollerblades...'
+        break;
+      case 2:
+        'Fetching rollerblades...'
+        break;
+      default: 'Creating Application'
+    }
+  }
+  */
+
   render () {
     return (
       <section className='section'>
-        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Creating Application</span></div>
+        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Creating application...</span></div>
         <div className='container content'>
           <div className='columns'>
             <div className='column' />

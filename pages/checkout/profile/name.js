@@ -18,10 +18,14 @@ export default page(class extends React.Component {
     const application = this.props.application;
     return <section className='section'>
       <div className='columns'>
+        <div className='column is-8 is-offset-2 has-text-centered'>
+          <div className='title is-3'>We would really like to call you on your name</div>
+        </div>
+      </div>
+      <div className='columns'>
         <div className='column' />
         <div className='column has-text-centered'>
           {/* Desktop and tablet view */}
-          <div className='title is-3'>My name is</div>
           <div className='columns is-mobile'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>

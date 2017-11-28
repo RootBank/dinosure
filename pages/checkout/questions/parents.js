@@ -9,9 +9,9 @@ const next = () => Router.push('/checkout/questions/previous_insurance');
 
 export default page(({ quote }) =>
   <section className='section has-text-centered'>
-    <div className='container'>
-      <div className='section'>
-        <h1 className='title is-5'>The Hero community trusts us to keep their subscriptions as low as possible. These questions help us do it.</h1>
+    <div className='columns'>
+      <div className='column is-8 is-offset-2'>
+        <h1 className='title is-5'>The Hero community trusts us to keep their subscriptions as low as possible. The following 4 questions help us do it.</h1>
       </div>
     </div>
     <Choice

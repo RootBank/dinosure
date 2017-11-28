@@ -10,6 +10,15 @@ export default page(class extends React.Component {
     this.state = { loading: false };
   }
 
+  componentWillMount () {
+    const sumAssured = this.props.quote.sumAssured;
+    console.log('componentWillMount');
+    console.dir(this.props.quote);
+  }
+
+
+  //  if a quote needs to be generated and is only valid for a certain time
+  /*
   async componentDidMount () {
     if (!quoteStore.isValid) {
       this.setState({ loading: true });
@@ -17,6 +26,16 @@ export default page(class extends React.Component {
       quoteStore.update(state => ({ ...state, result }));
     }
     this.setState({ loading: false });
+  }
+  */
+
+  async componentDidMount () {
+    this.setState({ loading: true });
+    let result = (await axios.post('/api/quote', this.props.quote)).data;
+    quoteStore.update(state => ({ ...state, result }));
+    this.setState({ loading: false });
+    console.log('componentDidMount');
+    console.dir(this.props.quote.result);
   }
 
   get formattedPremium () {
@@ -43,18 +62,20 @@ export default page(class extends React.Component {
     return (
       <section className='section'>
         <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Getting everything ready...</span></div>
-        <div className='container'>
-          <div className='content has-text-centered'>
-            <h1 className='title is-3'>On your way to be a Hero!</h1>
-          </div>
-          <div className='pricing-table'>
-            <div style={{marginTop: 0}} className='pricing-plan is-primary'>
-              <div className='plan-header'>R {this.formattedSumAssured} cover</div>
-              <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
-              <div className='plan-items'>
-                <div className='plan-item'>30 day money back garuantee</div>
-                <div className='plan-item'>Next medical evaluation is {this.nextUnderwritingDate}</div>
-                <div className='plan-item'>What else?</div>
+        <div className='columns'>
+          <div className='column is-two-thirds is-offset-2'>
+            <div className='content has-text-centered'>
+              <h1 className='title is-3'>On your way to be a Hero!</h1>
+            </div>
+            <div className='pricing-table'>
+              <div style={{marginTop: 0}} className='pricing-plan is-primary'>
+                <div className='plan-header'>R {this.formattedSumAssured} cover</div>
+                <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
+                <div className='plan-items'>
+                  <div className='plan-item'>30 day money back garuantee</div>
+                  <div className='plan-item'>Next medical evaluation is {this.nextUnderwritingDate}</div>
+                  <div className='plan-item'>What else?</div>
+                </div>
               </div>
             </div>
           </div>

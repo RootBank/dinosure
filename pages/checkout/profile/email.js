@@ -28,6 +28,13 @@ export default page(class extends React.Component {
         </div>
         <div className='column' />
       </div>
+      <div className='columns'>
+        <div className='column' />
+        <div className='column has-text-centered'>
+          <p>We will use this email to send you all your important documents.</p>
+        </div>
+        <div className='column' />
+      </div>
     </section>;
   }
 }, {

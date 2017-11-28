@@ -98,6 +98,13 @@ export default page(class extends React.Component {
         </div>
         <div className='column' />
       </div>
+      <div className='columns'>
+        <div className='column' />
+        <div className='column has-text-centered'>
+          <p>We need your South African ID number, as we are only allowed to provide life insurance to South Africans.</p>
+        </div>
+        <div className='column' />
+      </div>
     </section>;
   }
 }, {

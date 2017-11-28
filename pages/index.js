@@ -1,12 +1,17 @@
 import Link from 'next/link';
 import page from '../components/page';
 import quoteStore from '../datastores/quote';
+import Router from 'next/router';
 
 const setSumAssured = (value) => {
-  quoteStore.update(state => ({ ...state, sumAssured: value }));
+ quoteStore.update(state => ({ ...state, sumAssured: value }));
+ console.log('setSumAssured');
+ console.log('value:' + value);
+ console.dir('sumAssured' + quoteStore.state.sumAssured);
+ Router.push('/quote/summary');
 };
 
-const homePage = page(() => [
+const homePage = page(({quote}) => [
   <section key='splash-mobile' className='hero is-hero-background-image is-hidden-mobile'>
     <div className='hero-body container'>
       <h1 className='title'>Become your familys Hero</h1>
@@ -61,18 +66,17 @@ const homePage = page(() => [
             <span className='plan-price-amount'>
               <span className='plan-price-currency'>R</span>305
             </span>/month
-            <br />
-              for
-            <br />
-            <span className='plan-price-amount'>
-              <span className='plan-price-currency'>R</span>1.5
-            </span>million
           </div>
           <div className='plan-items'>
+            <div className='plan-item'>
+              <span className='plan-price-amount'>
+                <span style={{ fontSize: '1.5em', fontWeight: '700' }}>R 1.5 million</span> life cover
+              </span>
+            </div>
             <div className='plan-item'>Get the basics in place for if something should happen to you tomorrow</div>
           </div>
           <div className='plan-footer'>
-            <Link href='checkout/profile/name'><button className='button is-fullwidth'>Choose</button></Link>
+            <button className='button is-fullwidth' onClick={(() => setSumAssured(1500000))}>Choose</button>
           </div>
         </div>
         <div className='pricing-plan is-info'>
@@ -81,18 +85,17 @@ const homePage = page(() => [
             <span className='plan-price-amount'>
               <span className='plan-price-currency'>R</span>449
             </span>/month
-            <br />
-              for
-            <br />
-            <span className='plan-price-amount'>
-              <span className='plan-price-currency'>R</span>2.5
-            </span>million
           </div>
           <div className='plan-items'>
+            <div className='plan-item'>
+              <span className='plan-price-amount'>
+                <span style={{ fontSize: '1.5em', fontWeight: '700' }}>R 2.5 million</span> life cover
+              </span>
+            </div>
             <div className='plan-item'>This is for the parents with 2 kids, ages from 3 - 12, wants to go to a public shool and later to university.</div>
           </div>
           <div className='plan-footer'>
-            <Link href='checkout/profile/name'><button className='button is-fullwidth'>Choose</button></Link>
+            <button className='button is-fullwidth' onClick={(() => setSumAssured(2500000))}>Choose</button>
           </div>
         </div>
         <div className='pricing-plan'>
@@ -101,18 +104,17 @@ const homePage = page(() => [
             <span className='plan-price-amount'>
               <span className='plan-price-currency'>R</span>659
             </span>/month
-            <br />
-              for
-            <br />
-            <span className='plan-price-amount'>
-              <span className='plan-price-currency'>R</span>4
-            </span>million
           </div>
           <div className='plan-items'>
+            <div className='plan-item'>
+              <span className='plan-price-amount'>
+                <span style={{ fontSize: '1.5em', fontWeight: '700' }}>R 4 million</span> life cover
+              </span>
+            </div>
             <div className='plan-item'>This is for the parents with 2 kids, ages from 3 - 12, wants to go to a public shool and later to university.</div>
           </div>
           <div className='plan-footer'>
-            <Link href='quote/summary'><button className='button is-fullwidth' onClick={() => setSumAssured(4000000)}>Choose</button></Link>
+            <button className='button is-fullwidth' onClick={(() => setSumAssured(4000000))}>Choose</button>
           </div>
         </div>
       </div>

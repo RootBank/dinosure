@@ -93,6 +93,7 @@ app.prepare()
   //  getQuote
   router.post('/api/quote', async ctx => {
     const input = ctx.request.body;
+    const coverAmount = input.sumAssured * 100;
 
     /*
     const educationStatus =
@@ -104,7 +105,7 @@ app.prepare()
     const quoteParams = {
       type: 'mmi_hero',
       //  age: input.age,
-      cover_amount: input.sumAssured * 100,
+      cover_amount: coverAmount,
       cover_period: '5_year'
       //  basic_income_per_month: input.income * 100,
       //  education_status: educationStatus,
@@ -115,13 +116,23 @@ app.prepare()
     const quoteResult = await axios.post(`${rootUrl}/quote/`, quoteParams, { auth });
     if (quoteResult.data.length > 0) {
       console.log(JSON.stringify(quoteResult.data));
-      const {
-        created_at: createdAt,
-        suggested_premium: premium,
-        quote_package_id: quotePackageId
-      } = quoteResult.data[0];
-      ctx.body = { createdAt, premium: Math.ceil(premium / 100) * 100, quotePackageId };
-      ctx.status = 200;
+      const quotePackages = quoteResult.data;
+
+      const quotePackageChosen = quotePackages.filter((quotePackage) => {
+        return quotePackage.sum_assured === coverAmount;
+      })
+
+      if (quotePackageChosen[0] !== null) {
+        const {
+          created_at: createdAt,
+          suggested_premium: premium,
+          quote_package_id: quotePackageId
+        } = quotePackageChosen[0];
+        ctx.body = { createdAt, premium: Math.ceil(premium / 100) * 100, quotePackageId };
+        ctx.status = 200;
+      } else {
+        ctx.status = 404;
+      }
     } else {
       ctx.status = 404;
     }

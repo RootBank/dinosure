@@ -86,9 +86,8 @@ export default page(class extends React.Component {
             </div>
             <div className='column content is-two-thirds'>
               <div className='container content'>
-                <h1 className='title is-3'>Summary</h1>
-                <h2 className='subtitle is-5'>Accept the terms and conditions to continue</h2>
-
+                <h1 className='title is-3'>All done!</h1>
+                <h2 className='subtitle is-5'>Review, accept T&Cs and pay.</h2>
                 <div className='payment-summary-info'>
                   <table className='summary'>
                     <tbody>
@@ -124,7 +123,7 @@ export default page(class extends React.Component {
                   </table>
                 </div>
 
-                I {firstName} {lastName} (ID Number {id}), confirm that:
+                I, {firstName} {lastName} (ID Number {id}), confirm that:
                 <ul>
                   <li>The information in this application is true and correct; and</li>
                   <li>I am aware of no other information which might be relevant to Guardrisk Life Limited’s decision to offer me cover; and</li>
@@ -138,9 +137,7 @@ export default page(class extends React.Component {
               </div>
             </div>
           </div>
-
         </div>
-
       </section>
     );
   }
