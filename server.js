@@ -242,7 +242,7 @@ app.prepare().then(() => {
     const input = ctx.request.body;
     const { policyId, firstName, lastName, id, percentage } = input;
 
-    const applicationBody = {
+    const body = {
       first_name: firstName,
       last_name: lastName,
       id: {
@@ -250,13 +250,16 @@ app.prepare().then(() => {
         number: id,
         country: 'ZA'
       },
-      percentage: 100
+      percentage: percentage
     };
 
-    const application = await axios.put(`${rootUrl}/policies/${policyId}/beneficiaries`, [applicationBody], { auth });
-
-    ctx.body = applicationBody;
-    ctx.status = 200;
+    const result = await axios.put(`${rootUrl}/policies/${policyId}/beneficiaries`, [body], { auth });
+    if (result.data.sucess === true) {
+      ctx.body = body;
+      ctx.status = 200;
+    } else {
+      ctx.status = 500;
+    }
   });
 
   router.get('*', async ctx => {
