@@ -27,6 +27,7 @@ export default (Page, { footer: AuxiliaryFooter, getInitialProps, datastores = {
       datastores[store].subscribe(x => this.setState({ [store]: x }))
     );
     this.setState({ currentPage: window.location.pathname });
+
   }
 
   componentWillUnmount () {

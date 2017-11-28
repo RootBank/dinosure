@@ -51,12 +51,6 @@ export default page(class extends React.Component {
     return Number(amount).toLocaleString().replace(/,/g, ' ');
   }
 
-  get nextUnderwritingDate () {
-    const date = new Date();
-    const year = date.getFullYear();
-    return year + 5;
-  }
-
   render () {
     return (
       <section className='section'>
@@ -72,8 +66,8 @@ export default page(class extends React.Component {
                 <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
                 <div className='plan-items'>
                   <div className='plan-item'>30 day money back garuantee</div>
-                  <div className='plan-item'>Next medical evaluation is {this.nextUnderwritingDate}</div>
-                  <div className='plan-item'>What else?</div>
+                  <div className='plan-item'>5 year term life cover</div>
+                  <div className='plan-item'>No waiting period</div>
                 </div>
               </div>
             </div>

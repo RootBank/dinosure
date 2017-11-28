@@ -15,9 +15,9 @@ export default page(({ quote }) =>
       </div>
     </div>
     <Choice
+      instructions='Other than childbirth or pregnancy, I am not planning on seeing any medical professional in the next 8 weeks.'
       onLeft={disqualified} leftOption='No'
       onRight={next} rightOption='Yes'
-      instructions='Other than childbirth or pregnancy, I am not planning on seeing any medical professional in the next 8 weeks.'
     />
   </section>,
   {

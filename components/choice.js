@@ -1,7 +1,10 @@
 export default ({ leftOption, rightOption, onLeft, onRight, instructions, onEither, leftClassName, rightClassName }) => (
   <div className='columns'>
     <div className='column is-hidden-mobile' />
-    <div className='column'>
+    <div className='column' style={{ paddingTop: '4em' }}>
+      <p className='has-text-centered'>
+        {instructions}
+      </p>
       <div style={{height: '8rem'}} className='level is-mobile'>
         <div className='level-item'>
           <button onClick={() => { if (onLeft) { onLeft(); } if (onEither) { onEither(); } }} className={`button ${leftClassName || 'is-primary'}`}>{leftOption}</button>
@@ -11,9 +14,6 @@ export default ({ leftOption, rightOption, onLeft, onRight, instructions, onEith
           <button onClick={() => { if (onRight) { onRight(); } if (onEither) { onEither(); } }} className={`button ${rightClassName || 'is-primary'}`}>{rightOption}</button>
         </div>
       </div>
-      <p className='has-text-centered'>
-        {instructions}
-      </p>
     </div>
     <div className='column is-hidden-mobile' />
   </div>

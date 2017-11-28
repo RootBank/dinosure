@@ -12,10 +12,10 @@ export default page(() => (
       <div className='content'>
         <h3 className='title has-text-centered'>When are we available?</h3>
         <p>
-          We are fellow Heros, but we need some sleep now and again. We are usually available from <strong>7am to 7pm, Monday to Saterday</strong>.
+          We are fellow Heros, but we need some sleep now and again. We are usually available from <strong>8am to 5pm, Monday to Friday</strong>.
           <br />
           <br />
-          When you start a chat, by going to the green bubble in the bottom right of your screen, it will capture your message email and we will respond to you when we are done with our beauty sleep.
+          When you start a chat, by going to the green bubble in the bottom right of your screen, it will capture your message email and we will respond to you when we are done ironing our capes.
         </p>
       </div>
     </div>

@@ -15,9 +15,9 @@ export default page(({ quote }) =>
       </div>
     </div>
     <Choice
+      instructions='I have never applied for life insurance OR if I have, I have never been declined life insurance before, for any health or other reasons.'
       onLeft={disqualified} leftOption='No'
       onRight={next} rightOption='Yes'
-      instructions='I have never applied for life insurance OR if I have, I have never been declined life insurance before, for any health or other reasons.'
     />
   </section>,
   {

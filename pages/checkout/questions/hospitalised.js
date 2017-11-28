@@ -15,9 +15,9 @@ export default page(({ quote }) =>
       </div>
     </div>
     <Choice
+      instructions="In the last 5 years, I haven't been hospitalised for more than 2 days, I haven't taken any medicine for a period longer than 2 weeks and I haven't seen any medical specialist except for my pregnancy."
       onLeft={disqualified} leftOption='No'
       onRight={next} rightOption='Yes'
-      instructions="In the last 5 years, I haven't been hospitalised for more than 2 days, I haven't taken any medicine for a period longer than 2 weeks and I haven't seen any medical specialist except for my pregnancy."
     />
   </section>,
   {

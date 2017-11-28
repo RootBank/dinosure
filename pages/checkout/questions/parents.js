@@ -15,9 +15,9 @@ export default page(({ quote }) =>
       </div>
     </div>
     <Choice
+      instructions='I have children, I am pregnant or my partner is pregnant.'
       onLeft={disqualified} leftOption='No'
       onRight={next} rightOption='Yes'
-      instructions='I have children, I am pregnant or my partner is pregnant.'
     />
   </section>,
   {
