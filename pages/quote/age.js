@@ -51,17 +51,17 @@ export default page(({ quote }) =>
   </section>,
   {
     footer: ({ quote }) =>
-    <div>
-      <section className='section'>
-        <div className='level form-nav'>
-          <div className='level-item'>
-            <Link prefetch href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <button onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
+      <div>
+        <section className='section'>
+          <div className='level form-nav'>
+            <div className='level-item'>
+              <Link prefetch href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+              <button onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
+            </div>
           </div>
-        </div>
-      </section>
-      <FormFooter step={3} of={6} />
-    </div>,
+        </section>
+        <FormFooter step={3} of={6} />
+      </div>,
     datastores: { quote: quoteStore }
   }
 );
