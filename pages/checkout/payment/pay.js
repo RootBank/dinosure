@@ -12,9 +12,9 @@ export default page(class extends React.Component {
 
   async componentDidMount () {
     this.setState({ loading: true });
-    const { id, firstName, lastName, email } = this.props.application;
+    const { id, firstName, lastName, email, cellphone } = this.props.application;
     const { quotePackageId } = this.props.quote.result;
-    const applicationBody = { id, firstName, lastName, email, quotePackageId };
+    const applicationBody = { id, firstName, lastName, email, quotePackageId, cellphone };
     try {
       let policy = this.props.application.policyId;
       if (!policy) {

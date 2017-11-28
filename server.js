@@ -116,6 +116,7 @@ app.prepare().then(() => {
         lastName: result.last_name,
         id: result.id.number,
         email: result.email,
+        cellphone: result.cellphone,
         paymentMethods:
           (await axios.get(`${rootUrl}/policyholders/${policyholderId}/payment-methods`, { auth })).data.map(paymentMethod => ({
             paymentMethodId: paymentMethod.payment_method_id,
@@ -155,7 +156,7 @@ app.prepare().then(() => {
     }
   });
 
-  const getOrCreatePolicyholder = async (firstName, lastName, email, id) => {
+  const getOrCreatePolicyholder = async (firstName, lastName, email, id, cellphone) => {
     const policyholderBody = {
       id: {
         type: 'id',
@@ -164,7 +165,8 @@ app.prepare().then(() => {
       },
       first_name: firstName,
       last_name: lastName,
-      email
+      email,
+      cellphone
     };
 
     const potentialPolicyholder = await axios.get(`${rootUrl}/policyholders?id_number=${id}`, { auth });
@@ -177,9 +179,9 @@ app.prepare().then(() => {
 
   router.post('/api/apply', async ctx => {
     const input = ctx.request.body;
-    const { quotePackageId, firstName, lastName, email, id } = input;
+    const { quotePackageId, firstName, lastName, email, id, cellphone } = input;
 
-    let policyholder = await getOrCreatePolicyholder(firstName, lastName, email, id);
+    let policyholder = await getOrCreatePolicyholder(firstName, lastName, email, id, cellphone);
 
     const applicationBody = {
       policyholder_id: policyholder.policyholder_id,
@@ -238,7 +240,7 @@ app.prepare().then(() => {
     }
   });
 
-  router.post('/api/add-beneficiary', async ctx => {
+  router.post('/api/user/add-beneficiary', async ctx => {
     const input = ctx.request.body;
     const { policyId, firstName, lastName, id, percentage } = input;
 

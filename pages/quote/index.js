@@ -13,6 +13,22 @@ const viewQuote = () => {
   Router.push('/quote/issued');
 };
 
+const QuoteAlreadyReceived = () => (
+  <section className='section'>
+    <div className='container content'>
+      <h3 className='title has-text-centered is-4'>You already have an existing quote</h3>
+      <Choice
+        leftOption='View Quote'
+        rightOption='Start Over'
+        onRight={setQuoteStarted}
+        onLeft={viewQuote}
+        rightClassName='is-info'
+        instructions='What would you like to do?'
+    />
+    </div>
+  </section>
+);
+
 export default page(class extends React.Component {
   componentDidMount () {
     if (!quoteStore.isValid) {
@@ -22,21 +38,7 @@ export default page(class extends React.Component {
 
   render () {
     if (quoteStore.isValid) {
-      return (
-        <section className='section'>
-          <div className='container content'>
-            <h3 className='title has-text-centered is-4'>You already have an existing quote</h3>
-            <Choice
-              leftOption='View Quote'
-              rightOption='Start Over'
-              onRight={setQuoteStarted}
-              onLeft={viewQuote}
-              rightClassName='is-info'
-              instructions='What would you like to do?'
-          />
-          </div>
-        </section>
-      );
+      return (<QuoteAlreadyReceived />);
     } else {
       return null;
     }

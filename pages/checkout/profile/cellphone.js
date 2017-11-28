@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 // import FormFooter from '../../components/form-progress';
 import page from '../../../components/page';
 import Link from 'next/link';
@@ -5,10 +6,15 @@ import React from 'react';
 import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
+import { asYouType, isValidNumber, parse } from 'libphonenumber-js';
 
-const setEmail = (event) => {
-  applicationStore.update(state => ({ ...state, email: event.target.value }));
+const setPhoneNumber = (event) => {
+  const cellphone = new asYouType('ZA').input(event.target.value);
+  applicationStore.update(state => ({ ...state, cellphone }));
 };
+
+const isCellphoneNumberValid = (value) =>
+  isValidNumber(parse(value, 'ZA'));
 
 export default page(class extends React.Component {
   render () {
@@ -17,11 +23,11 @@ export default page(class extends React.Component {
       <div className='columns'>
         <div className='column' />
         <div className='column has-text-centered'>
-          <div className='title is-3'>My email address is</div>
+          <h3 className='title is-3'>My cellphone number is</h3>
           <div className='columns'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
-              <input style={{ width: '24rem', textAlign: 'center' }} onChange={setEmail} className='input title column is-medium' type='email' placeholder='Email' value={application.email || ''} />
+              <input style={{ width: '24rem', textAlign: 'center' }} onChange={setPhoneNumber} className='input title column is-medium' type='text' placeholder='' value={application.cellphone} />
             </div>
             <div className='column' />
           </div>
@@ -36,8 +42,8 @@ export default page(class extends React.Component {
       <section className='section'>
         <div className='level form-nav'>
           <div className='level-item'>
-            <Link href='/checkout/profile/id'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/checkout/profile/cellphone'><button className='button is-primary' disabled={!application.email || application.email.indexOf('@') === -1 || (application.email.indexOf('@') === application.email.length - 1)}>Next</button></Link>
+            <Link href='/checkout/profile/email'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+            <Link href='/checkout/questions'><button className='button is-primary' disabled={!isCellphoneNumberValid(application.cellphone)}>Next</button></Link>
           </div>
         </div>
       </section>
