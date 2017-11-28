@@ -5,9 +5,6 @@ import Router from 'next/router';
 
 const setSumAssured = (value) => {
   quoteStore.update(state => ({ ...state, sumAssured: value }));
-  console.log('setSumAssured');
-  console.log('value:' + value);
-  console.dir('sumAssured' + quoteStore.state.sumAssured);
   Router.push('/quote/summary');
 };
 
