@@ -10,12 +10,13 @@ export default page(class extends React.Component {
     this.state = { loading: false };
   }
 
+/*  ##
   componentWillMount () {
     const sumAssured = this.props.quote.sumAssured;
     console.log('componentWillMount');
     console.dir(this.props.quote);
   }
-
+*/
 
   //  if a quote needs to be generated and is only valid for a certain time
   /*
@@ -83,19 +84,18 @@ export default page(class extends React.Component {
       </section>
     );
   }
-},
-  {
+},{
     footer: ({ quote }) =>
-    <div>
-      <section className='section'>
-        <div className='level form-nav'>
-          <div className='level-item'>
-            <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Home</a></button></Link>
-            <Link prefetch href='/checkout/profile/name'><button className='button is-primary'>Start</button></Link>
+      <div>
+        <section className='section'>
+          <div className='level form-nav'>
+            <div className='level-item'>
+              <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Home</a></button></Link>
+              <Link prefetch href='/checkout/profile/name'><button className='button is-primary'>Start</button></Link>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>,
-    datastores: { quote: quoteStore }
+        </section>
+      </div>,
+      datastores: { quote: quoteStore }
   }
 );

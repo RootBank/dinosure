@@ -1,14 +1,14 @@
-import Link from 'next/link';
+//  ##import Link from 'next/link';
 import page from '../components/page';
 import quoteStore from '../datastores/quote';
 import Router from 'next/router';
 
 const setSumAssured = (value) => {
- quoteStore.update(state => ({ ...state, sumAssured: value }));
- console.log('setSumAssured');
- console.log('value:' + value);
- console.dir('sumAssured' + quoteStore.state.sumAssured);
- Router.push('/quote/summary');
+  quoteStore.update(state => ({ ...state, sumAssured: value }));
+  console.log('setSumAssured');
+  console.log('value:' + value);
+  console.dir('sumAssured' + quoteStore.state.sumAssured);
+  Router.push('/quote/summary');
 };
 
 const homePage = page(({quote}) => [
@@ -121,6 +121,5 @@ const homePage = page(({quote}) => [
     </div>
   </section>
 ]);
-
 
 export default homePage;

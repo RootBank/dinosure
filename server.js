@@ -120,7 +120,7 @@ app.prepare()
 
       const quotePackageChosen = quotePackages.filter((quotePackage) => {
         return quotePackage.sum_assured === coverAmount;
-      })
+      });
 
       if (quotePackageChosen[0] !== null) {
         const {
