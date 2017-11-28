@@ -228,3 +228,76 @@ p.is-danger {
     background: none;
 }
 
+.policy-summary {
+    &-money {
+
+    }
+
+    &-cover {
+        color: $primary;
+    }
+
+    &-premium {
+        color: $info;
+    }
+}
+
+.payment-method, .policy, .beneficiary { 
+    
+    &-columns {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &-column {
+        flex: 0 0 33%;
+        margin-right: 20px;
+        
+        &:hover {
+            transition: all 150ms linear;
+            transform: scale(1.03);
+            cursor: pointer;
+        }
+    
+        .box {
+            height: 100%;
+        }
+    }
+    
+    &-add-button {
+        color: #ccc;
+        text-align: center;
+        font-size: 100px;
+        height: 80px;
+        line-height: 80px;
+    }
+
+    &-type {
+        text-transform: capitalize;
+
+        div {
+            display: inline-block;
+            &:first-child() { }
+            &:last-child() { }
+        }
+    }
+
+    &-holder { }
+
+    &-expiry { }
+}
+
+@include mobile {
+    .payment-method, .policy {
+        
+        &-columns {
+            flex-direction: column;
+        }
+
+        &-column {
+            flex: 1;
+            margin-right: 0;
+            margin-top: 20px;
+        }
+    }
+}
