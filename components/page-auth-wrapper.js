@@ -9,7 +9,7 @@ export default Page => class extends React.Component {
     const user = process.browser ? Utils.getUserFromLocalCookie() : Utils.getUserFromServerCookie(ctx.req);
     const authToken = process.browser ? Utils.getAuthTokenFromLocalCookie() : Utils.getAuthTokenFromServerCookie(ctx.req);
     const pageProps = Page.getInitialProps && Page.getInitialProps(ctx);
-    const isBeforeExpiry = isBefore(new Date((user.exp || 0) * 1000));
+    const isBeforeExpiry = !!user && isBefore(new Date((user.exp || 0) * 1000));
 
     return {
       ...pageProps,
@@ -29,7 +29,7 @@ export default Page => class extends React.Component {
   componentDidMount () {
     const user = Utils.getUserFromLocalCookie();
     const authToken = Utils.getAuthTokenFromLocalCookie();
-    const isBeforeExpiry = isBefore(new Date((user.exp || 0) * 1000));
+    const isBeforeExpiry = !!user && isBefore(new Date((user.exp || 0) * 1000));
     this.setState({ user, isAuthenticated: !!user && isBeforeExpiry(new Date()), authToken });
     window.addEventListener('storage', this.logout, false);
   }
