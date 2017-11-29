@@ -76,7 +76,7 @@ app.prepare().then(() => {
       return;
     }
     let token = ctx.request.headers.authorization.replace('Bearer ', '');
-    const decodedToken = jwt.decode(token, {complete: true});
+    const decodedToken = jwt.decode(token, { complete: true });
     let kid = decodedToken.header.kid;
     try {
       await verifyJwt(ctx, kid, token);
@@ -95,13 +95,13 @@ app.prepare().then(() => {
     }
   });
 
-  router.post('/api/user/temp/policyholder', async(ctx, next) => {
+  router.post('/api/user/temp/policyholder', async (ctx, next) => {
     const policyholderId = ctx.request.body.policyholderId;
     await auth0.updateAppMetadata(ctx.request.authorization.userId, { policyholder_id: policyholderId });
     ctx.status = 200;
   });
 
-  router.get('/api/user/policyholder', async(ctx, next) => {
+  router.get('/api/user/policyholder', async (ctx, next) => {
     const policyholderId = ctx.request.authorization.policyholderId;
     if (ctx.request.authorization.policyholderId) {
       ctx.status = 200;
@@ -222,8 +222,8 @@ app.prepare().then(() => {
     if (quoteResult.length > 0) {
       const {
           created_at: createdAt,
-          suggested_premium: premium,
-          quote_package_id: quotePackageId
+        suggested_premium: premium,
+        quote_package_id: quotePackageId
         } = quoteResult[0];
       ctx.body = { createdAt, premium: Math.ceil(premium / 100) * 100, quotePackageId };
       ctx.status = 200;
@@ -262,6 +262,52 @@ app.prepare().then(() => {
     } else {
       ctx.status = 500;
     }
+  });
+
+  // TODO Remove Malan Hack
+  router.get('/api/object-counts', async ctx => {
+    const claimsCountPromise = axios.get(`${rootUrl}/claims`, { auth });
+    const policiesCountPromise = axios.get(`${rootUrl}/policies`, { auth });
+    const policyholdersCountPromise = axios.get(`${rootUrl}/policyholders/`, { auth });
+    const complaintsCountPromise = axios.get(`${rootUrl}/complaints`, { auth });
+    const callsCountPromise = axios.get(`${rootUrl}/calls`, { auth });
+
+    let claims = -1;
+    let complaints = -1;
+    let policyholders = -1;
+    let policies = -1;
+    let calls = -1;
+
+    try {
+      claims = (await claimsCountPromise).data.length;
+    } catch (_) { }
+
+    try {
+      complaints = (await complaintsCountPromise).data.length;
+    } catch (_) { }
+
+    try {
+      policyholders = (await policyholdersCountPromise).data.length;
+    } catch (_) { }
+
+    try {
+      policies = (await policiesCountPromise).data.length;
+    } catch (_) { }
+
+    try {
+      calls = (await callsCountPromise).data.length;
+    } catch (_) { }
+
+    const response = {
+      claims,
+      policies,
+      policyholders,
+      calls,
+      complaints
+    };
+
+    ctx.body = response;
+    ctx.status = 200;
   });
 
   router.get('*', async ctx => {
