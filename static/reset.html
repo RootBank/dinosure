@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Malan's Demo Reset Tool</title>
+  <style>
+    html, body {
+      font-family: sans-serif;
+    }
+    button {
+      margin: 10px;
+      font-size: 16px;
+    }
+    .log {
+      background-color: #eee;
+      margin: 10px;
+      padding: 3px;
+      display: none;
+      font-size: 12px;
+    }
+    .log div {
+      padding: 3px;
+    }
+    .log div .term {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Malan's Demo Reset Tool</h1>
+  <hr />
+
+  <button id="reset_client_app" disabled="disabled">Reset Hero Life app data</button>
+
+  <div class="log"></div>
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.min.js" integrity="sha256-/As5lS2upX/fOCO/h/5wzruGngVW3xPs3N8LN4FkA5Q=" crossorigin="anonymous"></script>
+  <script>
+    const log = (message) => {
+      const time = moment().format('HH:mm:ss');
+      $('.log').append('<div><span class="term">' + time + ' ></span> ' + message + '</div>');
+    };
+
+    const checkIfCleared = (callback) => {
+      log('Fetching data counts...');
+      $.ajax({
+        url: '/api/object-counts',
+        context: document.body
+      })
+      .done(r => callback(null, r))
+      .fail(e => callback(e));
+    };
+
+    const clearCheckHandler = (error, response) => {
+      if (error) {
+        log('Something went wrong with the request, abort! :/');
+      } else {
+        // Now check if counts are zero, else try again
+        if (Object.values(response).every(c => c === 0)) {
+          log('All data has been confirmed flushed.');
+          log('Done.');
+          $('#reset_client_app').prop('disabled', false);
+        } else {
+          log('Data is not yet flushed: ' + JSON.stringify(response));
+          setTimeout(() => checkIfCleared(clearCheckHandler), 2000);
+        }
+      }
+    };
+
+    $(() => {
+      // Jquery loaded, enable button
+      $('#reset_client_app').prop('disabled', false);
+      $('#reset_client_app').click(function () {
+        $('#reset_client_app').prop('disabled', true);
+        $('.log').html('');
+        $('.log').show();
+        log('Starting reset process...');
+
+        // Post to flush and restart server
+        $.ajax({
+          url: 'https://api.root.co.za/malan-demo-reset/trigger-flush',
+          context: document.body
+        })
+        .done(r => {
+          log('Successfully requested flush of client app <i>f222dae4-cdd3-11e7-9d90-6b2cce2c0e5b</i>');
+          // Recursively check if data has been cleared
+          checkIfCleared(clearCheckHandler);
+        })
+        .fail(e => {
+          console.error('Could not post to flush server...');
+          console.error(e);
+          log('Request to flush failed. Please check browser log. Aborting.');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
