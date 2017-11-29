@@ -52,7 +52,7 @@ export default page(class extends React.Component {
       <section className='section'>
         <div className='level form-nav'>
           <div className='level-item'>
-            <Link href='/quote/issued'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+            <Link href='/quote/summary'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
             <Link href='/checkout/profile/id'><button className='button is-primary' disabled={!application.firstName || application.firstName.length === 0 || !application.lastName || application.lastName.length === 0}>Next</button></Link>
           </div>
         </div>
