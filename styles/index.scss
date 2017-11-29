@@ -229,16 +229,50 @@ p.is-danger {
 }
 
 .policy-summary {
-    &-money {
-
-    }
-
     &-cover {
+        margin-top: 10px;
         color: $primary;
+        font-size: 1.75em;
     }
 
     &-premium {
         color: $info;
+        font-size: 1.4em;
+    }
+
+    &-dates {
+        margin-bottom: 15px;
+    }
+
+    &-heading {
+        text-align: center;
+        background: whitesmoke;
+        border: 1px solid darken(whitesmoke, 5%);
+        border-bottom: 1px solid darken(whitesmoke, 10%);
+        box-shadow: inset 0px 0px 25px 1px darken(whitesmoke, 5%);
+    }
+
+    &-beneficiaries {
+        padding: 1.25rem;
+    }
+    
+    &-payment-method {
+        padding: 1.25rem;
+        padding-top: 0;
+    }
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.beneficiary {
+    div {
+        display: inline-block;
+
+        &:first-child() {
+            width: 75%;
+        }
     }
 }
 
@@ -246,10 +280,11 @@ p.is-danger {
     
     &-columns {
         display: flex;
-        flex-direction: row;
+        margin-bottom: 15px;
     }
 
     &-column {
+        flex: 1;
         margin-right: 20px;
         
         &:hover {
@@ -266,17 +301,28 @@ p.is-danger {
     &-add-button {
         color: #ccc;
         text-align: center;
-        font-size: 100px;
+        font-size: 70px;
         height: 100%;
-        line-height: 100%;
+        display: flex;
+        flex-direction: column;
+        font-family: monospace;
+        font-weight: bold;
+
+        div {
+            flex: 0 0 auto;
+        }
+
+        .spacer {
+            flex: 1;
+        }
     }
 }
 
 .payment-method {
     &-column {
-        flex: 0 0 24%;
         font-size: 14px;
         font-family: monospace;
+        max-width: 24%;
 
         .payment-method-card {
             background: linear-gradient(180deg,#5e97fc 0,#5385dd);
@@ -306,7 +352,7 @@ p.is-danger {
 
 .policy {
     &-column {
-        flex: 0 0 32%;
+        max-width: 33%;
     }
 }
 
@@ -366,7 +412,12 @@ p.is-danger {
             flex: 1;
             margin-right: 0;
             margin-top: 20px;
-        }
+            max-width: 100%;
+        } 
+    }
+
+    .payment-method-column {
+        max-width: 230px !important;
     }
 
     .dashboard-contact-details-table {
@@ -382,6 +433,18 @@ p.is-danger {
                     width: 53%;
                 }
             }
+        }
+    }
+}
+
+@include tablet {
+    .policy-summary {
+        &-cover {
+            font-size: 1.5em;
+        }
+    
+        &-premium {
+            font-size: 1.2em;
         }
     }
 }

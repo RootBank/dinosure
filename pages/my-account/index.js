@@ -13,18 +13,66 @@ class Policy extends React.Component {
     return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
   }
 
+  formatDate (date) {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+    if (day < 10) {
+      day = '0' + day;
+    }
+
+    if (month < 10) {
+      month = '0' + month;
+    }
+
+    return day + '-' + month + '-' + year;
+  }
+
+  formattedStartDate () {
+    return this.formatDate(new Date(this.props.startDate));
+  }
+
+  formattedEndDate () {
+    return this.formatDate(new Date(this.props.startDate));
+  }
+
   render () {
     return (
       <div className='policy-column'>
-        <div className='box'>
+        <div className={'box ' + (this.props.policyId ? 'no-padding' : '')}>
           {this.props.policyId && <div className='policy-summary'>
-            <div className='policy-summary-money'>
-              <div className='policy-summary-cover'>R {this.formattedSumAssured()} cover</div>
-              <div className='policy-summary-premium'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium()}</span>/month</div>
+
+            <div className='policy-summary-heading'>
+              <div className='policy-summary-money'>
+                <div className='policy-summary-cover'>R {this.formattedSumAssured()} cover</div>
+                <div className='policy-summary-premium'>
+                  <span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium()}</span>/month
+              </div>
+              </div>
+              <div className='policy-summary-dates'>
+                {this.formattedStartDate()} to {this.formattedEndDate()}
+              </div>
             </div>
-            <div>{new Date(this.props.startDate).toLocaleDateString()} - {new Date(this.props.endDate).toLocaleDateString()}</div>
+            <div className='policy-summary-beneficiaries'>
+              <h5 style={{ 'margin-bottom': '0.5em' }}>Beneficiaries</h5>
+              {this.props.beneficiaries.map(function (beneficiary, i) {
+                return (
+                  <Beneficiary {...beneficiary} key={i} />
+                );
+              })}
+              {this.props.beneficiaries.length === 0 && <div>None</div>}
+            </div>
+            <div className='policy-summary-payment-method'>
+              <h5 style={{ 'margin-bottom': '0.5em' }}>Payment Method</h5>
+              {this.props.paymentMethodId}
+            </div>
           </div>}
-          {!this.props.policyId && <div className='policy-add-button'>+</div>}
+          {!this.props.policyId && <div className='policy-add-button'>
+            <div className='spacer' />
+            <div>+</div>
+            <div className='spacer' />
+          </div>}
         </div>
       </div>
     );
@@ -51,7 +99,11 @@ const PaymentMethod = (props) => {
                 <div>{props.card.holder}</div>
               </div>
             </div>}
-            {!props.paymentMethodId && <div className='payment-method-add-button'>+</div>}
+            {!props.paymentMethodId && <div className='payment-method-add-button'>
+              <div className='spacer' />
+              <div>+</div>
+              <div className='spacer' />
+            </div>}
           </div>
         </div>
       );
@@ -122,6 +174,35 @@ class ContactDetails extends React.Component {
   }
 }
 
+const Beneficiary = (props) => {
+  return {
+    render () {
+      return (
+        <div className='beneficiary'>
+          <div>{props.first_name} {props.last_name}</div>
+          <div>{props.percentage}%</div>
+          {/* <table>
+            <tbody>
+              <tr>
+                <td>First Name</td>
+                <td>{props.first_name}</td>
+              </tr>
+              <tr>
+                <td>Last Name</td>
+                <td>{props.last_name}</td>
+              </tr>
+              <tr>
+                <td>Percentage</td>
+                <td>{props.percentage}%</td>
+              </tr>
+            </tbody>
+          </table> */}
+        </div>
+      );
+    }
+  };
+};
+
 export default page(class extends React.Component {
   constructor (props) {
     super(props);
@@ -176,7 +257,7 @@ export default page(class extends React.Component {
 
   render () {
     const { firstName, lastName, id, email, policies, paymentMethods } = this.state;
-    const policyGroups = this.groupArray(policies);
+    const policyGroups = this.groupArray(policies, 3);
     const paymentMethodGroups = this.groupArray(paymentMethods, 4);
 
     return (
