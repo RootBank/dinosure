@@ -40,6 +40,10 @@ const verifyJwt = async (ctx, kid, token) => {
   };
 };
 
+const signJwt = (data) => {
+  return jwt.sign(data, 'supersecretmagickey');
+};
+
 const rootClientId = process.env.ROOT_CLIENT_ID;
 const rootClientSecret = process.env.ROOT_CLIENT_SECRET;
 const rootUrl = process.env.ROOT_INSURANCE_URL;
@@ -130,7 +134,7 @@ app.prepare().then(() => {
             }
           })),
         policies: (await axios.get(`${rootUrl}/policyholders/${policyholderId}/policies`, { auth })).data
-          .filter(policy => policy.status !== 'pending_initial_payment')
+          //.filter(policy => policy.status !== 'pending_initial_payment')
           .map(policy => ({
             policyNumber: policy.policy_number,
             policyId: policy.policy_id,
@@ -191,11 +195,14 @@ app.prepare().then(() => {
     };
 
     const application = await axios.post(`${rootUrl}/applications/`, applicationBody, { auth });
-
-    const issuePolicyBody = { application_id: application.data.application_id };
+    
+    const token = await signJwt({ policyholder_id: policyholder.policyholder_id });
+    const app_data = { token };
+    const issuePolicyBody = { application_id: application.data.application_id, app_data };
     const policy = await axios.post(`${rootUrl}/policies/`, issuePolicyBody, { auth });
+    const policyId = policy.data.policy_id;
 
-    ctx.body = { policyId: policy.data.policy_id };
+    ctx.body = { policyId };
     ctx.status = 200;
   });
 
