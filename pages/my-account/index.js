@@ -93,10 +93,10 @@ const PaymentMethod = (props) => {
                 <div>.... .... .... ....</div>
               </div>
               <div className='payment-method-expiry'>
-                <div>{props.card.expiryMonth}/{props.card.expiryYear.substring(2)}</div>
+                <div>{props.card.expiryMonth || '12'}/{(props.card.expiryYear || '2020').substring(2)}</div>
               </div>
               <div className='payment-method-holder'>
-                <div>{props.card.holder}</div>
+                <div>{props.card.holder || 'John Snow'}</div>
               </div>
             </div>}
             {!props.paymentMethodId && <div className='payment-method-add-button'>

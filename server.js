@@ -103,7 +103,7 @@ app.prepare().then(() => {
 
   router.get('/api/user/policyholder', async(ctx, next) => {
     const policyholderId = ctx.request.authorization.policyholderId;
-    if (ctx.request.authorization.policyholderId) {
+    if (policyholderId) {
       ctx.status = 200;
       let result = (await axios.get(`${rootUrl}/policyholders/${policyholderId}`, { auth })).data;
 
@@ -159,7 +159,6 @@ app.prepare().then(() => {
 
   const getOrCreatePolicyholder = async (firstName, lastName, email, id, cellphone) => {
     const formattedCellphone = format({ country: 'ZA', phone: cellphone.replace(/\s/g, '').replace(/^0/, '') }, 'International');
-    console.log(formattedCellphone);
     const policyholderBody = {
       id: {
         type: 'id',
