@@ -134,7 +134,7 @@ app.prepare().then(() => {
             }
           })),
         policies: (await axios.get(`${rootUrl}/policyholders/${policyholderId}/policies`, { auth })).data
-          //.filter(policy => policy.status !== 'pending_initial_payment')
+          // .filter(policy => policy.status !== 'pending_initial_payment')
           .map(policy => ({
             policyNumber: policy.policy_number,
             policyId: policy.policy_id,
@@ -195,10 +195,10 @@ app.prepare().then(() => {
     };
 
     const application = await axios.post(`${rootUrl}/applications/`, applicationBody, { auth });
-    
+
     const token = await signJwt({ policyholder_id: policyholder.policyholder_id });
-    const app_data = { token };
-    const issuePolicyBody = { application_id: application.data.application_id, app_data };
+    const appData = { token };
+    const issuePolicyBody = { application_id: application.data.application_id, app_data: appData };
     const policy = await axios.post(`${rootUrl}/policies/`, issuePolicyBody, { auth });
     const policyId = policy.data.policy_id;
 
