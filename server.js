@@ -76,7 +76,7 @@ app.prepare().then(() => {
       return;
     }
     let token = ctx.request.headers.authorization.replace('Bearer ', '');
-    const decodedToken = jwt.decode(token, {complete: true});
+    const decodedToken = jwt.decode(token, { complete: true });
     let kid = decodedToken.header.kid;
     try {
       await verifyJwt(ctx, kid, token);
@@ -95,13 +95,13 @@ app.prepare().then(() => {
     }
   });
 
-  router.post('/api/user/temp/policyholder', async(ctx, next) => {
+  router.post('/api/user/temp/policyholder', async (ctx, next) => {
     const policyholderId = ctx.request.body.policyholderId;
     await auth0.updateAppMetadata(ctx.request.authorization.userId, { policyholder_id: policyholderId });
     ctx.status = 200;
   });
 
-  router.get('/api/user/policyholder', async(ctx, next) => {
+  router.get('/api/user/policyholder', async (ctx, next) => {
     const policyholderId = ctx.request.authorization.policyholderId;
     if (policyholderId) {
       ctx.status = 200;
@@ -214,8 +214,8 @@ app.prepare().then(() => {
 
     const educationStatus =
       input.education === 'btech' || input.education === 'diploma'
-      ? 'diploma_or_btech'
-      : input.education;
+        ? 'diploma_or_btech'
+        : input.education;
 
     const quoteParams = {
       type: 'guardrisk_term',
@@ -259,6 +259,26 @@ app.prepare().then(() => {
 
     const result = await axios.put(`${rootUrl}/policies/${policyId}/beneficiaries`, [body], { auth });
     if (result.data.sucess === true) {
+      ctx.body = body;
+      ctx.status = 200;
+    } else {
+      ctx.status = 500;
+    }
+  });
+
+  router.post('/api/user/update', async ctx => {
+    const policyholderId = ctx.request.authorization.policyholderId;
+    const { email, cellphone } = ctx.request.body;
+
+    const body = {
+      email,
+      cellphone
+    };
+
+    // TODO: Update auth0???
+
+    const result = await axios.patch(`${rootUrl}/policyholders/${policyholderId}`, [body], { auth });
+    if (result.data.policyholder_id) {
       ctx.body = body;
       ctx.status = 200;
     } else {

@@ -132,8 +132,19 @@ class ContactDetails extends React.Component {
   }
 
   saveClicked () {
-    // TODO: Make API Call
-    this.cancelClicked();
+    try {
+      const response = axios.post('/api/user/update', {
+        email: this.emailAddress
+      }, {
+        headers: { 'Authorization': 'Bearer ' + this.props.authToken }
+      }).data;
+
+      if (response) {
+        this.cancelClicked();
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   cancelClicked () {
@@ -142,6 +153,10 @@ class ContactDetails extends React.Component {
     });
 
     this.emailAddress = undefined;
+  }
+
+  emailChanged (event) {
+    this.emailAddress = event.target.value;
   }
 
   render () {
@@ -154,7 +169,7 @@ class ContactDetails extends React.Component {
               <td>Email</td>
               <td>
                 {!this.state.editing && <span>{this.props.emailAddress}</span>}
-                {this.state.editing && <input name='' type='text' value={this.emailAddress} />}
+                {this.state.editing && <input name='' type='text' defaultValue={this.emailAddress} onChange={this.emailChanged.bind(this)} />}
               </td>
               <td className='has-text-right'>
                 {!this.state.editing && <button className='button is-primary is-inverted' onClick={this.editClicked}>edit</button>}
@@ -267,7 +282,7 @@ export default page(class extends React.Component {
           <h1 className='title'>Welcome {firstName} {lastName},</h1>
           <div className='content'>
 
-            <ContactDetails emailAddress={email} idNumber={id} />
+            <ContactDetails emailAddress={email} idNumber={id} authToken={this.props.authToken} />
             <div className='content'>
               <h3>Payment Methods</h3>
               {paymentMethodGroups.map(function (paymentMethods, i) {
