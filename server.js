@@ -44,6 +44,10 @@ const signJwt = (data) => {
   return jwt.sign(data, 'supersecretmagickey');
 };
 
+const decodeJwt = (token) => {
+  return jwt.verify(token, 'supersecretmagickey');
+};
+
 const rootClientId = process.env.ROOT_CLIENT_ID;
 const rootClientSecret = process.env.ROOT_CLIENT_SECRET;
 const rootUrl = process.env.ROOT_INSURANCE_URL;
@@ -291,6 +295,26 @@ app.prepare().then(() => {
     } else {
       ctx.status = 500;
     }
+  });
+
+  router.get('/api/signed-up', async ctx => {
+    const { id } = ctx.request.query;
+
+    let decoded = null;
+    try {
+      decoded = decodeJwt(id);
+    } catch (err) {
+      ctx.redirect('/error');
+      return;
+    }
+
+    const policyHolderId = decoded.policyholder_id;
+    const users = await auth0.getUsers();
+    const user = users.find(x => x.user_metadata && x.user_metadata.token === id);
+    const userId = user.user_id;
+
+    await auth0.updateAppMetadata(userId, { policyholder_id: policyHolderId });
+    ctx.redirect('/my-account');
   });
 
   router.get('*', async ctx => {
