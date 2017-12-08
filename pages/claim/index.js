@@ -1,33 +1,90 @@
-import Link from 'next/link';
 import page from '../../components/page';
+import React from 'react';
+import claimStore from '../../datastores/claim';
+import Router from 'next/router';
+import axios from 'axios';
 
-export default page(() => (
-  <section className='section '>
-    <div className='container content'>
-      <h1 className='title'>Claim</h1>
-      <p>
-          Please click the button below to start the claims process.
-          Once started, you'll be able to resume the process at any time provided you use the same browser.
-      </p>
-      <article className='message is-primary'>
-        <div className='message-header'>
-          <p>Required Documents</p>
+const createClaim = async () => {
+  try {
+    await axios.post('/api/claim', claimStore.state);
+    Router.push('/claim/created');
+    claimStore.clear();
+  } catch (e) {
+    Router.push('/claim/failed');
+  }
+};
+
+const setFirstName = (event) => {
+  claimStore.update(state => ({ ...state, firstName: event.target.value }));
+};
+const setLastName = (event) => {
+  claimStore.update(state => ({ ...state, lastName: event.target.value }));
+};
+const setEmail = (event) => {
+  claimStore.update(state => ({ ...state, email: event.target.value }));
+};
+
+export default page(class extends React.Component {
+  render () {
+    const claim = this.props.claim;
+    return <section className='section'>
+      <div className='columns'>
+        <div className='column is-8 is-offset-2 has-text-centered'>
+          <h1 className='title has-text-centered'>Submit a Claim</h1>
+          <p>
+            We're sorry that you lost your loved one to a dinosaur.
+          </p><br />
+          <p>
+            Please fill in the form below to start the claim process.<br /> Note: these are <em>your</em> details, not those of the deceased.
+          </p>
         </div>
-        <div className='message-body'>
-            Before we can process the claim, we require the following supporting documents:
-            <ul>
-              <li>A copy of the deceased's ID and/or birth certificate</li>
-              <li>The deceased's death certificate</li>
-            </ul>
-            Note: Please do not hesitate to call one of our consultants on <a href='tel:083 555 1337'>083 555 1337</a> if
-            you experience difficulties in obtaining these documents.
-        </div>
-      </article>
-    </div>
-    <div className='container level'>
-      <div className='level-item'>
-        <Link href='/claim/1'><button className='button is-primary'>Start</button></Link>
       </div>
-    </div>
-  </section>
-));
+      <div className='columns'>
+        <div className='column' />
+        <div className='column has-text-centered'>
+          <div className='columns is-mobile'>
+            <div className='column' />
+            <div className='column'>
+              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='First Name' value={claim.firstName || ''} />
+            </div>
+            <div className='column' />
+          </div>
+          <div className='columns is-mobile'>
+            <div className='column' />
+            <div className='column'>
+              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setLastName} className='input title is-medium' type='text' placeholder='Last Name' value={claim.lastName || ''} />
+            </div>
+            <div className='column' />
+          </div>
+          <div className='columns is-mobile'>
+            <div className='column' />
+            <div className='column'>
+              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setEmail} className='input title is-medium' type='text' placeholder='Email' value={claim.email || ''} />
+            </div>
+            <div className='column' />
+          </div>
+        </div>
+        <div className='column' />
+      </div>
+    </section>;
+  }
+}, {
+  footer: ({claim}) =>
+    <div>
+      <section className='section'>
+        <div className='level form-nav'>
+          <div className='level-item'>
+            <button
+              onClick={createClaim}
+              className='button is-primary'
+              disabled={
+                !claim.firstName || claim.firstName.length === 0 ||
+                !claim.lastName || claim.lastName.length === 0 ||
+                !claim.email || claim.email.indexOf('@') === -1
+              }>Submit</button>
+          </div>
+        </div>
+      </section>
+    </div>,
+  datastores: { claim: claimStore }
+});
