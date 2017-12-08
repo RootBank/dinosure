@@ -227,13 +227,6 @@ export default page(class extends React.Component {
   async componentDidMount () {
     this.setState({ loading: true });
 
-    // For testing purposes to skip the API call.
-    // if (localStorage.getItem('policyholder')) {
-    //   const state = JSON.parse(localStorage.getItem('policyholder'));
-    //   this.setState(state);
-    //   return;
-    // }
-
     try {
       const response = (await axios.get('/api/user/policyholder', {
         headers: { 'Authorization': 'Bearer ' + this.props.authToken }

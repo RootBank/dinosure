@@ -89,13 +89,17 @@ app.prepare().then(() => {
     try {
       await verifyJwt(ctx, kid, token);
       const userId = { id: decodedToken.payload.sub };
+
       let policyholderId = (decodedToken.payload.app_metadata || {}).policyholder_id;
       if (!policyholderId) {
-        policyholderId = ((await auth0.getUser(userId)).app_metadata || {}).policyholder_id;
+        let user = await auth0.getUser(userId);
+        let metadata = (user.app_metadata || {});
+        policyholderId = metadata.policyholder_id;
       }
       ctx.request.authorization = { ...(policyholderId ? { policyholderId } : {}), userId };
       return next();
     } catch (e) {
+      console.log(e);
       ctx.status = 403;
       ctx.body = {
         message: 'Forbidden'
@@ -248,7 +252,6 @@ app.prepare().then(() => {
     };
     const quoteResult = await axios.post(`${rootUrl}/quote/`, quoteParams, { auth });
     if (quoteResult.data.length > 0) {
-      console.log(JSON.stringify(quoteResult.data));
       const {
         created_at: createdAt,
         suggested_premium: premium,
@@ -305,24 +308,20 @@ app.prepare().then(() => {
     }
   });
 
-  router.get('/api/signed-up', async ctx => {
-    const { id } = ctx.request.query;
-
+  router.post('/api/user/signed-up', async ctx => {
+    const { token } = ctx.request.body;
+    const userId = ctx.request.authorization.userId;
     let decoded = null;
     try {
-      decoded = decodeJwt(id);
+      decoded = decodeJwt(token);
     } catch (err) {
-      ctx.redirect('/error');
+      ctx.status = 500;
+      console.log(err);
       return;
     }
-
     const policyHolderId = decoded.policyholder_id;
-    const users = await auth0.getUsers();
-    const user = users.find(x => x.user_metadata && x.user_metadata.token === id);
-    const userId = user.user_id;
-
     await auth0.updateAppMetadata(userId, { policyholder_id: policyHolderId });
-    ctx.redirect('/my-account');
+    ctx.response.status = 200;
   });
 
   router.get('*', async ctx => {

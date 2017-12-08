@@ -47,7 +47,7 @@ class SignUp extends React.Component {
         allowLogin: false,
         languageDictionary: { title: 'Sign Up' },
         auth: {
-          redirectUrl: `${baseUrl}/api/signed-up?id=${this.state.token}`
+          redirectUrl: `${baseUrl}/auth/signed-up?id=${this.state.token}`
         }
       };
       show(CONTAINER_ID, auth0Options);

@@ -22,15 +22,16 @@ const getOptions = (container, options = {}) => {
     languageDictionary: {
       title: ''
     },
+    ...options,
     auth: {
-      responseType: 'token id_token',
       redirectUrl: `${getBaseUrl()}/auth/logged-in`,
+      responseType: 'token id_token',
       params: {
         scope: 'openid profile email',
         state: secret
-      }
-    },
-    ...options
+      },
+      ...(options.auth || {})
+    }
   };
 };
 
