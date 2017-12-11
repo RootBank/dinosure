@@ -15,7 +15,7 @@ export default page(class extends React.Component {
       const token = search.split('&').map(x => x.split('=')).find(([key, _]) => key === 'id')[1];
       setToken(idToken, accessToken);
       await axios.post('/api/user/signed-up', { token }, {
-        headers: { 'Authorization': 'Bearer ' + this.props.authToken }
+        headers: { 'Authorization': 'Bearer ' + idToken }
       });
       Router.replace('/my-account');
     }
