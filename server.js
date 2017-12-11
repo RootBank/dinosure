@@ -264,22 +264,26 @@ app.prepare().then(() => {
     }
   });
 
-  router.post('/api/user/add-beneficiary', async ctx => {
+  router.post('/api/user/update-beneficiaries', async ctx => {
+    // const input = ctx.request.body;
+    // const { policyId, beneficiaries } = input;
+
+    // TODO: Get current list of beneficiaries and compare them to the input
+    // beneficiaries then initiate the appropriate updates.
+
+    ctx.status = 200;
+  });
+
+  router.post('/api/user/cancel-policy', async ctx => {
     const input = ctx.request.body;
-    const { policyId, firstName, lastName, id, percentage } = input;
+    const { policyId } = input;
 
     const body = {
-      first_name: firstName,
-      last_name: lastName,
-      id: {
-        type: 'id',
-        number: id,
-        country: 'ZA'
-      },
-      percentage: percentage
+      policy_id: policyId,
+      reason: '............'
     };
 
-    const result = await axios.put(`${rootUrl}/policies/${policyId}/beneficiaries`, [body], { auth });
+    const result = await axios.post(`${rootUrl}/policies/${policyId}/cancel`, [body], { auth });
     if (result.data.sucess === true) {
       ctx.body = body;
       ctx.status = 200;

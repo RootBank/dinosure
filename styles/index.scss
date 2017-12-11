@@ -288,7 +288,7 @@ p.is-danger {
         flex: 1;
         margin-right: 20px;
         
-        &:hover {
+        &:hover:not(.editing) {
             transition: all 150ms linear;
             transform: scale(1.03);
             cursor: pointer;
@@ -354,6 +354,10 @@ p.is-danger {
 .policy {
     &-column {
         max-width: 31.5%;
+
+        &.editing {
+            max-width: 100%;
+        }
     }
 }
 
@@ -448,4 +452,81 @@ p.is-danger {
             font-size: 1.2em;
         }
     }
+}
+
+.beneficary-actions-container {
+    margin: 10px;
+    margin-top: 0px;
+    
+    &.default {
+        margin-bottom: 5px;
+        text-align: center;
+        a {
+            text-decoration: none;
+            color: #888; 
+            border-color: transparent;
+
+            &:hover() {
+                color: #aaa;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &.cancel {
+        display: flex;
+        flex-direction: column;
+
+        .cancel-message {
+            padding: 10px;
+        }
+
+        .cancel-buttons {
+            flex: 1;
+            display: flex;
+            .button {
+                &:first-child {
+                    flex: 1;
+                }
+                &:last-child {
+                    flex: 3;
+                }
+                margin: 0 5px;
+            }
+        }
+        
+        
+    }
+}
+
+.inline-edit {
+    float: right;
+    position: relative;
+    top: -5px;
+}
+
+.beneficiary-form {
+    .table {
+        tr:hover() {
+            background: #fff;
+        }
+    }
+}
+
+.beneficiaries-form-action-buttons {
+    .button {
+        width: 150px;
+        margin: 0 5px;
+    }
+}
+
+.beneficiaries-form-element-actions {
+    a {
+        text-decoration: none;
+        width: 32px;
+    }
+}
+
+.has-danger {
+    border: 1px solid red !important;
 }
