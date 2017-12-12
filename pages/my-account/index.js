@@ -221,16 +221,13 @@ class ContactDetails extends React.Component {
   }
 
   saveClicked () {
+    this.cancelClicked();
     try {
-      const response = axios.post('/api/user/update', {
+      axios.post('/api/user/update', {
         email: this.emailAddress
       }, {
         headers: { 'Authorization': 'Bearer ' + this.props.authToken }
-      }).data;
-
-      if (response) {
-        this.cancelClicked();
-      }
+      });
     } catch (e) {
       console.log(e);
     }
@@ -525,8 +522,8 @@ class Beneficiary extends React.Component {
   render () {
     return (
       <div className='beneficiary'>
-        <div>{this.props.first_name} {this.props.last_name}</div>
-        <div>{this.props.percentage}%</div>
+        <span>{this.props.first_name} {this.props.last_name}</span>
+        <span>{this.props.percentage}%</span>
       </div>
     );
   }
@@ -556,7 +553,7 @@ export default page(class extends React.Component {
       // For testing purposes to skip the API call.
       // localStorage.setItem('policyholder', JSON.stringify(Object.assign({ loading: false }, response)));
 
-      this.setState({ ...this.state, response });
+      this.setState({ ...this.state, ...response, loading: false });
     } catch (e) {
       console.log(e);
     }
@@ -604,8 +601,15 @@ export default page(class extends React.Component {
   }
 
   saveBeneficiaries (beneficiaries) {
+    beneficiaries.forEach(beneficiary => {
+      beneficiary.percentage = parseInt(beneficiary.percentage, 10);
+    });
+
+    let policy = this.state.policies.find(x => x.policyId === this.state.editingPolicy);
+    policy.beneficiaries = beneficiaries;
+
     this.cancelEditPolicy();
-    this.setState({ ...this.state, savingBeneficiaries: true, editingPolicy: false });
+    this.setState({ ...this.state, savingBeneficiaries: true, editingPolicy: false, policies: [...this.state.policies] });
 
     try {
       let policyId = this.state.editingPolicy;

@@ -268,11 +268,12 @@ p.is-danger {
 }
 
 .beneficiary {
-    div {
-        display: inline-block;
+    position: relative;
+    span {
 
-        &:first-child() {
-            width: 75%;
+        &:last-child() {
+            position: absolute;
+            right: 10px;
         }
     }
 }
