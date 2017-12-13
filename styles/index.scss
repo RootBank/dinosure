@@ -254,12 +254,12 @@ p.is-danger {
     }
 
     &-beneficiaries {
-        padding: 1.25rem;
+        padding: 1.25rem 5px;
     }
     
     &-payment-method {
-        padding: 1.25rem;
-        padding-top: 0;
+        padding: 10px 5px;
+        padding-top: 3px;
     }
 }
 
@@ -291,12 +291,18 @@ p.is-danger {
         
         &:hover:not(.editing) {
             transition: all 150ms linear;
-            transform: scale(1.03);
+            //transform: scale(1.01);
+            box-shadow: 0px 0px 4px 4px #fafafa;
             cursor: pointer;
         }
     
         .box {
             height: 100%;
+        }
+
+        hr { 
+            margin: 0;
+            margin-bottom: 1rem;
         }
     }
     
@@ -456,11 +462,7 @@ p.is-danger {
 }
 
 .beneficary-actions-container {
-    margin: 10px;
-    margin-top: 0px;
-    
     &.default {
-        margin-bottom: 5px;
         text-align: center;
         a {
             text-decoration: none;
@@ -495,15 +497,13 @@ p.is-danger {
                 margin: 0 5px;
             }
         }
-        
-        
     }
 }
 
 .inline-edit {
     float: right;
     position: relative;
-    top: -5px;
+    top: -8px;
 }
 
 .beneficiary-form {
@@ -530,4 +530,11 @@ p.is-danger {
 
 .has-danger {
     border: 1px solid red !important;
+}
+
+.no-beneficiaries {
+    font-size: 0.8em;
+    padding: 10px;
+    background: lightgoldenrodyellow;
+    text-align: center;
 }

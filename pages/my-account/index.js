@@ -104,11 +104,42 @@ class Policy extends React.Component {
   }
 
   render () {
-    let actions = null;
+    if (this.props.editing) {
+      return this.renderEditing();
+    }
 
+    return (
+      <div className='policy-column'>
+        <div className='box'>
+          <div className='policy-summary'>
+            {this.renderHeading()}
+            {this.renderBeneficiaries()}
+            <hr />
+            {this.renderPaymentMethod()}
+            <hr />
+            {this.renderActions()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  renderPaymentMethod () {
+    const paymentMethodIndex = (this.props.paymentMethods || []).findIndex(x => x.paymentMethodId === this.props.paymentMethodId);
+    const paymentMethod = 'Card ' + String.fromCharCode(65 + paymentMethodIndex);
+
+    return <div className='policy-summary-payment-method'>
+      <h6 style={{ 'marginBottom': '0.5em', 'display': 'inline-block' }}>Payment Method:</h6>
+      <span style={{ 'float': 'right', 'display': 'inline-block', 'marginRight': '9px' }}>{paymentMethod}</span>
+
+    </div>;
+  }
+
+  renderActions () {
+    let actions = null;
     if (!this.props.editing) {
       actions = <div className='beneficary-actions-container default'>
-        <a className='button' onClick={this.cancel.bind(this)}>Cancel Policy</a>
+        <a className='button is-secondary is-outlined' onClick={this.cancel.bind(this)}>Cancel Policy</a>
       </div>;
     }
 
@@ -122,46 +153,52 @@ class Policy extends React.Component {
       </div>;
     }
 
+    return actions;
+  }
+
+  renderBeneficiaries () {
+    let beneficiaries = this.props.beneficiaries.map(function (beneficiary, i) {
+      return <Beneficiary {...beneficiary} key={i} />;
+    });
+
+    let noBeneficiaries = null;
+    if (beneficiaries.length === 0) {
+      noBeneficiaries = <div className='no-beneficiaries'>This policy has no beneficiaries.<br />Please click edit to add one.</div>;
+    }
+
+    return <div className='policy-summary-beneficiaries'>
+      <h6 style={{ 'marginBottom': '0.8em', 'display': 'inline-block' }}>Beneficiaries:</h6>
+      <span className='inline-edit'><a className='button is-primary is-inverted' onClick={this.editBeneficiaries.bind(this)}>Edit</a></span>
+      {beneficiaries}
+      {noBeneficiaries}
+    </div>;
+  }
+
+  renderHeading () {
+    return <div className='policy-summary-heading'>
+      <div className='policy-summary-money'>
+        <div className='policy-summary-cover'>R {this.formattedSumAssured()} cover</div>
+        <div className='policy-summary-premium'>
+          <span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium()}/month</span>
+        </div>
+      </div>
+      <div className='policy-summary-dates'>
+        {this.formattedStartDate()} to {this.formattedEndDate()}
+      </div>
+    </div>;
+  }
+
+  renderEditing () {
     return (
-      <div className={'policy-column ' + (this.props.editing ? 'editing' : '')}>
-        <div className={'box ' + (this.props.policyId ? 'no-padding' : '')}>
-          {this.props.policyId && <div className='policy-summary'>
-
-            <div className='policy-summary-heading'>
-              <div className='policy-summary-money'>
-                <div className='policy-summary-cover'>R {this.formattedSumAssured()} cover</div>
-                <div className='policy-summary-premium'>
-                  <span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium()}</span>/month
-              </div>
-              </div>
-              <div className='policy-summary-dates'>
-                {this.formattedStartDate()} to {this.formattedEndDate()}
-              </div>
-            </div>
+      <div className='policy-column editing'>
+        <div className='box'>
+          <div className='policy-summary'>
+            {this.renderHeading()}
             <div className='policy-summary-beneficiaries'>
-              <h5 style={{ 'marginBottom': '0.5em', 'display': 'inline-block' }}>Beneficiaries</h5>
-              {!this.props.editing && <span className='inline-edit'><a className='button is-primary is-inverted' onClick={this.editBeneficiaries.bind(this)}>Edit</a></span>}
-
-              {!this.props.editing && this.props.beneficiaries.map(function (beneficiary, i) {
-                return (
-                  <Beneficiary {...beneficiary} key={i} />
-                );
-              })}
-              {!this.props.editing && this.props.beneficiaries.length === 0 && <div>None</div>}
-              {this.props.editing && <BeneficiaryForm beneficiaries={this.props.beneficiaries} cancelEdit={this.cancelEdit.bind(this)} saveBeneficiaries={this.props.saveBeneficiaries.bind(this)} />}
-
+              <h6 style={{ 'marginBottom': '0.5em', 'display': 'inline-block' }}>Beneficiaries:</h6>
+              <BeneficiaryForm beneficiaries={this.props.beneficiaries} cancelEdit={this.cancelEdit.bind(this)} saveBeneficiaries={this.props.saveBeneficiaries.bind(this)} />
             </div>
-            {!this.props.editing && <div className='policy-summary-payment-method'>
-              <h5 style={{ 'marginBottom': '0.5em' }}>Payment Method</h5>
-              {this.props.paymentMethodId}
-            </div>}
-            {actions}
-          </div>}
-          {!this.props.policyId && <div className='policy-add-button'>
-            <div className='spacer' />
-            <div>+</div>
-            <div className='spacer' />
-          </div>}
+          </div>
         </div>
       </div>
     );
@@ -171,21 +208,23 @@ class Policy extends React.Component {
 const PaymentMethod = (props) => {
   return {
     render () {
+      let type = 'Card ' + String.fromCharCode(65 + props.index);
+
       return (
         <div className={'payment-method-column'}>
           <div className={'box ' + (props.paymentMethodId ? 'payment-method-card' : '')}>
             {props.paymentMethodId && <div className='payment-method'>
               <div className='payment-method-type'>
-                <div>{props.type}</div>
+                <div>{type}</div>
               </div>
               <div className='payment-method-card-number'>
                 <div>.... .... .... ....</div>
               </div>
               <div className='payment-method-expiry'>
-                <div>{props.card.expiryMonth || '12'}/{(props.card.expiryYear || '2020').substring(2)}</div>
+                <div>{props.card.expiryMonth}/{(props.card.expiryYear).substring(2)}</div>
               </div>
               <div className='payment-method-holder'>
-                <div>{props.card.holder || 'John Snow'}</div>
+                <div>{props.card.holder}</div>
               </div>
             </div>}
             {!props.paymentMethodId && <div className='payment-method-add-button'>
@@ -536,6 +575,10 @@ export default page(class extends React.Component {
   }
 
   async componentDidMount () {
+    this.loadData();
+  }
+
+  async loadData () {
     this.setState({ ...this.state, loading: true });
 
     // For testing purposes to skip the API call.
@@ -555,6 +598,7 @@ export default page(class extends React.Component {
 
       this.setState({ ...this.state, ...response, loading: false });
     } catch (e) {
+      this.setState({ ...this.state, loading: false, errorLoading: true });
       console.log(e);
     }
   }
@@ -569,12 +613,12 @@ export default page(class extends React.Component {
     const groups = [];
     while (arr.length > 0) { groups.push(arr.splice(0, size)); }
 
-    let groupToAddTo = groups[groups.length - 1];
-    if (groupToAddTo.length === size) {
-      groups.push([{}]);
-    } else {
-      groupToAddTo.push({});
-    }
+    // let groupToAddTo = groups[groups.length - 1];
+    // if (groupToAddTo.length === size) {
+    //   groups.push([{}]);
+    // } else {
+    //   groupToAddTo.push({});
+    // }
 
     return groups;
   }
@@ -585,6 +629,9 @@ export default page(class extends React.Component {
       axios.post('/api/user/cancel-policy', { policyId: policy.policyId }, {
         headers: { 'Authorization': 'Bearer ' + this.props.authToken }
       }).then(() => {
+        this.setState({ ...this.state, cancelling: false });
+        this.loadData();
+      }).catch(() => {
         this.setState({ ...this.state, cancelling: false });
       });
     } catch (e) {
@@ -609,7 +656,7 @@ export default page(class extends React.Component {
     policy.beneficiaries = beneficiaries;
 
     this.cancelEditPolicy();
-    this.setState({ ...this.state, savingBeneficiaries: true, editingPolicy: false, policies: [...this.state.policies] });
+    this.setState({ ...this.state, savingBeneficiaries: true, editingPolicy: false, policies: [...this.state.policies], errorMessage: null });
 
     try {
       let policyId = this.state.editingPolicy;
@@ -617,13 +664,33 @@ export default page(class extends React.Component {
         headers: { 'Authorization': 'Bearer ' + this.props.authToken }
       }).then(() => {
         this.setState({ ...this.state, savingBeneficiaries: false });
-      });
+      })
+        .catch(() => {
+          this.setState({ ...this.state, savingBeneficiaries: false });
+        });
     } catch (e) {
       console.log(e);
     }
   }
 
+  renderError () {
+    return <section className='section dashboard'>
+      <div className='container'>
+        <h1 className='title'>Oh no,</h1>
+        <div className='content'>
+          An error occurred and we couldn't fetch your policies. Please try refreshing the page.
+            <br /><br />
+          If the error persists, please don't hesitate to contact us.
+          </div>
+      </div>
+    </section>;
+  }
+
   render () {
+    if (this.state.errorLoading) {
+      return this.renderError();
+    }
+
     const { firstName, lastName, id, email, policies, paymentMethods } = this.state;
     const policyGroups = this.groupArray(policies, 3);
     const paymentMethodGroups = this.groupArray(paymentMethods, 4);
@@ -648,31 +715,34 @@ export default page(class extends React.Component {
           <div className='content'>
 
             <ContactDetails emailAddress={email} idNumber={id} authToken={this.props.authToken} />
+
             <div className='content'>
               <h3>Payment Methods</h3>
               {paymentMethodGroups.map(function (paymentMethods, i) {
                 return (
                   <div className='payment-method-columns' key={i}>
                     {paymentMethods.map((paymentMethod, j) => {
-                      return (<PaymentMethod {...paymentMethod} key={i + ',' + j} />);
+                      return (<PaymentMethod {...paymentMethod} key={i + ',' + j} index={i * 3 + j} />);
                     })}
                   </div>
                 );
               })}
             </div>
+
             <div className='content'>
               <h3>Policies</h3>
               {!policyEdited && policyGroups.map(function (policies, i) {
                 return (
                   <div className='policy-columns' key={i}>
                     {policies.map((policy, j) => {
-                      return (<Policy {...policy} key={i + ',' + j} onCancel={cancelPolicy} edit={editPolicy} />);
+                      return (<Policy {...policy} key={i + ',' + j} onCancel={cancelPolicy} edit={editPolicy} paymentMethods={paymentMethods} />);
                     })}
                   </div>
                 );
               })}
               {policyEdited && <Policy {...policyEdited} editing='true' cancelEdit={cancelEditPolicy.bind(this)} editType={editingPolicyType} saveBeneficiaries={this.saveBeneficiaries.bind(this)} />}
             </div>
+
           </div>
         </div>
       </section>
