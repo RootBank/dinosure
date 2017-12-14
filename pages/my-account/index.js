@@ -91,6 +91,11 @@ class Policy extends React.Component {
     this.props.edit(this.props, 'beneficiaries');
   }
 
+  editBeneficiariesFromModal () {
+    this.editBeneficiaries();
+    window.scrollTo(0, document.body.scrollHeight);
+  }
+
   saveBeneficiaries (beneficiaries) {
     this.props.saveBeneficiaries(beneficiaries);
   }
@@ -120,6 +125,22 @@ class Policy extends React.Component {
             {this.renderActions()}
           </div>
         </div>
+
+        {this.props.showAddBeneficiaryModal && <div className='modal is-active'>
+          <div class='modal-background' />
+          <div class='modal-card'>
+            <header class='modal-card-head'>
+              <p class='modal-card-title'>Add a beneficiary</p>
+            </header>
+            <section class='modal-card-body'>
+              No beneficiaries have been added to the policy "R {this.formattedSumAssured()} @ R {this.formattedPremium()}/month".
+              In order for us to be able to process a claim, please add a beneficiary now.
+          </section>
+            <footer class='modal-card-foot'>
+              <button class='button is-success' onClick={this.editBeneficiariesFromModal.bind(this)}>Add beneficiary</button>
+            </footer>
+          </div>
+        </div>}
       </div>
     );
   }
@@ -610,22 +631,24 @@ export default page(class extends React.Component {
     }
   }
 
-  groupArray (arr, size = 3) {
+  groupArray (arr, size = 3, addPlusButton = false) {
     if (!arr || arr.length === 0) {
       return [];
     }
 
-    arr = [...arr];
+    let src = [...arr];
 
     const groups = [];
-    while (arr.length > 0) { groups.push(arr.splice(0, size)); }
+    while (src.length > 0) { groups.push(src.splice(0, size)); }
 
-    // let groupToAddTo = groups[groups.length - 1];
-    // if (groupToAddTo.length === size) {
-    //   groups.push([{}]);
-    // } else {
-    //   groupToAddTo.push({});
-    // }
+    if (addPlusButton) {
+      let groupToAddTo = groups[groups.length - 1];
+      if (groupToAddTo.length === size) {
+        groups.push([{}]);
+      } else {
+        groupToAddTo.push({});
+      }
+    }
 
     return groups;
   }
@@ -702,62 +725,70 @@ export default page(class extends React.Component {
       return this.renderError();
     }
 
-    const { firstName, lastName, id, email, policies, paymentMethods } = this.state;
-    const policyGroups = this.groupArray(policies, 3);
-    const paymentMethodGroups = this.groupArray(paymentMethods, 4);
-
-    let cancelPolicy = this.cancelPolicy.bind(this);
-    let editPolicy = this.editPolicy.bind(this);
-    let cancelEditPolicy = this.cancelEditPolicy.bind(this);
-    let emailUpdated = this.emailUpdated.bind(this);
-    let policyEdited = null;
-    let editingPolicyType = null;
-    if (this.state.editingPolicy) {
-      policyEdited = this.state.policies.find(x => x.policyId === this.state.editingPolicy);
-      editingPolicyType = this.state.editingPolicyType;
-    }
-
     return (
       <section className='section dashboard'>
         <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Loading Your Profile</span></div>
         <div className={`pageloader ${this.state.cancelling ? 'is-active' : ''}`}><span className='title'>Cancelling Policy</span></div>
         <div className={`pageloader ${this.state.savingBeneficiaries ? 'is-active' : ''}`}><span className='title'>Saving Beneficiaries</span></div>
         <div className='container'>
-          <h1 className='title'>Welcome {firstName} {lastName},</h1>
+          <h1 className='title'>Welcome {this.state.firstName} {this.state.lastName},</h1>
           <div className='content'>
-
-            <ContactDetails emailAddress={email} idNumber={id} authToken={this.props.authToken} emailUpdated={emailUpdated} />
+            <ContactDetails emailAddress={this.state.email} idNumber={this.state.id} authToken={this.props.authToken} emailUpdated={this.emailUpdated.bind(this)} />
 
             <div className='content'>
               <h3>Payment Methods</h3>
-              {paymentMethodGroups.map(function (paymentMethods, i) {
-                return (
-                  <div className='payment-method-columns' key={i}>
-                    {paymentMethods.map((paymentMethod, j) => {
-                      return (<PaymentMethod {...paymentMethod} key={i + ',' + j} index={i * 3 + j} />);
-                    })}
-                  </div>
-                );
-              })}
+              {this.renderPaymentMethods()}
             </div>
 
             <div className='content'>
               <h3>Policies</h3>
-              {!policyEdited && policyGroups.map(function (policies, i) {
-                return (
-                  <div className='policy-columns' key={i}>
-                    {policies.map((policy, j) => {
-                      return (<Policy {...policy} key={i + ',' + j} onCancel={cancelPolicy} edit={editPolicy} paymentMethods={paymentMethods} />);
-                    })}
-                  </div>
-                );
-              })}
-              {policyEdited && <Policy {...policyEdited} editing='true' cancelEdit={cancelEditPolicy.bind(this)} editType={editingPolicyType} saveBeneficiaries={this.saveBeneficiaries.bind(this)} />}
+              {this.renderPolicies()}
             </div>
-
           </div>
         </div>
       </section>
     );
+  }
+
+  renderPaymentMethods () {
+    const { paymentMethods } = this.state;
+    const paymentMethodGroups = this.groupArray(paymentMethods, 4);
+    return paymentMethodGroups.map(function (paymentMethods, i) {
+      return (
+        <div className='payment-method-columns' key={i}>
+          {paymentMethods.map((paymentMethod, j) => {
+            return (<PaymentMethod {...paymentMethod} key={i + ',' + j} index={i * 3 + j} />);
+          })}
+        </div>
+      );
+    });
+  }
+
+  renderPolicies () {
+    if (this.state.editingPolicy) {
+      let policyEdited = this.state.policies.find(x => x.policyId === this.state.editingPolicy);
+      let editingPolicyType = this.state.editingPolicyType;
+      let cancelEditPolicy = this.cancelEditPolicy.bind(this);
+
+      return <Policy {...policyEdited} editing='true' cancelEdit={cancelEditPolicy.bind(this)} editType={editingPolicyType} saveBeneficiaries={this.saveBeneficiaries.bind(this)} />;
+    }
+
+    const { policies, paymentMethods } = this.state;
+    const policyGroups = this.groupArray(policies, 3);
+
+    let indexOfFirstPolicyWithoutBeneficiary = (policies || []).findIndex(x => x.beneficiaries.length === 0);
+
+    let cancelPolicy = this.cancelPolicy.bind(this);
+    let editPolicy = this.editPolicy.bind(this);
+
+    return policyGroups.map(function (policies, i) {
+      return (
+        <div className='policy-columns' key={i}>
+          {policies.map((policy, j) => {
+            return (<Policy {...policy} key={i + ',' + j} onCancel={cancelPolicy} edit={editPolicy} paymentMethods={paymentMethods} showAddBeneficiaryModal={indexOfFirstPolicyWithoutBeneficiary === (i * 3 + j)} />);
+          })}
+        </div>
+      );
+    });
   }
 });
