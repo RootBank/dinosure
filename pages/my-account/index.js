@@ -260,12 +260,19 @@ class ContactDetails extends React.Component {
   }
 
   saveClicked () {
+    const body = {
+      email: this.emailAddress
+    };
+    const oldEmail = this.props.emailAddress;
+
+    this.props.emailUpdated(body.email);
     this.cancelClicked();
+
     try {
-      axios.post('/api/user/update', {
-        email: this.emailAddress
-      }, {
+      axios.post('/api/user/update', body, {
         headers: { 'Authorization': 'Bearer ' + this.props.authToken }
+      }).catch(() => {
+        this.props.emailUpdated(oldEmail);
       });
     } catch (e) {
       console.log(e);
@@ -673,6 +680,10 @@ export default page(class extends React.Component {
     }
   }
 
+  emailUpdated (email) {
+    this.setState({ ...this.state, email });
+  }
+
   renderError () {
     return <section className='section dashboard'>
       <div className='container'>
@@ -698,6 +709,7 @@ export default page(class extends React.Component {
     let cancelPolicy = this.cancelPolicy.bind(this);
     let editPolicy = this.editPolicy.bind(this);
     let cancelEditPolicy = this.cancelEditPolicy.bind(this);
+    let emailUpdated = this.emailUpdated.bind(this);
     let policyEdited = null;
     let editingPolicyType = null;
     if (this.state.editingPolicy) {
@@ -714,7 +726,7 @@ export default page(class extends React.Component {
           <h1 className='title'>Welcome {firstName} {lastName},</h1>
           <div className='content'>
 
-            <ContactDetails emailAddress={email} idNumber={id} authToken={this.props.authToken} />
+            <ContactDetails emailAddress={email} idNumber={id} authToken={this.props.authToken} emailUpdated={emailUpdated} />
 
             <div className='content'>
               <h3>Payment Methods</h3>
