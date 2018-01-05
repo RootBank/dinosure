@@ -432,7 +432,9 @@ class BeneficiaryFormElement extends React.Component {
     if (newState.firstNameValid !== this.state.firstNameValid ||
       newState.lastNameValid !== this.state.lastNameValid ||
       newState.idNumberValid !== this.state.idNumberValid ||
-      newState.percentageValid !== this.state.percentageValid) {
+      newState.percentageValid !== this.state.percentageValid ||
+      newState.cellNumberValid !== this.state.cellNumberValid ||
+      newState.emailValid !== this.state.emailValid) {
       this.setState({ ...this.state, ...newState });
     }
 
