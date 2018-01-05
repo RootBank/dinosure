@@ -350,6 +350,8 @@ class BeneficiaryFormElement extends React.Component {
       lastName: this.props.last_name,
       idNumber: this.props.id_number,
       percentage: this.props.percentage,
+      cellNumber: this.props.cellNumber,
+      email: this.props.email,
       firstNameTouched: false,
       lastNameTouched: false,
       idNumberTouched: false,
@@ -357,7 +359,11 @@ class BeneficiaryFormElement extends React.Component {
       firstNameValid: false,
       lastNameValid: false,
       idNumberValid: false,
-      percentageValid: false
+      percentageValid: false,
+      cellNumberValid: false,
+      emailValid: false,
+      cellNumberTouched: false,
+      emailTouched: false
     };
   }
 
@@ -366,7 +372,7 @@ class BeneficiaryFormElement extends React.Component {
   }
 
   isValid () {
-    return this.state.firstNameValid && this.state.lastNameValid && this.state.idNumberValid && this.state.percentageValid;
+    return this.state.firstNameValid && this.state.lastNameValid && this.state.idNumberValid && this.state.percentageValid && this.state.cellNumberValid && this.state.emailValid;
   }
 
   validate () {
@@ -374,7 +380,9 @@ class BeneficiaryFormElement extends React.Component {
       firstNameValid: true,
       lastNameValid: true,
       idNumberValid: true,
-      percentageValid: true
+      percentageValid: true,
+      cellNumberValid: true,
+      emailValid: true
     };
     let valid = true;
 
@@ -388,6 +396,14 @@ class BeneficiaryFormElement extends React.Component {
     }
     if (!this.state.idNumber || this.state.idNumber.length !== 13) {
       newState.idNumberValid = false;
+      valid = false;
+    }
+    if (!this.state.cellNumber || this.state.cellNumber.length !== 10) {
+      newState.cellNumberValid = false;
+      valid = false;
+    }
+    if (!this.state.email || this.state.email.length < 5) {
+      newState.emailValid = false;
       valid = false;
     }
 
@@ -428,7 +444,9 @@ class BeneficiaryFormElement extends React.Component {
       first_name: this.state.firstName,
       last_name: this.state.lastName,
       id_number: this.state.idNumber,
-      percentage: this.state.percentage
+      percentage: this.state.percentage,
+      cellNumber: this.state.cellNumber,
+      email: this.state.email
     }, this.props.index);
   }
 
@@ -452,6 +470,14 @@ class BeneficiaryFormElement extends React.Component {
     this.setState({ ...this.state, percentage: event.target.value });
   }
 
+  cellNumberChanged (event) {
+    this.setState({ ...this.state, cellNumber: event.target.value });
+  }
+
+  emailChanged (event) {
+    this.setState({ ...this.state, email: event.target.value });
+  }
+
   firstNameTouched () {
     this.setState({ ...this.state, firstNameTouched: true });
     this.validate();
@@ -472,6 +498,16 @@ class BeneficiaryFormElement extends React.Component {
     this.validate();
   }
 
+  cellNumberTouched () {
+    this.setState({ ...this.state, cellNumberTouched: true });
+    this.validate();
+  }
+
+  emailTouched () {
+    this.setState({ ...this.state, emailTouched: true });
+    this.validate();
+  }
+
   render () {
     return (
       <tr>
@@ -483,6 +519,12 @@ class BeneficiaryFormElement extends React.Component {
         </td>
         <td>
           <input className={'input ' + ((!this.state.idNumberValid && this.state.idNumberTouched) ? 'has-danger' : '')} type='text' defaultValue={this.props.id_number} onChange={this.idNumberChanged.bind(this)} onBlur={this.idNumberTouched.bind(this)} required maxLength='13' minLength='13' />
+        </td>
+        <td>
+          <input className={'input ' + ((!this.state.emailValid && this.state.emailTouched) ? 'has-danger' : '')} type='text' defaultValue={this.props.email} onChange={this.emailChanged.bind(this)} onBlur={this.emailTouched.bind(this)} required maxLength='255' minLength='5' />
+        </td>
+        <td>
+          <input className={'input ' + ((!this.state.cellNumberValid && this.state.cellNumberTouched) ? 'has-danger' : '')} type='text' defaultValue={this.props.cellNumber} onChange={this.cellNumberChanged.bind(this)} onBlur={this.cellNumberTouched.bind(this)} required maxLength='10' minLength='10' />
         </td>
         <td>
           <input className={'input ' + ((!this.state.percentageValid && this.state.percentageTouched) ? 'has-danger' : '')} type='number' defaultValue={this.props.percentage} onChange={this.percentageChanged.bind(this)} onBlur={this.percentageTouched.bind(this)} required min='0' max='100' />
@@ -568,6 +610,8 @@ class BeneficiaryForm extends React.Component {
               <th>First Name</th>
               <th>Last Name</th>
               <th>ID Number</th>
+              <th>Email</th>
+              <th>Cell Number</th>
               <th>Percentage</th>
               <th />
             </tr>
