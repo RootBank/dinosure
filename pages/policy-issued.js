@@ -22,8 +22,8 @@ export default page(class extends React.Component {
     const successful = getParameterByName('successful') === 'true';
     this.setState({ successful, render: true });
     if (successful) {
-      //applicationStore.clear();
-      //quoteStore.clear();
+      applicationStore.clear();
+      quoteStore.clear();
     }
   }
 
@@ -48,7 +48,8 @@ export default page(class extends React.Component {
     return <section className='section'>
       <div className='container content'>
         <h1 className='title is-3'>Oh no!</h1>
-        <p>Something went wrong while processing your payment. Click <a href='/checkout/payment/pay'>here</a> to try again.</p>
+        <p>Something went wrong while processing your payment.</p>
+        <a class="wpwl-button wpwl-button-pay" style={{textDecoration: 'none'}} href='/checkout/payment/pay'>Try again</a>
       </div>
     </section>;
   }
