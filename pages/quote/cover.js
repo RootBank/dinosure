@@ -14,7 +14,7 @@ export default page(({ quote }) =>
         <div className='column' />
         <div className='column has-text-centered'>
           <h3 className='title is-h3'>R {Number(quote.sumAssured || 5000000).toLocaleString().replace(/,/g, ' ')}</h3>
-          <input onChange={updateSumAssured} className='slider is-fullwidth is-info' step='500000' min='500000' max='10000000' value={quote.sumAssured || 5000000} type='range' />
+          <input onChange={updateSumAssured} className='slider is-fullwidth is-info' step='500000' min='500000' max='5000000' value={quote.sumAssured || 5000000} type='range' />
           <h5 className='subtitle is-h5'>sum assured</h5>
           <p className='has-text-centered'>
             Please select the sum that will be paid out should your life be terminated by a dinosaur.
