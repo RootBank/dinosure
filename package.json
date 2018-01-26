@@ -17,6 +17,11 @@
       "<rootDir>/shim.js"
     ]
   },
+  "semistandard": {
+    "ignore": [
+      "utils/*"
+    ]
+  },
   "nodemonConfig": {
     "ignore": [
       "__tests__/*",
