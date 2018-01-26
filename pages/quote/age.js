@@ -29,11 +29,11 @@ export default page(({ quote }) =>
         <div className='level is-hidden-mobile'>
           <div className='level-item content title is-3'>
               I am
-          <div style={{ margin: '0.6em' }} className='control'>
-            <input onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
-          </div>
+            <div style={{ margin: '0.6em' }} className='control'>
+              <input onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
+            </div>
               years old
-        </div>
+          </div>
         </div>
         {/* Mobile view */}
         <div className='is-hidden-desktop is-hidden-tablet'>
@@ -49,18 +49,18 @@ export default page(({ quote }) =>
       <div className='column is-hidden-tablet' />
     </div>
   </section>,
-  {
-    footer: ({ quote }) => <div>
-      <section className='section'>
-        <div className='level form-nav'>
-          <div className='level-item'>
-            <Link prefetch href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <button onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
-          </div>
+{
+  footer: ({ quote }) => <div>
+    <section className='section'>
+      <div className='level form-nav'>
+        <div className='level-item'>
+          <Link prefetch href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+          <button onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
         </div>
-      </section>
-      <FormFooter step={3} of={6} />
-    </div>,
-    datastores: { quote: quoteStore }
-  }
+      </div>
+    </section>
+    <FormFooter step={3} of={6} />
+  </div>,
+  datastores: { quote: quoteStore }
+}
 );

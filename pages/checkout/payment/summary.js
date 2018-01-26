@@ -78,7 +78,7 @@ export default page(class extends React.Component {
                       <a>
                         <button className='button is-fullwidth' disabled={!this.state.accepted}>
                           <span className='icon'><i className='fa fa-lock' /></span>&nbsp; Pay
-                      </button>
+                        </button>
                       </a>
                     </Link>
                   </div>

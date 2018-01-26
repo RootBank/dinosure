@@ -30,7 +30,7 @@ const QuoteAlreadyReceived = () => (
         onLeft={viewQuote}
         rightClassName='is-info'
         instructions='What would you like to do?'
-    />
+      />
     </div>
   </section>
 );
@@ -46,7 +46,7 @@ const ApplicationAlreadyStarted = () => (
         onLeft={gotoApplication}
         rightClassName='is-info'
         instructions='What would you like to do?'
-    />
+      />
     </div>
   </section>
 );
@@ -70,10 +70,10 @@ export default page(class extends React.Component {
     }
   }
 },
-  {
-    datastores: { quote: quoteStore },
-    getInitialProps: () => quoteStore.state.started ? ({
-      quote: quoteStore.state
-    }) : false
-  }
+{
+  datastores: { quote: quoteStore },
+  getInitialProps: () => quoteStore.state.started ? ({
+    quote: quoteStore.state
+  }) : false
+}
 );

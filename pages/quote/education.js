@@ -46,29 +46,29 @@ export default page(({ quote = { education: false } }) =>
       <div className='column' />
     </div>
   </section>,
-  {
-    footer: class extends React.Component {
-      constructor (props) {
-        super(props);
-        this.state = { nextDisabled: true };
-      }
-      componentWillReceiveProps (nextProps) {
-        this.setState({ nextDisabled: !nextProps.quote || !nextProps.quote.education });
-      }
-      render () {
-        return <div>
-          <section className='section'>
-            <div className='level form-nav'>
-              <div className='level-item'>
-                <Link prefetch href='/quote/age'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-                <Link prefetch href='/quote/income'><button className='button is-primary' disabled={this.state.nextDisabled}>Next</button></Link>
-              </div>
+{
+  footer: class extends React.Component {
+    constructor (props) {
+      super(props);
+      this.state = { nextDisabled: true };
+    }
+    componentWillReceiveProps (nextProps) {
+      this.setState({ nextDisabled: !nextProps.quote || !nextProps.quote.education });
+    }
+    render () {
+      return <div>
+        <section className='section'>
+          <div className='level form-nav'>
+            <div className='level-item'>
+              <Link prefetch href='/quote/age'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
+              <Link prefetch href='/quote/income'><button className='button is-primary' disabled={this.state.nextDisabled}>Next</button></Link>
             </div>
-          </section>
-          <FormFooter step={4} of={6} />
-        </div>;
-      }
-    },
-    datastores: { quote: quoteStore }
-  }
+          </div>
+        </section>
+        <FormFooter step={4} of={6} />
+      </div>;
+    }
+  },
+  datastores: { quote: quoteStore }
+}
 );

@@ -17,8 +17,8 @@ export default page(({reason}) =>
       <p>Unfortunately you do not qualify for Dinosure. {toReasonPhrase(reason)}</p>
     </div>
   </section>, {
-    getInitialProps ({ query }) {
-      console.log(query.reason);
-      return { reason: query.reason };
-    }
-  });
+  getInitialProps ({ query }) {
+    console.log(query.reason);
+    return { reason: query.reason };
+  }
+});

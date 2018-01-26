@@ -18,16 +18,16 @@ export default page(() =>
       instructions={'Please answer “Smoking” if you\'ve smoked tobacco in the last year.'}
     />
   </section>,
-  {
-    footer: () => <div>
-      <section className='section'>
-        <div className='level form-nav'>
-          <div className='level-item'>
-            <Link prefetch href='/quote/income'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-          </div>
+{
+  footer: () => <div>
+    <section className='section'>
+      <div className='level form-nav'>
+        <div className='level-item'>
+          <Link prefetch href='/quote/income'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
         </div>
-      </section>
-      <FormFooter step={6} of={6} />
-    </div>
-  }
+      </div>
+    </section>
+    <FormFooter step={6} of={6} />
+  </div>
+}
 );

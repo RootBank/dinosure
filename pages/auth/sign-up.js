@@ -61,7 +61,7 @@ class SignUp extends React.Component {
           <h1 className='title'>Oh No!</h1>
           <p>
             Something went wrong. Please follow the link contained in the welcome email.
-        </p>
+          </p>
         </div>
       </section>;
     }

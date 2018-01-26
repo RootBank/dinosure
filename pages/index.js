@@ -14,7 +14,7 @@ const homePage = page(() => [
             No one expects dinosaur attacks. So when they happen, they can be both devastating both to you and
               the ones you love. Dinosure is a best of breed insurance scheme which not only provides life and disability insurance for dinosaurs attacks,
               but also provides the following services to prevent that eventuality from ever ocurring.
-            </div>
+        </div>
         <div className='columns'>
           <div className='column'>
             <div className='level' >

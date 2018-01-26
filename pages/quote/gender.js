@@ -18,17 +18,17 @@ export default page(({ quote }) =>
       instructions='What was the gender you were assigned at birth?'
     />
   </section>,
-  {
-    footer: () => <div>
-      <section className='section'>
-        <div className='level form-nav'>
-          <div className='level-item'>
-            <Link prefetch href='/quote/cover'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-          </div>
+{
+  footer: () => <div>
+    <section className='section'>
+      <div className='level form-nav'>
+        <div className='level-item'>
+          <Link prefetch href='/quote/cover'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
         </div>
-      </section>
-      <FormFooter step={2} of={6} />
-    </div>,
-    datastores: { quote: quoteStore }
-  }
+      </div>
+    </section>
+    <FormFooter step={2} of={6} />
+  </div>,
+  datastores: { quote: quoteStore }
+}
 );

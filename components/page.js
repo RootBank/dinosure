@@ -9,7 +9,7 @@ export default (Page, { footer: AuxiliaryFooter, getInitialProps, datastores = {
 
     this.state = {
       ...Object.keys(datastores)
-          .reduce((prev, key) => ({ ...prev, [key]: datastores[key].state }), {})
+        .reduce((prev, key) => ({ ...prev, [key]: datastores[key].state }), {})
     };
   }
 

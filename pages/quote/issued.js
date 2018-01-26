@@ -55,7 +55,7 @@ export default page(class extends React.Component {
                       <a>
                         <button className='button is-fullwidth'>
                           <span className='icon'><i className='fa fa-shopping-cart' /></span>&nbsp; Checkout
-                      </button>
+                        </button>
                       </a>
                     </Link>
                   </div>
@@ -73,10 +73,10 @@ export default page(class extends React.Component {
                 <p>
                   Dinosure offers <em>instant</em> cover. If you're stuck on an island, and there are raptors around, we can help you out <sup><a href='#fn1' id='ref1'>1</a></sup>.
                   Our<span className='icon'><i className='fa fa-lock' /></span>secure checkout is simple and requires only a valid credit card.
-              </p>
+                </p>
                 <p>
                   <Link prefetch href='/checkout'><a>Click here</a></Link> to start the checkout process and get protected.
-              </p>
+                </p>
               </div>
               <div style={{flex: 0.1}}>
                 <sup id='fn1'>1. Terms and conditions apply<a href='#ref1' title='Jump back to footnote 1 in the text.'>↩</a></sup>

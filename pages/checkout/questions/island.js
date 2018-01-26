@@ -15,11 +15,11 @@ export default page(({ quote }) =>
       instructions='Do you ever plan on visiting Isla Nublar?'
     />
   </section>,
-  {
-    footer: () =>
-      <section className='section'>
-        <Steps currentStep={1} />
-      </section>,
-    datastores: { application: applicationStore }
-  }
+{
+  footer: () =>
+    <section className='section'>
+      <Steps currentStep={1} />
+    </section>,
+  datastores: { application: applicationStore }
+}
 );

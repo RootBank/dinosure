@@ -135,7 +135,7 @@ class Policy extends React.Component {
             <section class='modal-card-body'>
               No beneficiaries have been added to the policy "R {this.formattedSumAssured()} @ R {this.formattedPremium()}/month".
               In order for us to be able to process a claim, please add a beneficiary now.
-          </section>
+            </section>
             <footer class='modal-card-foot'>
               <button class='button is-success' onClick={this.editBeneficiariesFromModal.bind(this)}>Add beneficiary</button>
             </footer>
@@ -759,9 +759,9 @@ export default page(class extends React.Component {
         <h1 className='title'>Oh no,</h1>
         <div className='content'>
           An error occurred and we couldn't fetch your policies. Please try refreshing the page.
-            <br /><br />
+          <br /><br />
           If the error persists, please don't hesitate to contact us.
-          </div>
+        </div>
       </div>
     </section>;
   }
