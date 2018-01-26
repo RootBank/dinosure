@@ -5,21 +5,31 @@ import quoteStore from '../../datastores/quote';
 import axios from 'axios';
 
 export default page(class extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-    this.state = { loading: false };
+    this.state = { loading: false, error: false };
   }
 
-  async componentDidMount () {
-    if (!quoteStore.isValid) {
-      this.setState({ loading: true });
+  async loadQuote() {
+    this.setState({ loading: true });
+    try {
       let result = (await axios.post('/api/quote', this.props.quote)).data;
       quoteStore.update(state => ({ ...state, result }));
+      this.setState({ error: false });
+    }
+    catch (e) {
+      this.setState({ error: true });
     }
     this.setState({ loading: false });
   }
 
-  get formattedPremium () {
+  async componentDidMount() {
+    if (quoteStore.isValid) {
+      await this.loadQuote();
+    }
+  }
+
+  get formattedPremium() {
     if (this.props.quote.result) {
       const amount = this.props.quote.result.premium;
       return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
@@ -28,20 +38,25 @@ export default page(class extends React.Component {
     }
   }
 
-  get formattedSumAssured () {
+  get formattedSumAssured() {
     const amount = this.props.quote.sumAssured;
     return Number(amount).toLocaleString().replace(/,/g, ' ');
   }
 
-  render () {
+  render() {
     return (
       <section className='section'>
         <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Fetching Quote</span></div>
-        <div className='container content'>
+        {this.state.error && <div className='container content'>
+          <h1 className='title is-3'>Oh no!</h1>
+          <p>Something went wrong while generating your quote</p>
+          <a className='wpwl-button wpwl-button-pay' style={{ textDecoration: 'none' }} onClick={this.loadQuote.bind(this)}>Try again</a>
+        </div>}
+        {!this.state.error && <div className='container content'>
           <div className='columns is-reversed-mobile'>
             <div className='column'>
               <div className='pricing-table'>
-                <div style={{marginTop: 0}} className='pricing-plan is-primary'>
+                <div style={{ marginTop: 0 }} className='pricing-plan is-primary'>
                   <div className='plan-header'>R {this.formattedSumAssured} cover</div>
                   <div className='plan-price'><span className='plan-price-amount'><span className='plan-price-currency'>R</span>{this.formattedPremium}</span>/month</div>
                   <div className='plan-items'>
@@ -62,8 +77,8 @@ export default page(class extends React.Component {
                 </div>
               </div>
             </div>
-            <div style={{display: 'flex', flexDirection: 'column'}} className='column content is-two-thirds'>
-              <div style={{flex: 1}}>
+            <div style={{ display: 'flex', flexDirection: 'column' }} className='column content is-two-thirds'>
+              <div style={{ flex: 1 }}>
                 <h1 className='title is-3'>Get Dinosured!</h1>
                 <p>
                   Your personalised quote for <strong>R {this.formattedSumAssured}</strong> cover
@@ -78,18 +93,17 @@ export default page(class extends React.Component {
                   <Link prefetch href='/checkout'><a>Click here</a></Link> to start the checkout process and get protected.
                 </p>
               </div>
-              <div style={{flex: 0.1}}>
+              <div style={{ flex: 0.1 }}>
                 <sup id='fn1'>1. Terms and conditions apply<a href='#ref1' title='Jump back to footnote 1 in the text.'>↩</a></sup>
               </div>
             </div>
           </div>
-
-        </div>
+        </div>}
 
       </section>
     );
   }
 }, {
-  datastores: { quote: quoteStore }
-}
+    datastores: { quote: quoteStore }
+  }
 );
