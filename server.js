@@ -244,7 +244,7 @@ app.prepare().then(() => {
       type: 'guardrisk_term',
       age: input.age,
       cover_amount: input.sumAssured * 100,
-      cover_period: 'whole_life',
+      cover_period: '5_years',
       basic_income_per_month: input.income * 100,
       education_status: educationStatus,
       smoker: input.smoking,
