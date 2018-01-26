@@ -5,12 +5,12 @@ import quoteStore from '../../../datastores/quote';
 import axios from 'axios';
 
 export default page(class extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = { loading: true, loaderText: 'Creating Application' };
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     const origin = window.location.origin;
     this.setState({ loading: true, origin });
     const { id, firstName, lastName, email, cellphone } = this.props.application;
@@ -21,20 +21,28 @@ export default page(class extends React.Component {
       if (!policy) {
         const { policyId } = (await axios.post('/api/apply', applicationBody)).data;
         policy = policyId;
-        applicationStore.update(state => ({ ...state, policyId }));
+        applicationStore.update(state => ({ ...state, policyId }));        
       }
+      this.setState({ loaderText: 'Loading Payment' });
       const scriptUrl = `/api/card-payment.js?policyId=${policy}`;
       const script = window.document.createElement('script');
       script.async = true;
       script.src = scriptUrl;
       document.body.appendChild(script);
-      this.setState({ loading: false });
+
+      window.wpwlOptions = {
+        onLoaded: () => {
+          console.log('onload');
+
+          this.setState({ loading: false });
+        }
+      };
     } catch (e) {
       console.log(e);
     }
   }
 
-  get formattedPremium () {
+  get formattedPremium() {
     if (this.props.quote.result) {
       const amount = this.props.quote.result.premium;
       return Number(amount / 100).toLocaleString().replace(/,/g, ' ');
@@ -43,15 +51,15 @@ export default page(class extends React.Component {
     }
   }
 
-  get formattedSumAssured () {
+  get formattedSumAssured() {
     const amount = this.props.quote.sumAssured;
     return Number(amount).toLocaleString().replace(/,/g, ' ');
   }
 
-  render () {
+  render() {
     return (
       <section className='section'>
-        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>Creating Application</span></div>
+        <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>{this.state.loaderText}</span></div>
         <div className='container content'>
           <div className='columns'>
             <div className='column' />
@@ -65,5 +73,5 @@ export default page(class extends React.Component {
     );
   }
 }, {
-  datastores: { quote: quoteStore, application: applicationStore }
-});
+    datastores: { quote: quoteStore, application: applicationStore }
+  });

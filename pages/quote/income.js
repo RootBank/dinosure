@@ -14,7 +14,7 @@ const setIncome = (event) => {
 };
 
 export default page(({ quote }) =>
-  <section clßassName='section'>
+  <section className='section'>
     <div className='columns'>
       <div className='column is-hidden-tablet is-hidden-mobile' />
       <div className='column level has-text-centered'>
