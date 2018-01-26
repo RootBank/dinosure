@@ -30,7 +30,7 @@ export default page(({ quote }) =>
           <div className='level-item content title is-3'>
               I am
             <div style={{ margin: '0.6em' }} className='control'>
-              <input onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
+              <input autoFocus={true} onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
             </div>
               years old
           </div>
@@ -40,7 +40,7 @@ export default page(({ quote }) =>
           <h3 className='title is-3'>I am</h3>
           <div className='level'>
             <div style={{ margin: '0.6em' }} className='control level-item'>
-              <input onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
+              <input autoFocus={true} onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
             </div>
           </div>
           <h3 className='title is-3'>years old</h3>
@@ -55,7 +55,7 @@ export default page(({ quote }) =>
       <div className='level form-nav'>
         <div className='level-item'>
           <Link prefetch href='/quote/gender'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-          <button onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
+          <button id='submit' onClick={next(quote.age || '')} className='button is-primary' disabled={!quote.age}>Next</button>
         </div>
       </div>
     </section>

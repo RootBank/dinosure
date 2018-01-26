@@ -21,7 +21,7 @@ export default page(class extends React.Component {
           <div className='columns'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
-              <input style={{ width: '24rem', textAlign: 'center' }} onChange={setEmail} className='input title column is-medium' type='email' placeholder='Email' value={application.email || ''} />
+              <input autoFocus style={{ width: '24rem', textAlign: 'center' }} onChange={setEmail} className='input title column is-medium' type='email' placeholder='Email' value={application.email || ''} />
             </div>
             <div className='column' />
           </div>
@@ -37,7 +37,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/checkout/profile/id'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/checkout/profile/cellphone'><button className='button is-primary' disabled={!application.email || application.email.indexOf('@') === -1 || (application.email.indexOf('@') === application.email.length - 1)}>Next</button></Link>
+            <Link href='/checkout/profile/cellphone'><button id='submit' className='button is-primary' disabled={!application.email || application.email.indexOf('@') === -1 || (application.email.indexOf('@') === application.email.length - 1)}>Next</button></Link>
           </div>
         </div>
       </section>

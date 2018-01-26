@@ -82,7 +82,7 @@ export default page(class extends React.Component {
 
               <div className='field'>
                 <div className='control'>
-                  <input onChange={setIdNumber}
+                  <input autoFocus onChange={setIdNumber}
                     // Space for 13 characters
                     style={{ width: '13rem', textAlign: 'center' }}
                     className={`input title column is-large ${isPotentiallyValid ? '' : 'is-danger'}`}
@@ -107,7 +107,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/checkout/profile/name'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <button onClick={next(application.id)} className='button is-primary' disabled={!isValidIdNumber(application.id || '')}>Next</button>
+            <button id='submit' onClick={next(application.id)} className='button is-primary' disabled={!isValidIdNumber(application.id || '')}>Next</button>
 
           </div>
         </div>

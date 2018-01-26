@@ -27,7 +27,7 @@ export default page(class extends React.Component {
           <div className='columns'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
-              <input style={{ width: '24rem', textAlign: 'center' }} onChange={setPhoneNumber} className='input title column is-medium' type='text' placeholder='' value={application.cellphone} />
+              <input autoFocus style={{ width: '24rem', textAlign: 'center' }} onChange={setPhoneNumber} className='input title column is-medium' type='text' placeholder='' value={application.cellphone} />
             </div>
             <div className='column' />
           </div>
@@ -43,7 +43,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/checkout/profile/email'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/checkout/questions'><button className='button is-primary' disabled={!isCellphoneNumberValid(application.cellphone)}>Next</button></Link>
+            <Link href='/checkout/questions'><button id='submit' className='button is-primary' disabled={!isCellphoneNumberValid(application.cellphone)}>Next</button></Link>
           </div>
         </div>
       </section>

@@ -30,7 +30,7 @@ export default page(({ quote }) =>
       <div className='level form-nav'>
         <div className='level-item'>
           <Link prefetch href='/'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-          <Link prefetch href='/quote/gender'><button className='button is-primary'>Next</button></Link>
+          <Link prefetch href='/quote/gender'><button id='submit' className='button is-primary'>Next</button></Link>
         </div>
       </div>
     </section>

@@ -22,6 +22,16 @@ export default (Page, { footer: AuxiliaryFooter, getInitialProps, datastores = {
     return { ...pageProps };
   }
 
+  handleKeyPress = (event) => {
+    if (event.key !== 'Enter') {
+      return;
+    }
+    let submit = document.getElementById('submit');
+    if(submit) {
+      submit.click();
+    }
+  };
+
   componentDidMount () {
     this.subscriptions = Object.keys(datastores).map(store =>
       datastores[store].subscribe(x => this.setState({ [store]: x }))
@@ -37,7 +47,7 @@ export default (Page, { footer: AuxiliaryFooter, getInitialProps, datastores = {
 
   render () {
     return (
-      <div style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }} onKeyPress={this.handleKeyPress}>
         <div style={{ flex: 1 }}>
           <Navbar user={this.props.user} isAuthenticated={this.props.isAuthenticated} currentPage={this.state.currentPage} />
           <Page {...this.props} {...this.state} />

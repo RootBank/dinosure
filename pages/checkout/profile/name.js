@@ -25,7 +25,7 @@ export default page(class extends React.Component {
           <div className='columns is-mobile'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
-              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='first name' value={application.firstName || ''} />
+              <input autoFocus style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='first name' value={application.firstName || ''} />
             </div>
             <div className='column' />
           </div>
@@ -48,7 +48,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/quote/issued'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/checkout/profile/id'><button className='button is-primary' disabled={!application.firstName || application.firstName.length === 0 || !application.lastName || application.lastName.length === 0}>Next</button></Link>
+            <Link href='/checkout/profile/id'><button id='submit' className='button is-primary' disabled={!application.firstName || application.firstName.length === 0 || !application.lastName || application.lastName.length === 0}>Next</button></Link>
           </div>
         </div>
       </section>
