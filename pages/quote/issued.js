@@ -24,7 +24,7 @@ export default page(class extends React.Component {
   }
 
   async componentDidMount() {
-    if (quoteStore.isValid) {
+    if (!quoteStore.isValid) {
       await this.loadQuote();
     }
   }
