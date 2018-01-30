@@ -193,7 +193,9 @@ app.prepare().then(() => {
 
     const potentialPolicyholder = await axios.get(`${rootUrl}/policyholders?id_number=${id}`, { auth });
     if (potentialPolicyholder.data.length > 0) {
-      return potentialPolicyholder.data[0];
+      let updateData = { ...policyholderBody };
+      delete updateData.id;
+      return (await axios.patch(`${rootUrl}/policyholders/${potentialPolicyholder.data[0].policyholder_id}`, updateData, { auth })).data;
     } else {
       return (await axios.post(`${rootUrl}/policyholders/`, policyholderBody, { auth })).data;
     }
@@ -318,7 +320,7 @@ app.prepare().then(() => {
 
     // TODO: Update auth0???
 
-    const result = await axios.patch(`${rootUrl}/policyholders/${policyholderId}`, [body], { auth });
+    const result = await axios.patch(`${rootUrl}/policyholders/${policyholderId}`, body, { auth });
     if (result.data.policyholder_id) {
       ctx.body = body;
       ctx.status = 200;
