@@ -7,6 +7,7 @@ import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
 import { asYouType, isValidNumber, parse } from 'libphonenumber-js';
+import Input from '../../../components/input';
 
 const setPhoneNumber = (event) => {
   const cellphone = new asYouType('ZA').input(event.target.value);
@@ -27,7 +28,7 @@ export default page(class extends React.Component {
           <div className='columns'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
-              <input autoFocus style={{ width: '24rem', textAlign: 'center' }} onChange={setPhoneNumber} className='input title column is-medium' type='text' placeholder='' value={application.cellphone} />
+              <Input autoFocus={true} style={{ width: '24rem', textAlign: 'center' }} onChange={setPhoneNumber} className='input title column is-medium' type='text' placeholder='' value={application.cellphone} />
             </div>
             <div className='column' />
           </div>

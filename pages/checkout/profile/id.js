@@ -6,6 +6,7 @@ import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
 import differenceInYears from 'date-fns/fp/differenceInYears';
+import Input from '../../../components/input';
 
 const isPotentiallyValidIdNumber = (id = '') => /^[0-9]{0,13}$/.test(id);
 
@@ -82,7 +83,7 @@ export default page(class extends React.Component {
 
               <div className='field'>
                 <div className='control'>
-                  <input autoFocus onChange={setIdNumber}
+                  <Input autoFocus onChange={setIdNumber}
                     // Space for 13 characters
                     style={{ width: '13rem', textAlign: 'center' }}
                     className={`input title column is-large ${isPotentiallyValid ? '' : 'is-danger'}`}

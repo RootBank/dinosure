@@ -1,5 +1,6 @@
 import FormFooter from '../../components/form-progress';
 import page from '../../components/page';
+import Input from '../../components/input';
 import Link from 'next/link';
 import quoteStore from '../../datastores/quote';
 
@@ -21,7 +22,7 @@ export default page(({ quote }) =>
         {/* Desktop and tablet view */}
         <div className='is-hidden-mobile'><div className='level-item content title is-3'>
           I earn <div style={{ margin: '0.6em' }} className='control'>
-            <input autoFocus={true} onChange={setIncome} style={{ width: '7em', textAlign: 'center' }} className='input title is-large' type='text' placeholder='income' value={quote.income ? `R ${formatIncome(quote.income)}` : ''} />
+            <Input autoFocus={true} onChange={setIncome} style={{ width: '7em', textAlign: 'center' }} className='input title is-large' type='text' placeholder='income' value={quote.income ? `R ${formatIncome(quote.income)}` : 'R '} />
           </div>
           per month
         </div>
@@ -29,7 +30,7 @@ export default page(({ quote }) =>
         {/* Mobile view */}
         <div className='is-hidden-desktop is-hidden-tablet'>
           <h3 className='title is-3'>I earn</h3>
-          <input autoFocus={true} onChange={setIncome} style={{ width: '7em', textAlign: 'center' }} className='input title is-large' type='text' placeholder='income' value={quote.income ? `R ${formatIncome(quote.income)}` : ''} />
+          <Input autoFocus={true} onChange={setIncome} style={{ width: '7em', textAlign: 'center' }} className='input title is-large' type='text' placeholder='income' value={quote.income ? `R ${formatIncome(quote.income)}` : 'R '} />
           <h3 className='title is-3'>per month</h3>
         </div>
       </div>

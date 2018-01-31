@@ -3,6 +3,7 @@ import page from '../../components/page';
 import Link from 'next/link';
 import quoteStore from '../../datastores/quote';
 import Router from 'next/router';
+import Input from '../../components/input';
 
 const isValidAge = (value) => value <= 120;
 const setAge = (event) => {
@@ -30,7 +31,7 @@ export default page(({ quote }) =>
           <div className='level-item content title is-3'>
               I am
             <div style={{ margin: '0.6em' }} className='control'>
-              <input autoFocus={true} onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
+              <Input autoFocus={true} onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
             </div>
               years old
           </div>
@@ -40,7 +41,7 @@ export default page(({ quote }) =>
           <h3 className='title is-3'>I am</h3>
           <div className='level'>
             <div style={{ margin: '0.6em' }} className='control level-item'>
-              <input autoFocus={true} onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
+              <Input autoFocus={true} onChange={setAge} style={{ width: '3em', textAlign: 'center' }} className='input title is-3 is-medium' type='text' placeholder='age' value={quote.age || ''} />
             </div>
           </div>
           <h3 className='title is-3'>years old</h3>

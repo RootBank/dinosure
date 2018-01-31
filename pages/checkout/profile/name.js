@@ -5,6 +5,7 @@ import React from 'react';
 import quoteStore from '../../../datastores/quote';
 import applicationStore from '../../../datastores/application';
 import Steps from '../../../components/checkout-steps';
+import Input from '../../../components/input';
 
 const setFirstName = (event) => {
   applicationStore.update(state => ({ ...state, firstName: event.target.value }));
@@ -25,14 +26,14 @@ export default page(class extends React.Component {
           <div className='columns is-mobile'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
-              <input autoFocus style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='first name' value={application.firstName || ''} />
+              <Input autoFocus style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='first name' value={application.firstName || ''} />
             </div>
             <div className='column' />
           </div>
           <div className='columns is-mobile'>
             <div className='column' />
             <div style={{margin: '0.6em'}} className='column'>
-              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setLastName} className='input title is-medium' type='text' placeholder='last name' value={application.lastName || ''} />
+              <Input style={{ width: '14rem', textAlign: 'center' }} onChange={setLastName} className='input title is-medium' type='text' placeholder='last name' value={application.lastName || ''} />
             </div>
             <div className='column' />
           </div>
