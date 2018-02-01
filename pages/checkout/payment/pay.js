@@ -7,12 +7,12 @@ import axios from 'axios';
 export default page(class extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true, loaderText: 'Creating Application' };
+    this.state = { loading: true, loaderText: 'Creating Application', error: false };
   }
 
-  async componentDidMount() {
+  async retry() {
     const origin = window.location.origin;
-    this.setState({ loading: true, origin });
+    this.setState({ loading: true, origin, error: false });
     const { id, firstName, lastName, email, cellphone } = this.props.application;
     const { quotePackageId } = this.props.quote.result;
     const applicationBody = { id, firstName, lastName, email, quotePackageId, cellphone };
@@ -38,8 +38,16 @@ export default page(class extends React.Component {
         }
       };
     } catch (e) {
-      console.log(e);
+      let errorMessage = null;
+      if(e.response && e.response.data && e.response.data.error) {
+        errorMessage = e.response.data.error;
+      }
+      this.setState({ loading: false, error: true, errorMessage });
     }
+  }
+
+  async componentDidMount() {
+    this.retry();
   }
 
   get formattedPremium() {
@@ -60,7 +68,13 @@ export default page(class extends React.Component {
     return (
       <section className='section'>
         <div className={`pageloader ${this.state.loading ? 'is-active' : ''}`}><span className='title'>{this.state.loaderText}</span></div>
-        <div className='container content'>
+        {this.state.error && <div className='container content'>
+          <h1 className='title is-3'>Oh no!</h1>
+          <p>Something went wrong while creating your application</p>
+          {this.state.errorMessage && <p><pre>{this.state.errorMessage}</pre></p>}
+          <a className='wpwl-button wpwl-button-pay' style={{ textDecoration: 'none' }} onClick={this.retry.bind(this)}>Try again</a>
+        </div>}
+        {!this.state.error && <div className='container content'>
           <div className='columns'>
             <div className='column' />
             <div className='column'>
@@ -68,7 +82,7 @@ export default page(class extends React.Component {
             </div>
             <div className='column' />
           </div>
-        </div>
+        </div>}
       </section>
     );
   }
