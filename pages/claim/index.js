@@ -3,6 +3,7 @@ import React from 'react';
 import claimStore from '../../datastores/claim';
 import Router from 'next/router';
 import axios from 'axios';
+import Input from '../../components/input';
 
 const createClaim = async () => {
   try {
@@ -45,21 +46,21 @@ export default page(class extends React.Component {
           <div className='columns is-mobile'>
             <div className='column' />
             <div className='column'>
-              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='First Name' value={claim.firstName || ''} />
+              <Input style={{ width: '14rem', textAlign: 'center' }} onChange={setFirstName} className='input title is-medium' type='text' placeholder='First Name' value={claim.firstName || ''} />
             </div>
             <div className='column' />
           </div>
           <div className='columns is-mobile'>
             <div className='column' />
             <div className='column'>
-              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setLastName} className='input title is-medium' type='text' placeholder='Last Name' value={claim.lastName || ''} />
+              <Input style={{ width: '14rem', textAlign: 'center' }} onChange={setLastName} className='input title is-medium' type='text' placeholder='Last Name' value={claim.lastName || ''} />
             </div>
             <div className='column' />
           </div>
           <div className='columns is-mobile'>
             <div className='column' />
             <div className='column'>
-              <input style={{ width: '14rem', textAlign: 'center' }} onChange={setEmail} className='input title is-medium' type='text' placeholder='Email' value={claim.email || ''} />
+              <Input style={{ width: '14rem', textAlign: 'center' }} onChange={setEmail} className='input title is-medium' type='text' placeholder='Email' value={claim.email || ''} />
             </div>
             <div className='column' />
           </div>
