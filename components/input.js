@@ -19,13 +19,14 @@ export default class Input extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.state.isLast && nextProps.value) {
-      this.setState({ curPos: nextProps.value.length });
+      const val = nextProps.value.toString();
+      this.setState({ curPos: val.length, isLast: false });
     }
   }
 
   _onChange = (e) => {
     const curPos = e.target.selectionEnd;
-    const val = e.target.value;
+    const val = e.target.value.toString();
     const isLast = val.length === curPos;
     this.setState({ curPos, isLast });
     this.props.onChange(e);
