@@ -5,16 +5,15 @@ export default class Input extends React.Component {
     super(props, context);
     this.state = {
       curPos: (props.value || '').length,
-      isLast: true
+      isLast: true,
+      firstTime: true
     };
   }
 
-  componentDidMount() {
-    if (this.props.focus !== undefined) this.refs.input.focus();
-  }
-
   componentDidUpdate() {
-    this.refs.input.setSelectionRange(this.state.curPos, this.state.curPos);
+    if(this.refs.input === document.activeElement) {
+      this.refs.input.setSelectionRange(this.state.curPos, this.state.curPos);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,17 +32,29 @@ export default class Input extends React.Component {
   };
 
   render() {
-    return (
-      <input
+    if(this.props.autoFocus) {
+      return <input
+          className={this.props.className}
+          disabled={this.props.disabled}
+          autoFocus={!!this.props.autoFocus}
+          style={this.props.style}
+          onChange={this._onChange}
+          value={this.props.value}
+          placeholder={this.props.placeholder}
+          type={this.props.type}
+          ref='input'
+        />;
+    }
+    
+    return <input
         className={this.props.className}
         disabled={this.props.disabled}
-        autoFocus={this.props.autoFocus}
         style={this.props.style}
         onChange={this._onChange}
         value={this.props.value}
         placeholder={this.props.placeholder}
+        type={this.props.type}
         ref='input'
-      />
-    );
+      />;
   }
 }

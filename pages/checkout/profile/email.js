@@ -19,12 +19,12 @@ export default page(class extends React.Component {
         <div className='column' />
         <div className='column has-text-centered'>
           <div className='title is-3'>My email address is</div>
-          <div className='columns'>
-            <div className='column' />
+          <div className='columns is-mobile'>
+            <div className='column is-mobile' />
             <div style={{margin: '0.6em'}} className='column'>
-              <Input autoFocus style={{ width: '24rem', textAlign: 'center' }} onChange={setEmail} className='input title column is-medium' type='email' placeholder='Email' value={application.email || ''} />
+              <Input autoFocus style={{ width: '24rem', textAlign: 'center' }} onChange={setEmail} className='input title column is-medium' type='text' placeholder='Email' value={application.email || ''} />
             </div>
-            <div className='column' />
+            <div className='column is-mobile' />
           </div>
         </div>
         <div className='column' />
