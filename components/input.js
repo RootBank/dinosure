@@ -5,8 +5,7 @@ export default class Input extends React.Component {
     super(props, context);
     this.state = {
       curPos: (props.value || '').length,
-      isLast: true,
-      firstTime: true
+      isLast: true
     };
   }
 
