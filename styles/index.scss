@@ -108,7 +108,11 @@ and also iPads specifically.
     margin-right: 0.5rem;
     margin-top: 1rem;    
     border-radius: 50%; 
-}
+
+    @include tablet {
+        margin-right: 60px;
+    } 
+} 
 
 // A little spacing between previous and next buttons
 .form-nav  .button {
