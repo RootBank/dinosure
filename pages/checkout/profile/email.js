@@ -38,7 +38,7 @@ export default page(class extends React.Component {
         <div className='level form-nav'>
           <div className='level-item'>
             <Link href='/checkout/profile/id'><button className='button is-primary is-inverted'><a>Prev</a></button></Link>
-            <Link href='/checkout/profile/cellphone'><button id='submit' className='button is-primary' disabled={!application.email || application.email.indexOf('@') === -1 || (application.email.indexOf('@') === application.email.length - 1)}>Next</button></Link>
+            <Link href='/checkout/profile/cellphone'><button id='submit' className='button is-primary' disabled={!application.email || application.email.indexOf('@') === -1 || application.email.indexOf('@') === application.email.length - 1 || application.email.indexOf('.') === -1 || application.email.indexOf('.') === application.email.length - 1}>Next</button></Link>
           </div>
         </div>
       </section>
