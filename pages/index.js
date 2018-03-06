@@ -3,7 +3,7 @@ import page from '../components/page';
 
 const homePage = page(() => [
   <section key='splash' className='hero'>
-    <img style={{ width: '100vw', maxWidth: 'unset', paddingTop: '2em' }} src='/static/hero-splash.svg' />
+    <img style={{ width: '100%', maxWidth: 'unset', paddingTop: '2em' }} src='/static/hero-splash.svg' />
   </section>,
   <section key='benefits' className='hero is-primary'>
     <div className='hero-body' >

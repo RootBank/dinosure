@@ -48,7 +48,7 @@ export default (Page, { footer: AuxiliaryFooter, getInitialProps, datastores = {
   render () {
     return (
       <div style={{ display: 'flex', minHeight: '100vh', flexDirection: 'column' }} onKeyPress={this.handleKeyPress}>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: '1 0 auto' }}>
           <Navbar user={this.props.user} isAuthenticated={this.props.isAuthenticated} currentPage={this.state.currentPage} />
           <Page {...this.props} {...this.state} />
         </div>

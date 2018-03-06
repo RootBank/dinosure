@@ -49,8 +49,8 @@ export default class extends React.Component {
         <div className='container'>
           <div className='navbar-brand'>
             <Link prefetch href='/'>
-              <a className='navbar-item'>
-                <img style={{ height: '50px', maxHeight: 'unset' }} src='/static/logo.svg' alt='Logo' />
+              <a className='navbar-item' style={{width:'200px'}}>
+                <img style={{ height: '50px', maxHeight: '50px' }} src='/static/logo.svg' alt='Logo' />
               </a>
             </Link>
             <label onClick={this.toggleMenuVisibility.bind(this)} className='navbar-burger navbar-toggle burger' >
