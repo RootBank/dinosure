@@ -11,7 +11,7 @@ export default page(() => (
       </p>
       <ul>
         <li>email <a href='mailto:hello@dinosure.io'>hello@dinosure.io</a></li>
-        <li>telephone <a href='tel:0875509861'>087 550 9861</a></li>
+        <li>telephone <a href='tel:0875507578'>087 550 7578</a></li>
       </ul>
       <p>
         If we have not sucessfully adressed your concerns, you can foward your issue to the <a href='http://www.ombud.co.za/'>Ombudsman for Long-term Insurance</a>.
