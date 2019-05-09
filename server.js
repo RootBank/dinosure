@@ -243,7 +243,7 @@ app.prepare().then(() => {
         : input.education;
 
     const quoteParams = {
-      type: 'root_term',
+      type: 'dinosure',
       age: input.age,
       cover_amount: input.sumAssured * 100,
       cover_period: '5_years',
