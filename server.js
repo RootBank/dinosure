@@ -48,10 +48,11 @@ const decodeJwt = (token) => {
   return jwt.verify(token, 'supersecretmagickey');
 };
 
+const apiKey = process.env.ROOT_API_KEY;
 const rootClientId = process.env.ROOT_CLIENT_ID;
 const rootClientSecret = process.env.ROOT_CLIENT_SECRET;
 const rootUrl = process.env.ROOT_INSURANCE_URL;
-const auth = { username: rootClientId, password: rootClientSecret };
+const auth = { username: apiKey, password: rootClientSecret };
 
 app.prepare().then(() => {
   const server = new Koa();
