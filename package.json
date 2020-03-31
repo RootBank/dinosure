@@ -67,7 +67,7 @@
     "koa-helmet": "^3.3.0",
     "koa-router": "^7.3.0",
     "libphonenumber-js": "^0.4.42",
-    "next": "^4.1.4",
+    "next": "^9.3.2",
     "node-sass": "^4.6.1",
     "nodemon": "^1.12.1",
     "normalize.css": "^7.0.0",
