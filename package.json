@@ -68,7 +68,7 @@
     "koa-router": "^7.3.0",
     "libphonenumber-js": "^0.4.42",
     "next": "^4.1.4",
-    "node-sass": "^4.6.1",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.12.1",
     "normalize.css": "^7.0.0",
     "path-match": "^1.2.4",
