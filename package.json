@@ -48,7 +48,7 @@
     "auth0": "^2.8.0",
     "auth0-lock": "^10.24.1",
     "autoprefixer": "^7.1.6",
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^3.0.0",
     "babel-plugin-wrap-in-js": "^1.1.1",
     "bulma": "^0.6.1",
