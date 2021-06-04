@@ -46,7 +46,7 @@
   "homepage": "https://github.com/RootBank/dinosure#readme",
   "dependencies": {
     "auth0": "^2.8.0",
-    "auth0-lock": "^10.24.1",
+    "auth0-lock": "^11.30.1",
     "autoprefixer": "^7.1.6",
     "axios": "^0.17.1",
     "babel-plugin-module-resolver": "^3.0.0",
