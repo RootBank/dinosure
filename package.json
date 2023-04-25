@@ -65,6 +65,7 @@
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.1.0",
     "jwks-rsa": "^1.2.1",
+    "node-sass": "^4.6.1",
     "jwt-decode": "^2.2.0",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
