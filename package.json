@@ -12,6 +12,10 @@
     "heroku-postbuild": "npm run build",
     "update-snapshot": "jest --updateSnapshot"
   },
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
   "jest": {
     "setupFiles": [
       "<rootDir>/shim.js"
@@ -68,7 +72,6 @@
     "koa-router": "^7.3.0",
     "libphonenumber-js": "^0.4.42",
     "next": "^4.1.4",
-    "node-sass": "^4.6.1",
     "nodemon": "^1.12.1",
     "normalize.css": "^7.0.0",
     "path-match": "^1.2.4",
